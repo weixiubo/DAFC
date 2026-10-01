@@ -1,0 +1,17 @@
+{
+  "original_analysis_sha256": "455175ba304b367e53cf6120ee9833e00d1420231be3ed9f035fbc3cb52b8571",
+  "original_manifest_sha256": "37d35cf440725c9c7b63163f1fd8bc24cd598efeda7a222bbb658043d27b61fd",
+  "jobs_sha256": "22dcd1c23b20983a7300ae4fa0e52ef4e495a592f1ddb231d66d9a21c51f9574",
+  "statistical_script_sha256": "765b7d44c24489114eadc1bd70e7caad7bc4d54aa83316dda60b111f63be58cd",
+  "extracted_functions": [
+    "sha256",
+    "compact_row",
+    "policy_summary",
+    "pair_map",
+    "cluster_bootstrap",
+    "comparison"
+  ],
+  "statistical_function_bodies_unchanged": true,
+  "public_rows_are_redacted_derivatives": true,
+  "refactored_code_did_not_produce_historical_results": true
+}

@@ -1,0 +1,177 @@
+[
+  {
+    "old_path": "scripts/analyze_android_atomic_closed_loop.py",
+    "new_path": "src/dafc/evaluation/analyze_android_atomic_closed_loop.py",
+    "old_sha256": "765b7d44c24489114eadc1bd70e7caad7bc4d54aa83316dda60b111f63be58cd"
+  },
+  {
+    "old_path": "scripts/analyze_android_recovered_source_followup_v2_integral_coordinate_repaired.py",
+    "new_path": "src/dafc/evaluation/analyze_android_recovered_source_followup_v2_integral_coordinate_repaired.py",
+    "old_sha256": "3652797ca169b70f8882f7bfc1f38d46836c8a5b85403b25faf9ab4e4fe67c77"
+  },
+  {
+    "old_path": "scripts/android_atomic_closed_loop.py",
+    "new_path": "src/dafc/experiments/android_atomic.py",
+    "old_sha256": "a5f886bcf5d7f94f6a83af5f268e6cd494c9636550cec785794bb9059b710754"
+  },
+  {
+    "old_path": "scripts/audit_android_atomic_closed_loop.py",
+    "new_path": "src/dafc/evaluation/audit_android_atomic_closed_loop.py",
+    "old_sha256": "54ced02fdff37d9bf280c25fb61b75a578909de0709c96cefefa4974a7d29857"
+  },
+  {
+    "old_path": "scripts/audit_transitionguard_postcheck_baselines.py",
+    "new_path": "src/dafc/evaluation/audit_transitionguard_postcheck_baselines.py",
+    "old_sha256": "cd48e6df94be34a59efb16bcd49b94df8784067efb85c7daba66e91cb5ec4b39"
+  },
+  {
+    "old_path": "scripts/c357_visual_contract_registration_pilot.py",
+    "new_path": "src/dafc/registration/base.py",
+    "old_sha256": "3c51265799a461d492c3daa0d3108d5997249ae3a044ebd468d4553803e54c49"
+  },
+  {
+    "old_path": "scripts/c359_visual_contract_selector_v2.py",
+    "new_path": "src/dafc/registration/selector_v2.py",
+    "old_sha256": "614c26bc0e3f0e7870ae69f2821bababb4fee669417fa9d4785a860fd8341210"
+  },
+  {
+    "old_path": "scripts/c364_visual_contract_selector_v3.py",
+    "new_path": "src/dafc/registration/selector_v3.py",
+    "old_sha256": "6452f1000486198b09650b13ae917e26baa4f042814ac99de10186b30acb2af8"
+  },
+  {
+    "old_path": "scripts/c372_visual_contract_selector_v4.py",
+    "new_path": "src/dafc/registration/selector_v4.py",
+    "old_sha256": "ce2d8575c63b079f83c779c97edf1d9b1807d4726ce754c42bfc4582571353b4"
+  },
+  {
+    "old_path": "scripts/c375_visual_contract_selector_v5.py",
+    "new_path": "src/dafc/registration/selector_v5.py",
+    "old_sha256": "148135d50f5ecc18cc3127deebc232750ea0f3c2054368f1aa09c4514d2fa8d4"
+  },
+  {
+    "old_path": "scripts/c388_browser_native_contract_development_pilot.py",
+    "new_path": "src/dafc/adapters/browser/c388_browser_native_contract_development_pilot.py",
+    "old_sha256": "63cb8562e28b32ceb87ee540726b67af434939e5250a44ae368257bc26f4fe49"
+  },
+  {
+    "old_path": "scripts/c390_action_conditioned_selector_v6.py",
+    "new_path": "src/dafc/registration/action_contract.py",
+    "old_sha256": "c7dff3cb101e2b232d1bea39864220c1e5c12138aa348aa1a32b6fb43ee075a5"
+  },
+  {
+    "old_path": "scripts/c398_browser_native_v6_preregister.py",
+    "new_path": "src/dafc/adapters/browser/c398_browser_native_v6_preregister.py",
+    "old_sha256": "67453df99bde424cc8dde9ed560e1652b06dea29987a8b6e339be399114ea9df"
+  },
+  {
+    "old_path": "scripts/c400_final_browser_capture.py",
+    "new_path": "src/dafc/adapters/browser/c400_final_browser_capture.py",
+    "old_sha256": "df95a6353123ed5249d674cc0eb2ee11530bbde395f42b7aa5a76455abfe8858"
+  },
+  {
+    "old_path": "scripts/c401_full_viewport_browser_contracts.py",
+    "new_path": "src/dafc/adapters/browser/c401_full_viewport_browser_contracts.py",
+    "old_sha256": "e8dc51d55e0ab3e6a73987c3037c53c4fe885a6085a8968fcd2dd5d8ca5e72f6"
+  },
+  {
+    "old_path": "scripts/c430_multistep_transition_feasibility.py",
+    "new_path": "src/dafc/adapters/browser/c430_multistep_transition_feasibility.py",
+    "old_sha256": "1416e53571570ce38ab6c4e1742dafc25b0b2d6fdb8f8bfa9de10c588076974b"
+  },
+  {
+    "old_path": "scripts/c431_transition_precondition_development.py",
+    "new_path": "src/dafc/adapters/browser/c431_transition_precondition_development.py",
+    "old_sha256": "628dce974980d8dc7cbba8d7808b1ce70d82fdf739f0c629aa8fd45074ac106c"
+  },
+  {
+    "old_path": "scripts/c432_multistep_native_contract_capture.py",
+    "new_path": "src/dafc/adapters/browser/c432_multistep_native_contract_capture.py",
+    "old_sha256": "8755f143f4df8f75f27dc573858e221a8a33cf3f214093c1a205404247b986ed"
+  },
+  {
+    "old_path": "scripts/c459_androidworld_clock_mechanics_audit.py",
+    "new_path": "src/dafc/adapters/android/c459_androidworld_clock_mechanics_audit.py",
+    "old_sha256": "5095cedef1dc725c6a832741fb44599f4f97fb3a547c61230f7a1f028faf1063"
+  },
+  {
+    "old_path": "scripts/c482_androidworld_v2_breadth_audit.py",
+    "new_path": "src/dafc/adapters/android/c482_androidworld_v2_breadth_audit.py",
+    "old_sha256": "3bfa2ceb01d66b6a598c86d005bed83666386a24c81f52b387196d148f8d5221"
+  },
+  {
+    "old_path": "scripts/c488_android_live_runner_integrity_audit.py",
+    "new_path": "src/dafc/adapters/android/c488_android_live_runner_integrity_audit.py",
+    "old_sha256": "b4beaedcd14a7e2889466245cb3ad2a6b8154ca71f70153ca3714fe9dcc9e597"
+  },
+  {
+    "old_path": "scripts/formal_miniwob_transitionguard.py",
+    "new_path": "src/dafc/experiments/miniwob.py",
+    "old_sha256": "8d381c8a2e0a04b00c04038c7b205e71ec988acb009be89bd29bb45da8b4b808"
+  },
+  {
+    "old_path": "scripts/formal_transitionguard.py",
+    "new_path": "src/dafc/evidence.py",
+    "old_sha256": "8a8072f8b289f32ddc63067d3be54d25799398684e88433a4cb4dc4f11f8e499"
+  },
+  {
+    "old_path": "scripts/lightglue_runtime_frontend.py",
+    "new_path": "src/dafc/models/lightglue_runtime_frontend.py",
+    "old_sha256": "68e8a753da22c7ecd72c8c1d825029271a87e18fe1045b4261a3424b8251d59b"
+  },
+  {
+    "old_path": "scripts/lightglue_runtime_service.py",
+    "new_path": "src/dafc/models/lightglue_runtime_service.py",
+    "old_sha256": "add953f1532d38c06ac2276b59388d45362f055572e9f2719d8a6c66f5d68380"
+  },
+  {
+    "old_path": "scripts/live_androidworld_transition_guard.py",
+    "new_path": "src/dafc/adapters/android/live_androidworld_transition_guard.py",
+    "old_sha256": "0c5a32e7e947b9d82ea8daa07100c5ee212a138523bf47ccedec669fe9bd74d0"
+  },
+  {
+    "old_path": "scripts/live_miniwob_transition_guard.py",
+    "new_path": "src/dafc/adapters/browser/live_miniwob_transition_guard.py",
+    "old_sha256": "df7a6431b808df7b4dfee4d8a6e1a4d6340539d44ebcb9f87893e856b68bf5ea"
+  },
+  {
+    "old_path": "scripts/miniwob_agent_harness.py",
+    "new_path": "src/dafc/adapters/browser/miniwob_agent_harness.py",
+    "old_sha256": "8dcf66bab1394bb8b3a50379448b29cd280faecd9127a632a21e69a682e6ff0d"
+  },
+  {
+    "old_path": "scripts/open_gui_grounder_service_client.py",
+    "new_path": "src/dafc/models/client.py",
+    "old_sha256": "8a81f9ec8b8a8af68effa6194afe7da0b4b1240cf2f7efb8f4b1efffec8ab8b7"
+  },
+  {
+    "old_path": "scripts/remote_open_gui_grounder.py",
+    "new_path": "src/dafc/models/remote_open_gui_grounder.py",
+    "old_sha256": "dcb71f6c6be498502eacc451a56ccc135828e8e4cbd6a528d611fe76ff93ace4"
+  },
+  {
+    "old_path": "scripts/remote_open_gui_grounder_v3.py",
+    "new_path": "src/dafc/models/remote_open_gui_grounder_v3.py",
+    "old_sha256": "515d55f3cbeacec7acb2595272a995ae627c05989bfc567c971ab86e7b0d6999"
+  },
+  {
+    "old_path": "scripts/remote_open_gui_grounder_v5_service.py",
+    "new_path": "src/dafc/models/remote_open_gui_grounder_v5_service.py",
+    "old_sha256": "6dea63d517ecf6b2df82898078d9df1dc4e58750ea4ce2596e8438c7edb3575e"
+  },
+  {
+    "old_path": "scripts/remote_open_gui_grounder_v7_qwen_model_frame.py",
+    "new_path": "src/dafc/models/remote_open_gui_grounder_v7_qwen_model_frame.py",
+    "old_sha256": "6e7c823575ce94882ad2466e76e838e64870c85db5c21561b36885ef1f5a4496"
+  },
+  {
+    "old_path": "scripts/remote_open_gui_grounder_v7_service.py",
+    "new_path": "src/dafc/models/remote_open_gui_grounder_v7_service.py",
+    "old_sha256": "2c50e94c33d0c3e07c24f3dab5c1b915b12ded227b26065fe169cae2763c4789"
+  },
+  {
+    "old_path": "scripts/transition_guard.py",
+    "new_path": "src/dafc/transitions.py",
+    "old_sha256": "85bf70bc778cca07efdd1e6a884eaa9669d05ba18d5f756ab502e99ef936790e"
+  }
+]

@@ -1,0 +1,736 @@
+[
+  {
+    "dafc": {
+      "action_conditioned_rescue": {
+        "accepted": false,
+        "eligible": false,
+        "mapped_action": [
+          211.0,
+          143.0
+        ],
+        "reason": "v5_acceptance_preserved",
+        "source_action": [
+          211.0,
+          143.0
+        ],
+        "thresholds": {
+          "appearance_branch": {
+            "maximum_grayscale_mae": 5.0,
+            "maximum_grayscale_p90": 10.0,
+            "maximum_nearest_inlier_fraction": 0.16,
+            "minimum_gradient_ncc": 0.75,
+            "minimum_grayscale_ncc": 0.9,
+            "minimum_grayscale_within_12_rate": 0.95,
+            "minimum_inliers": 1,
+            "radius_fraction": 0.18
+          },
+          "geometric_branch": {
+            "maximum_grayscale_mae": 35.0,
+            "maximum_local_p90_residual_px": 4.0,
+            "maximum_nearest_inlier_fraction": 0.12,
+            "minimum_angular_bins": 3,
+            "minimum_grayscale_ncc": 0.5,
+            "minimum_inliers": 6,
+            "radius_fraction": 0.12
+          },
+          "maximum_action_stability_px": 4.0,
+          "maximum_inlier_median_residual_px": 2.5,
+          "maximum_inlier_p90_residual_px": 4.0,
+          "maximum_local_condition_number": 4.0,
+          "maximum_local_scale": 2.5,
+          "minimum_inlier_rate": 0.7,
+          "minimum_inliers": 16,
+          "minimum_local_scale": 0.35,
+          "minimum_local_valid_rate": 0.9,
+          "minimum_matches": 32,
+          "patch_radius_px": 72,
+          "subsample_keep_fraction": 0.8,
+          "subsample_repetitions": 7,
+          "target_boundary_margin_px": 4.0
+        }
+      },
+      "base_selector_version": "safety-first-v2",
+      "base_v2_supported": true,
+      "decision_path": "v2_decision_preserved",
+      "failed_v2_support_checks": null,
+      "families": {},
+      "full_refit": {
+        "inlier_rate": 1.0,
+        "inliers": 0,
+        "matches": 0,
+        "source_coverage": 1.0
+      },
+      "gross_photometric_gate": {
+        "checks": {
+          "exact_pixel_identity": true
+        },
+        "pass": true
+      },
+      "low_coverage_rescue_eligible": false,
+      "match_counts": {
+        "mutual_ratio_matches": 0,
+        "source_keypoints": 0,
+        "target_keypoints": 0
+      },
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "parent_selector_version": "tail-aware-dual-certificate-v5",
+      "photometric_certificate": null,
+      "reason": "exact_pixel_identity",
+      "rescue_stability": null,
+      "selected_family": "identity",
+      "selected_family_support": {
+        "exact_pixel_identity": true
+      },
+      "selector_version": "action-conditioned-v6-development",
+      "stability": {
+        "details": [],
+        "maximum_grid_disagreement_p95": 0.0,
+        "pass": true,
+        "repetitions": 0,
+        "threshold_px": 3.0
+      },
+      "supported": true,
+      "tail_family_escalation": {
+        "thresholds": {
+          "higher_validation_p90_good_px": 3.0,
+          "minimum_higher_source_coverage_gain": 0.1,
+          "selected_validation_p90_underfit_px": 6.0
+        },
+        "triggered": false
+      },
+      "v2_reason": "exact_pixel_identity"
+    },
+    "standard": {
+      "accepted": true,
+      "inlier_ratio": 1.0,
+      "inliers": 4501,
+      "mapped_action_xy": [
+        211.00000000000003,
+        143.00000000000003
+      ],
+      "match_counts": {
+        "mutual_ratio_matches": 4501,
+        "source_keypoints": 4501,
+        "target_keypoints": 4501
+      },
+      "matches": 4501,
+      "matrix": [
+        [
+          1.0000000000000013,
+          2.906958549468309e-17,
+          -1.00968046512783e-13
+        ],
+        [
+          5.401972237123806e-16,
+          1.0,
+          -1.3459912352625796e-14
+        ],
+        [
+          3.0335012717605153e-18,
+          -7.912065412057257e-20,
+          1.0
+        ]
+      ],
+      "reason": "accepted"
+    }
+  },
+  {
+    "dafc": {
+      "action_conditioned_rescue": {
+        "accepted": true,
+        "appearance_branch": {
+          "absolute_appearance_pass": true,
+          "checks": {
+            "appearance_reconstruction": true,
+            "maximum_nearest_inlier_fraction": true,
+            "minimum_local_inliers": true,
+            "minimum_valid_rate": true
+          },
+          "pass": true,
+          "structural_appearance_pass": true
+        },
+        "appearance_support": {
+          "angular_bins": 4,
+          "inliers": 972,
+          "radius_fraction": 0.18,
+          "radius_px": 108.0,
+          "residual_median_px": 5.678896467124749e-05,
+          "residual_p90_px": 8.930106199031974e-05
+        },
+        "candidate_matrix": [
+          [
+            0.9999995011716563,
+            -2.8584245299878644e-07,
+            12.000104519098743
+          ],
+          [
+            2.8584245299878644e-07,
+            0.9999995011716563,
+            8.000009800522253
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "eligible": true,
+        "full_fit": {
+          "checks": {
+            "maximum_inlier_median_residual": true,
+            "maximum_inlier_p90_residual": true,
+            "minimum_inlier_rate": true,
+            "minimum_inliers": true
+          },
+          "inlier_median_residual_px": 0.00010122017345926496,
+          "inlier_p90_residual_px": 0.00017105178531487465,
+          "inlier_rate": 1.0,
+          "inliers": 4142,
+          "matches": 4142
+        },
+        "geometric_branch": {
+          "checks": {
+            "loose_local_photometric": true,
+            "maximum_local_p90_residual": true,
+            "maximum_nearest_inlier_fraction": true,
+            "minimum_angular_bins": true,
+            "minimum_local_inliers": true
+          },
+          "pass": true
+        },
+        "geometric_support": {
+          "angular_bins": 4,
+          "inliers": 438,
+          "radius_fraction": 0.12,
+          "radius_px": 72.0,
+          "residual_median_px": 4.761250520617382e-05,
+          "residual_p90_px": 7.27825640312159e-05
+        },
+        "local_map_shape": {
+          "condition_number": 1.0,
+          "determinant": 0.9999990023436461,
+          "maximum_singular_value": 0.9999995011716987,
+          "minimum_singular_value": 0.9999995011716987,
+          "pass": true
+        },
+        "local_photometric": {
+          "gradient_ncc": 1.0,
+          "gradient_pixels": 6497,
+          "grayscale_mae": 0.0,
+          "grayscale_ncc": 1.0,
+          "grayscale_p90": 0.0,
+          "grayscale_within_12_rate": 1.0,
+          "valid": true,
+          "valid_rate": 1.0
+        },
+        "mapped_action": [
+          222.99995839084744,
+          150.99999878082667
+        ],
+        "mapped_action_in_target_image_bounds": true,
+        "match_counts": {
+          "mutual_ratio_matches": 4142,
+          "source_keypoints": 4501,
+          "target_keypoints": 4325
+        },
+        "nearest_inlier_distance_fraction": 0.005297489007604571,
+        "reason": "action_local_geometry_and_or_appearance_certified",
+        "selected_family": "similarity",
+        "source_action": [
+          211.0,
+          143.0
+        ],
+        "stability": {
+          "details": [
+            {
+              "disagreement_px": 3.7268814514529774e-05,
+              "fit": true,
+              "inliers": 3275,
+              "mapped_action": [
+                222.9999909964532,
+                150.99998072981538
+              ],
+              "matches": 3275,
+              "repetition": 0
+            },
+            {
+              "disagreement_px": 3.6472847047806136e-05,
+              "fit": true,
+              "inliers": 3276,
+              "mapped_action": [
+                222.99999049408677,
+                150.99998147040796
+              ],
+              "matches": 3276,
+              "repetition": 1
+            },
+            {
+              "disagreement_px": 1.8938226033365782e-05,
+              "fit": true,
+              "inliers": 3353,
+              "mapped_action": [
+                222.99997732714004,
+                150.99999851022056
+              ],
+              "matches": 3353,
+              "repetition": 2
+            },
+            {
+              "disagreement_px": 1.1013992401254902e-05,
+              "fit": true,
+              "inliers": 3273,
+              "mapped_action": [
+                222.99994904414856,
+                151.00000460725343
+              ],
+              "matches": 3273,
+              "repetition": 3
+            },
+            {
+              "disagreement_px": 6.309764824274974e-06,
+              "fit": true,
+              "inliers": 3285,
+              "mapped_action": [
+                222.9999540704549,
+                150.99999418220293
+              ],
+              "matches": 3285,
+              "repetition": 4
+            },
+            {
+              "disagreement_px": 2.3298965119580248e-05,
+              "fit": true,
+              "inliers": 3313,
+              "mapped_action": [
+                222.99994177140584,
+                151.00001510981735
+              ],
+              "matches": 3313,
+              "repetition": 5
+            },
+            {
+              "disagreement_px": 1.0169098307880891e-05,
+              "fit": true,
+              "inliers": 3313,
+              "mapped_action": [
+                222.99994879342105,
+                150.9999954192843
+              ],
+              "matches": 3313,
+              "repetition": 6
+            }
+          ],
+          "fitted_repetitions": 7,
+          "maximum_disagreement_px": 3.7268814514529774e-05,
+          "pass": true,
+          "repetitions": 7
+        },
+        "thresholds": {
+          "appearance_branch": {
+            "maximum_grayscale_mae": 5.0,
+            "maximum_grayscale_p90": 10.0,
+            "maximum_nearest_inlier_fraction": 0.16,
+            "minimum_gradient_ncc": 0.75,
+            "minimum_grayscale_ncc": 0.9,
+            "minimum_grayscale_within_12_rate": 0.95,
+            "minimum_inliers": 1,
+            "radius_fraction": 0.18
+          },
+          "geometric_branch": {
+            "maximum_grayscale_mae": 35.0,
+            "maximum_local_p90_residual_px": 4.0,
+            "maximum_nearest_inlier_fraction": 0.12,
+            "minimum_angular_bins": 3,
+            "minimum_grayscale_ncc": 0.5,
+            "minimum_inliers": 6,
+            "radius_fraction": 0.12
+          },
+          "maximum_action_stability_px": 4.0,
+          "maximum_inlier_median_residual_px": 2.5,
+          "maximum_inlier_p90_residual_px": 4.0,
+          "maximum_local_condition_number": 4.0,
+          "maximum_local_scale": 2.5,
+          "minimum_inlier_rate": 0.7,
+          "minimum_inliers": 16,
+          "minimum_local_scale": 0.35,
+          "minimum_local_valid_rate": 0.9,
+          "minimum_matches": 32,
+          "patch_radius_px": 72,
+          "subsample_keep_fraction": 0.8,
+          "subsample_repetitions": 7,
+          "target_boundary_margin_px": 4.0
+        },
+        "v5_decision_path": "v2_supported_with_gross_photometric_gate",
+        "v5_reason": "v2_supported_rejected_by_gross_photometric_gate"
+      },
+      "base_selector_version": "safety-first-v2",
+      "base_v2_supported": true,
+      "candidate_matrix_audit": [
+        [
+          0.9999995011716563,
+          -2.8584245299878644e-07,
+          12.000104519098743
+        ],
+        [
+          2.8584245299878644e-07,
+          0.9999995011716563,
+          8.000009800522253
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "decision_path": "action_conditioned_local_rescue",
+      "failed_v2_support_checks": null,
+      "families": {
+        "affine": {
+          "fit": true,
+          "selection_score": 0.1000744157733581,
+          "source_coverage": 0.8981730568971418,
+          "supported": true,
+          "train_inlier_median_error": 3.7675433202879474e-05,
+          "train_inlier_rate": 1.0,
+          "train_inliers": 3106,
+          "train_matches": 3106,
+          "validation_matches": 1036,
+          "validation_median_error": 3.6740340155210765e-05,
+          "validation_p90_error": 8.041817888915874e-05,
+          "validation_within_6px_rate": 1.0
+        },
+        "homography": {
+          "fit": true,
+          "selection_score": 0.20012080158155435,
+          "source_coverage": 0.8981730568971418,
+          "supported": true,
+          "train_inlier_median_error": 5.947633315887232e-05,
+          "train_inlier_rate": 1.0,
+          "train_inliers": 3106,
+          "train_matches": 3106,
+          "validation_matches": 1036,
+          "validation_median_error": 6.1325248395451e-05,
+          "validation_p90_error": 0.00011883259735829733,
+          "validation_within_6px_rate": 1.0
+        },
+        "similarity": {
+          "fit": true,
+          "selection_score": 6.778981689851149e-05,
+          "source_coverage": 0.8981730568971418,
+          "supported": true,
+          "train_inlier_median_error": 3.364202381027907e-05,
+          "train_inlier_rate": 1.0,
+          "train_inliers": 3106,
+          "train_matches": 3106,
+          "validation_matches": 1036,
+          "validation_median_error": 3.414779308823241e-05,
+          "validation_p90_error": 6.371323869404437e-05,
+          "validation_within_6px_rate": 1.0
+        }
+      },
+      "full_refit": {
+        "inlier_rate": 1.0,
+        "inliers": 4142,
+        "matches": 4142,
+        "source_coverage": 0.8995957799395459
+      },
+      "gross_photometric_gate": {
+        "checks": {
+          "grayscale_mae": true,
+          "valid_source_rate": false
+        },
+        "grayscale_mae": 0.0,
+        "maximum_grayscale_mae": 8.0,
+        "minimum_valid_source_rate": 0.95,
+        "pass": false,
+        "valid_source_rate": 0.9391493055555555
+      },
+      "low_coverage_rescue_eligible": false,
+      "match_counts": {
+        "mutual_ratio_matches": 4142,
+        "source_keypoints": 4501,
+        "target_keypoints": 4325
+      },
+      "matrix": [
+        [
+          0.9999995011716563,
+          -2.8584245299878644e-07,
+          12.000104519098743
+        ],
+        [
+          2.8584245299878644e-07,
+          0.9999995011716563,
+          8.000009800522253
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "parent_selector_version": "tail-aware-dual-certificate-v5",
+      "photometric_certificate": {
+        "checks": {
+          "gradient_ncc": true,
+          "grayscale_mae": true,
+          "grayscale_ncc": true,
+          "grayscale_p90": true,
+          "grayscale_within_12_rate": true,
+          "valid_source_rate": false
+        },
+        "gradient_ncc": 1.0,
+        "gradient_pixels": 64914,
+        "gradient_quantile": 0.6,
+        "grayscale_mae": 0.0,
+        "grayscale_ncc": 1.0,
+        "grayscale_p90": 0.0,
+        "grayscale_within_12_rate": 1.0,
+        "pass": false,
+        "reason": "dense_reconstruction_check_failed",
+        "thresholds": {
+          "erosion_px": 7,
+          "gradient_quantile": 0.6,
+          "max_dimension": 640,
+          "maximum_grayscale_mae": 3.0,
+          "maximum_grayscale_p90": 6.0,
+          "maximum_gross_grayscale_mae": 8.0,
+          "minimum_gradient_ncc": 0.75,
+          "minimum_grayscale_ncc": 0.95,
+          "minimum_grayscale_within_12_rate": 0.95,
+          "minimum_valid_source_rate": 0.95
+        },
+        "valid_source_rate": 0.9391493055555555
+      },
+      "reason": "action_local_geometry_and_or_appearance_certified",
+      "rescue_stability": null,
+      "selected_family": "similarity",
+      "selected_family_support": {
+        "source_coverage": 0.8981730568971418,
+        "train_inlier_median_error": 3.364202381027907e-05,
+        "train_inlier_rate": 1.0,
+        "train_inliers": 3106,
+        "train_matches": 3106,
+        "validation_matches": 1036,
+        "validation_median_error": 3.414779308823241e-05,
+        "validation_p90_error": 6.371323869404437e-05,
+        "validation_within_6px_rate": 1.0
+      },
+      "selector_version": "action-conditioned-v6-development",
+      "stability": {
+        "details": [
+          {
+            "fit": true,
+            "grid_disagreement_median": 4.664308355476319e-05,
+            "grid_disagreement_p95": 8.201316265096225e-05,
+            "inlier_rate": 1.0,
+            "inliers": 3325,
+            "matches": 3325,
+            "repetition": 0,
+            "source_coverage": 0.8981092141054803
+          },
+          {
+            "fit": true,
+            "grid_disagreement_median": 2.390632137681748e-05,
+            "grid_disagreement_p95": 3.9877616983649376e-05,
+            "inlier_rate": 1.0,
+            "inliers": 3304,
+            "matches": 3304,
+            "repetition": 1,
+            "source_coverage": 0.8985229546069718
+          },
+          {
+            "fit": true,
+            "grid_disagreement_median": 1.5095227518051915e-05,
+            "grid_disagreement_p95": 2.5960478064140116e-05,
+            "inlier_rate": 1.0,
+            "inliers": 3385,
+            "matches": 3385,
+            "repetition": 2,
+            "source_coverage": 0.8979432323397423
+          },
+          {
+            "fit": true,
+            "grid_disagreement_median": 2.186376731265373e-05,
+            "grid_disagreement_p95": 3.7639795671911316e-05,
+            "inlier_rate": 1.0,
+            "inliers": 3316,
+            "matches": 3316,
+            "repetition": 3,
+            "source_coverage": 0.8980988769634418
+          },
+          {
+            "fit": true,
+            "grid_disagreement_median": 4.842358212840502e-05,
+            "grid_disagreement_p95": 8.615773229025594e-05,
+            "inlier_rate": 1.0,
+            "inliers": 3305,
+            "matches": 3305,
+            "repetition": 4,
+            "source_coverage": 0.8971899908306364
+          }
+        ],
+        "keep_fraction": 0.8,
+        "maximum_grid_disagreement_p95": 8.615773229025594e-05,
+        "pass": true,
+        "repetitions": 5,
+        "threshold_px": 3.0
+      },
+      "supported": true,
+      "tail_family_escalation": {
+        "thresholds": {
+          "higher_validation_p90_good_px": 3.0,
+          "minimum_higher_source_coverage_gain": 0.1,
+          "selected_validation_p90_underfit_px": 6.0
+        },
+        "triggered": false
+      },
+      "v2_reason": "lowest_score_family_supported_and_stable"
+    },
+    "standard": {
+      "accepted": true,
+      "inlier_ratio": 1.0,
+      "inliers": 4142,
+      "mapped_action_xy": [
+        223.00004274213066,
+        151.00003442034858
+      ],
+      "match_counts": {
+        "mutual_ratio_matches": 4142,
+        "source_keypoints": 4501,
+        "target_keypoints": 4325
+      },
+      "matches": 4142,
+      "matrix": [
+        [
+          1.0000021899771314,
+          5.175078401509879e-07,
+          11.999859853059833
+        ],
+        [
+          7.978031884456603e-07,
+          1.00000259455123,
+          7.999734225204263
+        ],
+        [
+          4.114846374420269e-09,
+          5.004352311664172e-09,
+          1.0
+        ]
+      ],
+      "reason": "accepted"
+    }
+  },
+  {
+    "dafc": {
+      "action_conditioned_rescue": {
+        "accepted": false,
+        "eligible": false,
+        "reason": "no_eligible_v5_candidate_family",
+        "selected_family": null,
+        "source_action": [
+          211.0,
+          143.0
+        ],
+        "thresholds": {
+          "appearance_branch": {
+            "maximum_grayscale_mae": 5.0,
+            "maximum_grayscale_p90": 10.0,
+            "maximum_nearest_inlier_fraction": 0.16,
+            "minimum_gradient_ncc": 0.75,
+            "minimum_grayscale_ncc": 0.9,
+            "minimum_grayscale_within_12_rate": 0.95,
+            "minimum_inliers": 1,
+            "radius_fraction": 0.18
+          },
+          "geometric_branch": {
+            "maximum_grayscale_mae": 35.0,
+            "maximum_local_p90_residual_px": 4.0,
+            "maximum_nearest_inlier_fraction": 0.12,
+            "minimum_angular_bins": 3,
+            "minimum_grayscale_ncc": 0.5,
+            "minimum_inliers": 6,
+            "radius_fraction": 0.12
+          },
+          "maximum_action_stability_px": 4.0,
+          "maximum_inlier_median_residual_px": 2.5,
+          "maximum_inlier_p90_residual_px": 4.0,
+          "maximum_local_condition_number": 4.0,
+          "maximum_local_scale": 2.5,
+          "minimum_inlier_rate": 0.7,
+          "minimum_inliers": 16,
+          "minimum_local_scale": 0.35,
+          "minimum_local_valid_rate": 0.9,
+          "minimum_matches": 32,
+          "patch_radius_px": 72,
+          "subsample_keep_fraction": 0.8,
+          "subsample_repetitions": 7,
+          "target_boundary_margin_px": 4.0
+        },
+        "v5_decision_path": "v2_decision_preserved",
+        "v5_reason": "fewer_than_32_mutual_ratio_matches"
+      },
+      "base_selector_version": "safety-first-v2",
+      "base_v2_supported": false,
+      "decision_path": "v2_decision_preserved",
+      "failed_v2_support_checks": null,
+      "families": {},
+      "full_refit": null,
+      "gross_photometric_gate": null,
+      "low_coverage_rescue_eligible": false,
+      "match_counts": {
+        "mutual_ratio_matches": 0,
+        "source_keypoints": 4501,
+        "target_keypoints": 0
+      },
+      "matrix": null,
+      "parent_selector_version": "tail-aware-dual-certificate-v5",
+      "photometric_certificate": null,
+      "reason": "fewer_than_32_mutual_ratio_matches",
+      "rescue_stability": null,
+      "selected_family": null,
+      "selected_family_support": null,
+      "selector_version": "action-conditioned-v6-development",
+      "stability": null,
+      "supported": false,
+      "tail_family_escalation": {
+        "thresholds": {
+          "higher_validation_p90_good_px": 3.0,
+          "minimum_higher_source_coverage_gain": 0.1,
+          "selected_validation_p90_underfit_px": 6.0
+        },
+        "triggered": false
+      },
+      "v2_reason": "fewer_than_32_mutual_ratio_matches"
+    },
+    "standard": {
+      "accepted": false,
+      "inlier_ratio": 0.0,
+      "inliers": 0,
+      "mapped_action_xy": null,
+      "match_counts": {
+        "mutual_ratio_matches": 0,
+        "source_keypoints": 4501,
+        "target_keypoints": 0
+      },
+      "matches": 0,
+      "matrix": null,
+      "reason": "fewer_than_four_correspondences"
+    }
+  }
+]

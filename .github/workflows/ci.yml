@@ -15,3 +15,4 @@ jobs:
       - run: uv run --no-sync dafc reproduce
       - run: uv build --out-dir dist
       - run: uv run --no-sync python scripts/check_release.py
+      - run: uv run --no-sync python scripts/check_sdist.py

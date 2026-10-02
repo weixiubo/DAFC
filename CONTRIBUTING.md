@@ -25,3 +25,12 @@ For a release, review and regenerate `PUBLIC_MANIFEST.json`, then run
 rejects changed bytes and unsafe paths. Run the documented checks in that export
 with a new environment before publishing. Do not export private evidence, model
 weights, service audit files, credentials or virtual environments.
+
+## Source distribution validation
+
+After `uv build`, run `uv run --no-sync python scripts/check_sdist.py`.
+It checks that the source distribution contains every declared test, fixture,
+helper and example, creates a fresh environment from its own lock, runs the full
+suite, and verifies that rebuilding its wheel preserves the distribution payload.
+Dependencies must already be cached by the normal locked development setup;
+this check runs offline and removes its temporary environment afterward.

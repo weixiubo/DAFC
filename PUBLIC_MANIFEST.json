@@ -8,8 +8,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "7954e7d5ffbf56bd79d143dd15824535840f96bce799424625f731bb0effc10c",
-      "bytes": 603
+      "sha256": "e3b6bb63b67567e6971d83504f8fbc33cb2236a5d88192ff4b89caa96fa75167",
+      "bytes": 663
     },
     {
       "path": ".gitignore",
@@ -23,8 +23,8 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "a0aaa9fd1f9a5a4eac671bf986105a21a83b1ba5497800c5712e911a49343044",
-      "bytes": 1233
+      "sha256": "a0ae0a40924de524e72b6c03b3f09579052dd97e425708caf7ee2da09038dbf4",
+      "bytes": 1731
     },
     {
       "path": "DEVELOPMENT.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "MANIFEST.in",
-      "sha256": "6c26b1117157d8bce590837f19444f5e9189a10533f92f6f8c0352c6db40bdd3",
-      "bytes": 319
+      "sha256": "f23ab0530a876c3a8660bed41270e5f306b0cbb569ee58a5cb10eab3189e665f",
+      "bytes": 277
     },
     {
       "path": "OPEN_SOURCE_STATUS.md",
@@ -83,8 +83,8 @@
     },
     {
       "path": "docs/BASELINES.md",
-      "sha256": "c42eb31237fd4c399af93f7d4a8ebf615b0ed95e0a2c851bd7b489e9930cabce",
-      "bytes": 711
+      "sha256": "eced76bef17bff91ed4e17709ba5e6e7d075c001f4f5c6b09490eee5f87612d7",
+      "bytes": 855
     },
     {
       "path": "docs/MATERIALS.md",
@@ -108,8 +108,8 @@
     },
     {
       "path": "docs/RESOURCES.md",
-      "sha256": "9ca2aad45a939309df78a76e2aef3d0ec07420ade403c9764a738e467c3b68ab",
-      "bytes": 4227
+      "sha256": "5ff7f4bb495f2994f4aac43c19af0ef84201c2eaac01d8809aed4e19965418fc",
+      "bytes": 4237
     },
     {
       "path": "docs/TEST_MIGRATION.json",
@@ -118,8 +118,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "86bfbf81466fb8c0cbe7543adb3e2a7b4b5e8d1f7a6813b1e81b2b08fa9477fa",
-      "bytes": 2989
+      "sha256": "1b3ed1eda5f073fd931ef9feb82f6b51504156abab03109bf07b0d15b9199e81",
+      "bytes": 3836
     },
     {
       "path": "examples/make_routing_inputs.py",
@@ -185,6 +185,11 @@
       "path": "scripts/check_release.py",
       "sha256": "1b054c3940a67dbc57b93cf59b39a76b66cb6a2bfc77e62d9b9dfb90d5d46b12",
       "bytes": 5151
+    },
+    {
+      "path": "scripts/check_sdist.py",
+      "sha256": "585eb6e898939c6b5d31548d0707f2ce84e41fe006d330fb80a67a033a1a304f",
+      "bytes": 3372
     },
     {
       "path": "scripts/check_structure.py",

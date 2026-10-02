@@ -12,7 +12,7 @@ DAFC_RUNS_DIR and DAFC_EVIDENCE_DIR. User configuration is
   "data": "/path/to/external/data",
   "models": "/path/to/external/models",
   "runs": "/path/to/external/runs",
-  "archives": "/path/to/external/archives"
+  "evidence": "/path/to/external/data/DAFC/evidence"
 }}
 ```
 Set DAFC_LOCAL_CONFIG to select another local configuration file. Individual

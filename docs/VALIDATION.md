@@ -47,3 +47,16 @@ downloaded automatically. No paid model or remote experiment service was called.
 The material-cleanup checks and current retained source list are documented in
 MATERIALS.md and tests/reference/MANIFEST.json. Whole-source bundles are no longer
 part of the current distribution. Scientific evidence identities are unchanged.
+
+## Final distribution audit — 2026-10-03
+
+The current suite passed 108 collected cases. The five DAFC subtests also passed. The source distribution was unpacked into a new directory and installed in its own new locked environment.
+All required test fixtures and helper files were present. The rebuilt wheel
+payload matched the wheel built from the maintained checkout. Installed commands
+ran outside the source directory with their declared resource and optional
+dependency checks. Lint, formatting, types, structural limits and lock consistency
+passed. CI now includes `check_sdist.py` after the ordinary build.
+
+This verifies the maintained offline software and distribution boundaries.
+The resource-dependent experiments listed above remain unverified; the test
+result does not imply a new GPU experiment or a changed scientific conclusion.

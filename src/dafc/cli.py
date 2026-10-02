@@ -13,7 +13,7 @@ from dafc.resources import resolve_paths, resource_report
 
 
 def _paths(parser: argparse.ArgumentParser) -> None:
-    for name in ("data", "models", "runs", "archives"):
+    for name in ("data", "models", "runs", "evidence"):
         parser.add_argument(f"--{name}-dir", type=Path)
 
 
@@ -36,7 +36,7 @@ def parser() -> argparse.ArgumentParser:
 def doctor(args: argparse.Namespace) -> dict[str, Any]:
     from dafc.jobs.preflight import prepare
 
-    overrides = {key: getattr(args, key + "_dir") for key in ("data", "models", "runs", "archives")}
+    overrides = {key: getattr(args, key + "_dir") for key in ("data", "models", "runs", "evidence")}
     cfg = load_config(args.config, overrides) if args.config else None
     paths = cfg.resources if cfg else resolve_paths(overrides)
     catalog = json.loads((Path(__file__).parent / "resource_catalog.json").read_text())
@@ -76,7 +76,7 @@ def main(argv: list[str] | None = None) -> int:
         else:
             from dafc.jobs.run import execute
 
-            overrides = {key: getattr(args, key + "_dir") for key in ("data", "models", "runs", "archives")}
+            overrides = {key: getattr(args, key + "_dir") for key in ("data", "models", "runs", "evidence")}
             result = execute(load_config(args.config, overrides))
             code = 4 if result.get("status") == "incomplete" else 0
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))

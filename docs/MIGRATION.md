@@ -1,6 +1,4 @@
-# Migration from the restored public tree
-
-Baseline: `8b0eae11468195ce86ccb33fea980334c72ac2d6`.
+# Migration
 
 | Previous entry | Maintained entry |
 | --- | --- |
@@ -14,29 +12,21 @@ Baseline: `8b0eae11468195ce86ccb33fea980334c72ac2d6`.
 | remote_open_gui_grounder_v5_service | python -m dafc.models.service |
 | remote_open_gui_grounder_v7_qwen_model_frame | dafc.models.model_frame |
 | remote_open_gui_grounder_v7_service | python -m dafc.models.model_frame_service |
-| original batch prompt/decoder | legacy batch runner in frozen archive; decoder in dafc.models.legacy_coordinates |
+| original batch prompt/decoder | unused batch runner removed; decoder in dafc.models.legacy_coordinates |
 | c388/c400/c430/c431 pilot helpers | capture/execution/interactions/preconditions libraries |
 | c459/c482 Android helpers | elements and device libraries |
 
-Pilot main functions, signed-manifest orchestration, integral repair experiments
-and source-bound historical analysis are frozen where current routing has no
-dependency on them. Necessary registration predecessors remain implementation
-dependencies; they are not alternative public run commands. The retired-symbol
-index in `reproduce/frozen/SOURCE.json` records the original scope.
-
-`reproduce/frozen/dafc-8b0eae1.tar.gz` is the entire original public Git tree.
-Check its SHA-256 from SOURCE.json before extracting to a new archive directory.
-Use that tree for original source-bound verifiers and signed manifests. Do not
-change an old hash to admit current source. Every original reproduce/ file and
-published statistical input remains unchanged.
+Pilot-only main functions, unsupported batch runners and unused repair
+experiments are removed. Required registration predecessors remain library
+dependencies. Four original controller/selection source files are regression
+inputs in `tests/reference`; their SHA-256 values are checked before loading.
+All scientific reproduction files and published statistical inputs keep their
+original bytes.
 
 New configured runs use `dafc-configured-v1`; new atomic batches have their own
 design identity and request IDs and set `paper_evidence: false`. Checkpoint
-attestations include weight SHA-256 under `dafc-checkpoint-v2`; regenerate them
-from the explicitly selected local model, without editing old research receipts.
+attestations bind the explicitly selected weights under `dafc-checkpoint-v2`.
+Do not rewrite old source or evidence hashes. Set `parameters.resource_base` for
+explicit external resources; new paths require new experiment provenance.
 
-Restore relative-path evidence under a new external directory and set
-`parameters.resource_base`. Absolute paths inside original evidence are not
-rewritten: historical verification uses its original manifest projection; new
-runs need a separately reviewed registry with new provenance where paths change.
-See TEST_MIGRATION.json for the original test-to-current-test correspondence.
+See [MATERIALS.md](MATERIALS.md) for material ownership and deletion rules.

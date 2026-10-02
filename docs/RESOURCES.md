@@ -1,10 +1,10 @@
 # Resource and environment contract
 
 Defaults are `~/research/data/DAFC`, `~/research/models`, `~/research/runs/DAFC`
-and `~/research/archives`. Resolution precedence is command flags / explicit YAML
+and `~/research/data/<project>/evidence`. Resolution precedence is command flags / explicit YAML
 paths, environment variables, user configuration, then defaults. Flags override
 the YAML paths. Environment variables are DAFC_DATA_DIR, DAFC_MODELS_DIR,
-DAFC_RUNS_DIR and DAFC_ARCHIVES_DIR. User configuration is
+DAFC_RUNS_DIR and DAFC_EVIDENCE_DIR. User configuration is
 `$XDG_CONFIG_HOME/research/DAFC.json` (default `~/.config/research/DAFC.json`):
 
 ```json
@@ -19,7 +19,7 @@ Set DAFC_LOCAL_CONFIG to select another local configuration file. Individual
 catalog resources can be mapped in a `resources` object in that JSON file or
 through DAFC_RESOURCE_<UPPERCASE_ID_WITH_UNDERSCORES>.
 
-YAML input paths accept {data}, {models}, {runs} and {archives}. Relative values
+YAML input paths accept {data}, {models}, {runs} and {evidence}. Relative values
 resolve from their configuration file. `doctor` is read-only; missing optional
 resources are reported with retrieval instructions. `doctor --require ID` makes
 a particular catalog item mandatory. `doctor --config FILE` checks all declared

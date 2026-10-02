@@ -121,8 +121,8 @@ def _configured_paths(
     payload: dict[str, Any], path: Path, overrides: Mapping[str, Path | None] | None
 ) -> ResourcePaths:
     configured_paths = _mapping(payload.get("paths", {}), "paths")
-    if set(configured_paths) - {"data", "models", "runs", "archives"}:
-        raise ValueError("paths supports data, models, runs and archives")
+    if set(configured_paths) - {"data", "models", "runs", "evidence"}:
+        raise ValueError("paths supports data, models, runs and evidence")
     if any((not isinstance(value, str) or not value for value in configured_paths.values())):
         raise ValueError("paths values must be nonempty path strings")
     explicit = {

@@ -12,7 +12,7 @@ Baseline public revision: `8b0eae11468195ce86ccb33fea980334c72ac2d6`.
   transition-selector comparisons and ten atomic-trial comparisons. These
   compare event order, state/progress, actions, model-call budgets, retry/failure
   classification and cleanup with deterministic platform stand-ins. Original
-  function bodies come from the hash-verified frozen archive.
+  function bodies come from the hash-verified reference fixtures.
 - Model-service backend isolation, local-only model loading, checkpoint content
   hashes, matcher source/weight identity, explicit configuration precedence,
   missing resources, malformed inputs, result tampering and ambiguous recovery.
@@ -43,3 +43,7 @@ establish real-device equivalence. The Python 3.12 Android dependency group diff
 from the old Python 3.11 runtime; that integration is declared and locked but
 unverified. Model checkpoints, large task data and emulator assets were not
 downloaded automatically. No paid model or remote experiment service was called.
+
+The material-cleanup checks and current retained source list are documented in
+MATERIALS.md and tests/reference/MANIFEST.json. Whole-source bundles are no longer
+part of the current distribution. Scientific evidence identities are unchanged.

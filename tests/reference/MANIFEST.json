@@ -1,0 +1,357 @@
+{
+  "purpose": "Reference implementations and publication counterexamples actually exercised by the test suite; unused source, environments, build products and unrelated research workflows are removed.",
+  "origin": {
+    "source_revision": "8b0eae11468195ce86ccb33fea980334c72ac2d6",
+    "scope": "Original complete public tree; old signed manifests, pilot orchestration and source-bound analysis must use this original tree.",
+    "retired": [
+      {
+        "path": "src/dafc/registration/base.py",
+        "retired_symbols": [
+          "json_write",
+          "load_module",
+          "main",
+          "parse_args",
+          "run",
+          "unique_source_rows"
+        ],
+        "reason": "Pilot execution is not used by current routing; versioned fitting algorithms are retained by dependency."
+      },
+      {
+        "path": "src/dafc/registration/selector_v2.py",
+        "retired_symbols": [
+          "load_module",
+          "main",
+          "parse_args"
+        ],
+        "reason": "Pilot execution is not used by current routing; versioned fitting algorithms are retained by dependency."
+      },
+      {
+        "path": "src/dafc/registration/selector_v3.py",
+        "retired_symbols": [
+          "load_module",
+          "main",
+          "parse_args"
+        ],
+        "reason": "Pilot execution is not used by current routing; versioned fitting algorithms are retained by dependency."
+      },
+      {
+        "path": "src/dafc/registration/selector_v4.py",
+        "retired_symbols": [
+          "load_module",
+          "main",
+          "parse_args"
+        ],
+        "reason": "Pilot execution is not used by current routing; versioned fitting algorithms are retained by dependency."
+      },
+      {
+        "path": "src/dafc/registration/selector_v5.py",
+        "retired_symbols": [
+          "load_module",
+          "main",
+          "parse_args"
+        ],
+        "reason": "Pilot execution is not used by current routing; versioned fitting algorithms are retained by dependency."
+      },
+      {
+        "path": "src/dafc/registration/action_contract.py",
+        "retired_symbols": [
+          "load_module",
+          "main",
+          "parse_args"
+        ],
+        "reason": "Pilot execution is not used by current routing; versioned fitting algorithms are retained by dependency."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c388_browser_native_contract_development_pilot.py",
+        "retained_symbols": [
+          "sha256",
+          "capture",
+          "source_contract",
+          "reset_visual_styles"
+        ],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c400_final_browser_capture.py",
+        "retained_symbols": [
+          "reset_harness",
+          "click_css_point",
+          "successful_click"
+        ],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c430_multistep_transition_feasibility.py",
+        "retained_symbols": [
+          "click",
+          "wait_for_visual_settle"
+        ],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c401_full_viewport_browser_contracts.py",
+        "retained_symbols": [],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c432_multistep_native_contract_capture.py",
+        "retained_symbols": [
+          "multistep_contracts"
+        ],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c431_transition_precondition_development.py",
+        "retained_symbols": [
+          "apply_geometry",
+          "jpeg_roundtrip",
+          "render_template",
+          "render_query",
+          "effect_model",
+          "score_query"
+        ],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/adapters/android/c459_androidworld_clock_mechanics_audit.py",
+        "retained_symbols": [
+          "label",
+          "click_element"
+        ],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/adapters/android/c482_androidworld_v2_breadth_audit.py",
+        "retained_symbols": [
+          "ContractSpec",
+          "adb",
+          "restore_display",
+          "apply_contract",
+          "display_receipt",
+          "pixels",
+          "observe",
+          "element_label",
+          "has_label",
+          "wait_state",
+          "click_label",
+          "open_app"
+        ],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/experiments/miniwob.py",
+        "reason": "Historical sealed-tree workflow; use verified frozen snapshot for its exact signatures. Current run configuration has a new explicit source identity."
+      },
+      {
+        "path": "src/dafc/evaluation/analyze_android_recovered_source_followup_v2_integral_coordinate_repaired.py",
+        "reason": "Historical sealed-tree workflow; use verified frozen snapshot for its exact signatures. Current run configuration has a new explicit source identity."
+      },
+      {
+        "path": "src/dafc/evaluation/audit_android_atomic_closed_loop.py",
+        "reason": "Historical sealed-tree workflow; use verified frozen snapshot for its exact signatures. Current run configuration has a new explicit source identity."
+      },
+      {
+        "path": "src/dafc/evaluation/analyze_android_atomic_closed_loop.py",
+        "retained_symbols": [
+          "compact_row",
+          "policy_summary",
+          "pair_map",
+          "cluster_bootstrap",
+          "comparison",
+          "fmt_pct",
+          "render_report"
+        ],
+        "reason": "Runtime primitives retained; source-bound pilot capture/analysis commands remain in the verified original snapshot."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c398_browser_native_v6_preregister.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c401_full_viewport_browser_contracts.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c388_browser_native_contract_development_pilot.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c430_multistep_transition_feasibility.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c432_multistep_native_contract_capture.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c431_transition_precondition_development.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/browser/c400_final_browser_capture.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/android/c488_android_live_runner_integrity_audit.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/android/c459_androidworld_clock_mechanics_audit.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "src/dafc/adapters/android/c482_androidworld_v2_breadth_audit.py",
+        "reason": "Shared runtime primitives extracted into named modules; historical pilot orchestration frozen."
+      },
+      {
+        "path": "scripts/remote_open_gui_grounder.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/transition_guard.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/lightglue_runtime_service.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/android_atomic_closed_loop.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c488_android_live_runner_integrity_audit.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c357_visual_contract_registration_pilot.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c398_browser_native_v6_preregister.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c372_visual_contract_selector_v4.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c401_full_viewport_browser_contracts.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/formal_transitionguard.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/remote_open_gui_grounder_v7_qwen_model_frame.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c375_visual_contract_selector_v5.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/open_gui_grounder_service_client.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/live_androidworld_transition_guard.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/audit_transitionguard_postcheck_baselines.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c364_visual_contract_selector_v3.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/analyze_android_recovered_source_followup_v2_integral_coordinate_repaired.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c459_androidworld_clock_mechanics_audit.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/miniwob_agent_harness.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c388_browser_native_contract_development_pilot.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/lightglue_runtime_frontend.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c430_multistep_transition_feasibility.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/audit_android_atomic_closed_loop.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c482_androidworld_v2_breadth_audit.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c359_visual_contract_selector_v2.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/remote_open_gui_grounder_v5_service.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/analyze_android_atomic_closed_loop.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c432_multistep_native_contract_capture.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c431_transition_precondition_development.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c390_action_conditioned_selector_v6.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/remote_open_gui_grounder_v7_service.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/live_miniwob_transition_guard.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/formal_miniwob_transitionguard.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/remote_open_gui_grounder_v3.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      },
+      {
+        "path": "scripts/c400_final_browser_capture.py",
+        "reason": "Replaced by the installed dafc command and explicit package imports."
+      }
+    ]
+  },
+  "original_bundle_sha256": "40ee90e5ddc40db919e4b005bd3add908f657dc0b4048809c6b4de76c2d99264",
+  "files": {
+    "LICENSE": "aa5b334a1dab98a1b76be7587bba68cb7b980755bc796679ab60effe28e9aead",
+    "src/dafc/adapters/android/live_androidworld_transition_guard.py": "a48cd51fe3c543d244d9d4e42aa28464737a2c20f59fa62c3edb06eb7906d53f",
+    "src/dafc/adapters/browser/live_miniwob_transition_guard.py": "2d4104a10b94b70be68281b8934fefecbda65123fff4151e23ba4c9de2ed403d",
+    "src/dafc/experiments/android_atomic.py": "d58f0ee2526bb3780b6198f072da416778493c5999ad20da70d9c31fe2ea4eaf",
+    "src/dafc/transitions.py": "8dbc5f4368c7a84622dc29db348ade9b28253aabb339462995bf907bec655f5f"
+  },
+  "test_files": []
+}

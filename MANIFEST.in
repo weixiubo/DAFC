@@ -7,3 +7,6 @@ graft configs
 graft examples
 graft reproduce
 global-exclude __pycache__ *.py[cod]
+graft tests/reference
+include tests/reference_support.py
+global-exclude __pycache__ *.py[cod]

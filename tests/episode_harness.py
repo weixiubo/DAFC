@@ -5,24 +5,20 @@ from __future__ import annotations
 import ast
 import hashlib
 import importlib
-import json
-import tarfile
 from pathlib import Path
 from types import SimpleNamespace
 
 import cv2
 import numpy as np
 
+from .reference_support import read_reference
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def frozen_controller(platform, support):
-    metadata = json.loads((ROOT / "reproduce/frozen/SOURCE.json").read_text())
-    archive = ROOT / "reproduce/frozen" / metadata["archive"]
-    assert hashlib.sha256(archive.read_bytes()).hexdigest() == metadata["sha256"]
     name = "live_miniwob_transition_guard" if platform == "browser" else "live_androidworld_transition_guard"
-    with tarfile.open(archive) as bundle:
-        source = bundle.extractfile(f"src/dafc/adapters/{platform}/{name}.py").read().decode()
+    source = read_reference(f"src/dafc/adapters/{platform}/{name}.py").decode()
     fn = next(
         node
         for node in ast.parse(source).body

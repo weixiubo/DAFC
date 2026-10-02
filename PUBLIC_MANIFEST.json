@@ -3,8 +3,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "sha256": "33277fa7d5b950a876e73fb09c9037a5875aad350893186d16969a53ea5604c3",
-      "bytes": 100
+      "sha256": "364063a71e49e74c5ebae93b45eb4f7609174db25131779c850d6a750b676282",
+      "bytes": 219
     },
     {
       "path": ".github/workflows/ci.yml",
@@ -28,8 +28,8 @@
     },
     {
       "path": "DEVELOPMENT.md",
-      "sha256": "84a86212578ba16958e3c34037db7d0db5bc4310bfb90c6ebaef7f2d4e087856",
-      "bytes": 657
+      "sha256": "f92966a0194aa88f8644d2b77e29299b503778874b63882eb4c69cd02662156c",
+      "bytes": 672
     },
     {
       "path": "LICENSE",
@@ -38,8 +38,8 @@
     },
     {
       "path": "MANIFEST.in",
-      "sha256": "fee162764b46c34844562a79fa5b10e6bf05c72c7c38e52d9eec718257da2d9b",
-      "bytes": 225
+      "sha256": "6c26b1117157d8bce590837f19444f5e9189a10533f92f6f8c0352c6db40bdd3",
+      "bytes": 319
     },
     {
       "path": "OPEN_SOURCE_STATUS.md",
@@ -48,13 +48,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "514587cd7cf5802bf9a77d3f088bea3d2d8a599f4d90e4204ba7be97b5a6aed7",
-      "bytes": 2481
+      "sha256": "bbf36cc00e4ff340cb6b1d67df4a18ccd0047e33fb226dd5913382c1fea21501",
+      "bytes": 2561
     },
     {
       "path": "SOURCE_PROVENANCE.json",
-      "sha256": "990a60e342e8bc94c47f562776ad6849e23b515af56784945e30a0d0b518fb6a",
-      "bytes": 794
+      "sha256": "8747b7faaf714d47712e6ff349194f21b6ad897f55f46fd6792523c8812d2284",
+      "bytes": 795
     },
     {
       "path": "configs/android.yaml",
@@ -83,13 +83,18 @@
     },
     {
       "path": "docs/BASELINES.md",
-      "sha256": "388923d711f4ff633b0eaf30cf065a2f5d870170984411610190da1056989763",
-      "bytes": 710
+      "sha256": "c42eb31237fd4c399af93f7d4a8ebf615b0ed95e0a2c851bd7b489e9930cabce",
+      "bytes": 711
+    },
+    {
+      "path": "docs/MATERIALS.md",
+      "sha256": "023bb5237a1d966d908881e2ebb7c9a4ecc91024c536bf90501f877b5e90b347",
+      "bytes": 1359
     },
     {
       "path": "docs/MIGRATION.md",
-      "sha256": "05ec722ccdd2fa0600e0edce5bf110c736ecb3fa71ca60902f4b633d3a3d3857",
-      "bytes": 2662
+      "sha256": "cf56a1b6b6903127013bcbcd4700900c55d59f6aa75fd18bae6c37d69987f975",
+      "bytes": 1978
     },
     {
       "path": "docs/MODULE_MIGRATION.json",
@@ -103,8 +108,8 @@
     },
     {
       "path": "docs/RESOURCES.md",
-      "sha256": "f0ec8f4ccbdebdd0f29cfc1a9df4904f820f3b5bd67a3955a39dd16dc2e53b33",
-      "bytes": 4212
+      "sha256": "9ca2aad45a939309df78a76e2aef3d0ec07420ade403c9764a738e467c3b68ab",
+      "bytes": 4227
     },
     {
       "path": "docs/TEST_MIGRATION.json",
@@ -113,8 +118,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "7d52bf88e3813283eb4d57272777cc8648c2394ad9a1db73932b3e797538f0e2",
-      "bytes": 2742
+      "sha256": "86bfbf81466fb8c0cbe7543adb3e2a7b4b5e8d1f7a6813b1e81b2b08fa9477fa",
+      "bytes": 2989
     },
     {
       "path": "examples/make_routing_inputs.py",
@@ -128,8 +133,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "0de7f8c0eae710c7a2a22713a44aca9adae23a92bfe58379d0707c5886f4172e",
-      "bytes": 1933
+      "sha256": "804dd59c505c75482902a8b46f6c5dc88fcdfe5fbd187fd91250a86a394d750b",
+      "bytes": 2014
     },
     {
       "path": "reproduce/README.md",
@@ -150,16 +155,6 @@
       "path": "reproduce/expected.json",
       "sha256": "ca678762e341cf3f24ce4c680eca33dabc92970ee4ed4de85d513f7f5b935acf",
       "bytes": 29153
-    },
-    {
-      "path": "reproduce/frozen/SOURCE.json",
-      "sha256": "f64db62ea0a5717e8115ff1a566b99c47cf10d5cf59dc0a9d7f9ac6e10869527",
-      "bytes": 13965
-    },
-    {
-      "path": "reproduce/frozen/dafc-8b0eae1.tar.gz",
-      "sha256": "40ee90e5ddc40db919e4b005bd3add908f657dc0b4048809c6b4de76c2d99264",
-      "bytes": 415951
     },
     {
       "path": "reproduce/frozen_statistics.py",
@@ -188,8 +183,8 @@
     },
     {
       "path": "scripts/check_release.py",
-      "sha256": "ee2b67ac92957c46fd1b65e240cd0f7fb7632822a0af96b0a0a0da8e309f7f77",
-      "bytes": 5150
+      "sha256": "1b054c3940a67dbc57b93cf59b39a76b66cb6a2bfc77e62d9b9dfb90d5d46b12",
+      "bytes": 5151
     },
     {
       "path": "scripts/check_structure.py",
@@ -308,12 +303,12 @@
     },
     {
       "path": "src/dafc/cli.py",
-      "sha256": "89924afb568c84f18150bd2e711cca1e6263827fb002c2d89645153ec8f2c946",
+      "sha256": "163422df076cddff9e6d7ac7eb1ffe35fdd92c0ccf9a9c3e77c45462cfe80b2c",
       "bytes": 3648
     },
     {
       "path": "src/dafc/configuration.py",
-      "sha256": "8bb1cefa53f8a1b7e678c194d7ef771457ed03a2390bb2b0f0d85925db779164",
+      "sha256": "5b314806f6b4951f14c3a47974002ed39067afcbacce1851a51e10bae2dad2ba",
       "bytes": 4914
     },
     {
@@ -588,8 +583,8 @@
     },
     {
       "path": "src/dafc/resources.py",
-      "sha256": "6a3f3a40d0faffdefc8c95f39325060006b67613626c4e8f705d04763d79a489",
-      "bytes": 5714
+      "sha256": "e9ed86c8e68cf2bf432a5125d863f872618d8466f6205b030f9fd7241520c3d0",
+      "bytes": 5733
     },
     {
       "path": "src/dafc/risk.py",
@@ -638,8 +633,8 @@
     },
     {
       "path": "tests/episode_harness.py",
-      "sha256": "946000f3e808984814839e712faa1382829eb51a96a553653dd2ab56047f91dd",
-      "bytes": 9144
+      "sha256": "e93534824cf20d7c293325ee1aa5a6a8fb9bc9137cef2d9690182361d4e25f00",
+      "bytes": 8884
     },
     {
       "path": "tests/fixtures/core-baseline.json",
@@ -648,8 +643,48 @@
     },
     {
       "path": "tests/frozen_function.py",
-      "sha256": "6712734743b61ebfd563f5a5f6d2753049eab114f211ac82d9fe8e77efc272d2",
-      "bytes": 919
+      "sha256": "d0553b79d76e31e4df34e9e0a4b412dfd799877f0a49c1cd7712e848fa7b78a7",
+      "bytes": 589
+    },
+    {
+      "path": "tests/reference/MANIFEST.json",
+      "sha256": "6f399294db9eb1682b02b4575f60eeb634b81fa8aed4e3b7a39e4a6322f2c71b",
+      "bytes": 15457
+    },
+    {
+      "path": "tests/reference/README.md",
+      "sha256": "7506c5e8ce25350210cc293888b672b18a72b75a28c853d4c8ce04c52ab96f21",
+      "bytes": 660
+    },
+    {
+      "path": "tests/reference/source/LICENSE",
+      "sha256": "aa5b334a1dab98a1b76be7587bba68cb7b980755bc796679ab60effe28e9aead",
+      "bytes": 10254
+    },
+    {
+      "path": "tests/reference/source/src/dafc/adapters/android/live_androidworld_transition_guard.py",
+      "sha256": "a48cd51fe3c543d244d9d4e42aa28464737a2c20f59fa62c3edb06eb7906d53f",
+      "bytes": 37961
+    },
+    {
+      "path": "tests/reference/source/src/dafc/adapters/browser/live_miniwob_transition_guard.py",
+      "sha256": "2d4104a10b94b70be68281b8934fefecbda65123fff4151e23ba4c9de2ed403d",
+      "bytes": 32752
+    },
+    {
+      "path": "tests/reference/source/src/dafc/experiments/android_atomic.py",
+      "sha256": "d58f0ee2526bb3780b6198f072da416778493c5999ad20da70d9c31fe2ea4eaf",
+      "bytes": 38839
+    },
+    {
+      "path": "tests/reference/source/src/dafc/transitions.py",
+      "sha256": "8dbc5f4368c7a84622dc29db348ade9b28253aabb339462995bf907bec655f5f",
+      "bytes": 31551
+    },
+    {
+      "path": "tests/reference_support.py",
+      "sha256": "961e0fb5495445d3be95e7924d4fa9860d81e3d8b2abbac4c8e47b0152d3653d",
+      "bytes": 1173
     },
     {
       "path": "tests/test_atomic.py",
@@ -716,5 +751,6 @@
       "sha256": "b7938e8c466feec8caddae734d38f4a7240a9bc2cf6cdcc489f2741fa5199645",
       "bytes": 252986
     }
-  ]
+  ],
+  "material_policy": "Required tested references and scientific evidence are explicit. Unused whole-source bundles and obsolete environments are removed."
 }

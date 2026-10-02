@@ -52,3 +52,5 @@ platform interaction, model adapters, run ownership and evidence. Predecessor
 registration layers remain only where current algorithms depend on them.
 Owned code is Apache-2.0; external resources retain their own terms.
 See [contributing](CONTRIBUTING.md) and [release notes](docs/RELEASE_NOTES.md).
+
+Material ownership and deletion rules: [docs/MATERIALS.md](docs/MATERIALS.md).

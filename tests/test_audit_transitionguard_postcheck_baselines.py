@@ -1,18 +1,9 @@
 from __future__ import annotations
 
-import importlib.util
-from pathlib import Path
-import sys
 import unittest
 
-
-PROJECT = Path(__file__).resolve().parents[1]
-SCRIPT = PROJECT / "scripts" / "audit_transitionguard_postcheck_baselines.py"
-SPEC = importlib.util.spec_from_file_location("postcheck_baselines", SCRIPT)
-assert SPEC is not None and SPEC.loader is not None
-MODULE = importlib.util.module_from_spec(SPEC)
-sys.modules[SPEC.name] = MODULE
-SPEC.loader.exec_module(MODULE)
+import dafc.evaluation.audit_transitionguard_postcheck_baselines as MODULE
+from dafc.evaluation import postcheck_report
 
 
 def unit(classification: str, change: bool, absolute: bool, relative: bool):
@@ -37,10 +28,7 @@ class PostcheckBaselineAuditTest(unittest.TestCase):
     def test_detector_decisions_validate_logged_or(self):
         post = {
             "absolute_postcondition": {"accepted": False},
-            "relative_effect": {
-                "accepted": True,
-                "checks": {"target_change": True},
-            },
+            "relative_effect": {"accepted": True, "checks": {"target_change": True}},
             "post_verified": True,
         }
         self.assertEqual(
@@ -56,10 +44,7 @@ class PostcheckBaselineAuditTest(unittest.TestCase):
     def test_detector_decisions_reject_inconsistent_log(self):
         post = {
             "absolute_postcondition": {"accepted": False},
-            "relative_effect": {
-                "accepted": False,
-                "checks": {"target_change": True},
-            },
+            "relative_effect": {"accepted": False, "checks": {"target_change": True}},
             "post_verified": True,
         }
         with self.assertRaisesRegex(ValueError, "disagrees"):
@@ -74,15 +59,9 @@ class PostcheckBaselineAuditTest(unittest.TestCase):
         ]
         summary = MODULE.summarize_natural(units)
         self.assertEqual(summary["relative_only_acceptances"]["count"], 1)
-        self.assertEqual(
-            summary["relative_only_acceptances"]["semantics"]["advanced"], 1
-        )
-        self.assertEqual(
-            summary["detectors"]["transition_contract"]["accepted_advanced"], 2
-        )
-        self.assertEqual(
-            summary["detectors"]["change_only"]["accepted_adverse"], 1
-        )
+        self.assertEqual(summary["relative_only_acceptances"]["semantics"]["advanced"], 1)
+        self.assertEqual(summary["detectors"]["transition_contract"]["accepted_advanced"], 2)
+        self.assertEqual(summary["detectors"]["change_only"]["accepted_adverse"], 1)
 
     def test_fault_summary_preserves_paired_disagreement(self):
         units = [
@@ -94,12 +73,7 @@ class PostcheckBaselineAuditTest(unittest.TestCase):
         self.assertEqual(summary["detectors"]["transition_contract"]["rejected"], 2)
         self.assertEqual(
             summary["paired_disagreement"]["change_only"],
-            {
-                "both_accept": 1,
-                "contract_only": 0,
-                "baseline_only": 1,
-                "both_reject": 1,
-            },
+            {"both_accept": 1, "contract_only": 0, "baseline_only": 1, "both_reject": 1},
         )
 
     def test_percentile_interpolates(self):
@@ -107,43 +81,28 @@ class PostcheckBaselineAuditTest(unittest.TestCase):
 
     def test_latex_table_keeps_secondary_claim_boundary(self):
         natural = MODULE.summarize_natural(
-            [
-                unit("advanced", True, True, True),
-                unit("nonadvancing", True, False, False),
-            ]
+            [unit("advanced", True, True, True), unit("nonadvancing", True, False, False)]
         )
-        fault = MODULE.summarize_fault(
-            [unit("advanced", False, False, False)]
-        )
-        table = MODULE.latex_table(
+        fault = MODULE.summarize_fault([unit("advanced", False, False, False)])
+        table = postcheck_report.latex_table(
             {
                 "natural": {"pooled": natural},
-                "faults": {
-                    "adjacent": {"pooled": fault},
-                    "drop": {"pooled": fault},
-                },
+                "faults": {"adjacent": {"pooled": fault}, "drop": {"pooled": fault}},
             }
         )
         self.assertIn("Complete contract", table)
         self.assertIn("read-only secondary analysis", table)
         self.assertIn("no counterfactual episode", table)
-
         number_report = {
             "natural": {
                 "pooled": natural,
                 "advanced_contract_minus_absolute_bootstrap": {
-                    "pooled": {
-                        "estimate": 0.5,
-                        "confidence_interval_95": [0.1, 0.9],
-                    }
+                    "pooled": {"estimate": 0.5, "confidence_interval_95": [0.1, 0.9]}
                 },
             },
-            "faults": {
-                "adjacent": {"pooled": fault},
-                "drop": {"pooled": fault},
-            },
+            "faults": {"adjacent": {"pooled": fault}, "drop": {"pooled": fault}},
         }
-        numbers = MODULE.latex_numbers(number_report)
+        numbers = postcheck_report.latex_numbers(number_report)
         self.assertIn("\\TGPostNaturalActions", numbers)
 
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Pinned SuperPoint+LightGlue correspondences for online TransitionGuard.
 
 The implementation follows the already preregistered C424 front end: official
@@ -10,8 +9,6 @@ candidate transitions against one current screenshot.
 """
 
 from __future__ import annotations
-from importlib import import_module
-from dafc.optional import LazyModule
 
 import hashlib
 import json
@@ -24,10 +21,6 @@ from typing import Any
 
 import numpy as np
 
-
-from dafc.paths import PROJECT
-DEFAULT_REPO = PROJECT / "tmp" / "external" / "lightglue_eb42fee"
-DEFAULT_WEIGHT_DIR = PROJECT / "tmp" / "external" / "lightglue_weights"
 EXPECTED_REPO_COMMIT = "eb42fee2d71449efb0aa5c10549752b5d75384d8"
 EXPECTED_WEIGHT_HASHES = {
     "superpoint_v1.pth": "52b6708629640ca883673b5d5c097c4ddad37d8048b33f09c8ca0d69db12c40e",
@@ -57,10 +50,7 @@ def array_sha256(image: np.ndarray) -> str:
 
 def repo_commit(path: Path) -> str:
     return subprocess.run(
-        ["git", "-C", str(path), "rev-parse", "HEAD"],
-        check=True,
-        capture_output=True,
-        text=True,
+        ["git", "-C", str(path), "rev-parse", "HEAD"], check=True, capture_output=True, text=True
     ).stdout.strip()
 
 
@@ -70,17 +60,15 @@ class LightGlueRuntimeFrontend:
     def __init__(
         self,
         *,
-        repo: Path = DEFAULT_REPO,
-        weight_dir: Path = DEFAULT_WEIGHT_DIR,
+        repo: Path,
+        weight_dir: Path,
         device: str = "cuda",
         source_cache_limit: int = SOURCE_CACHE_LIMIT,
         pair_cache_limit: int = PAIR_CACHE_LIMIT,
     ) -> None:
         self.repo = repo.resolve()
         self.superpoint_weights = (weight_dir / "superpoint_v1.pth").resolve()
-        self.lightglue_weights = (
-            weight_dir / "superpoint_lightglue.pth"
-        ).resolve()
+        self.lightglue_weights = (weight_dir / "superpoint_lightglue.pth").resolve()
         self.source_cache_limit = int(source_cache_limit)
         self.pair_cache_limit = int(pair_cache_limit)
         if self.source_cache_limit <= 0:
@@ -88,13 +76,12 @@ class LightGlueRuntimeFrontend:
         if self.pair_cache_limit <= 0:
             raise ValueError("pair_cache_limit must be positive")
         self._verify_bindings()
-
         if str(self.repo) not in sys.path:
             sys.path.insert(0, str(self.repo))
-        import torch
         import kornia
+        import torch
 
-        if device == "cuda" and not torch.cuda.is_available():
+        if device == "cuda" and (not torch.cuda.is_available()):
             raise RuntimeError("LightGlue runtime requested CUDA but CUDA is unavailable")
         self.torch = torch
         self.device = torch.device(device)
@@ -102,7 +89,6 @@ class LightGlueRuntimeFrontend:
         if torch.cuda.is_available():
             torch.cuda.manual_seed_all(424001)
         torch.backends.cudnn.benchmark = False
-
         original_loader = torch.hub.load_state_dict_from_url
 
         def local_loader(url: str, *args, **kwargs):
@@ -119,34 +105,25 @@ class LightGlueRuntimeFrontend:
             from lightglue import LightGlue, SuperPoint
             from lightglue.utils import numpy_image_to_torch, rbd
 
-            self.extractor = (
-                SuperPoint(max_num_keypoints=MAX_KEYPOINTS)
-                .eval()
-                .to(self.device)
-            )
+            self.extractor = SuperPoint(max_num_keypoints=MAX_KEYPOINTS).eval().to(self.device)
             self.matcher = LightGlue(features="superpoint").eval().to(self.device)
             self.numpy_image_to_torch = numpy_image_to_torch
             self.rbd = rbd
         finally:
             torch.hub.load_state_dict_from_url = original_loader
-
         self.environment = {
             "torch": torch.__version__,
             "torch_cuda": torch.version.cuda,
             "kornia": kornia.__version__,
             "device": str(self.device),
-            "cuda_device_name": (
-                torch.cuda.get_device_name(self.device)
-                if self.device.type == "cuda"
-                else None
-            ),
+            "cuda_device_name": torch.cuda.get_device_name(self.device)
+            if self.device.type == "cuda"
+            else None,
             "rng_seed": 424001,
             "cudnn_benchmark": torch.backends.cudnn.benchmark,
         }
         self._source_cache: OrderedDict[str, dict[str, Any]] = OrderedDict()
-        self._pair_cache: OrderedDict[
-            tuple[str, str], dict[str, Any]
-        ] = OrderedDict()
+        self._pair_cache: OrderedDict[tuple[str, str], dict[str, Any]] = OrderedDict()
         self._query_key: str | None = None
         self._query_features: dict[str, Any] | None = None
 
@@ -155,9 +132,7 @@ class LightGlueRuntimeFrontend:
             raise RuntimeError(f"LightGlue repository is missing: {self.repo}")
         observed_commit = repo_commit(self.repo)
         if observed_commit != EXPECTED_REPO_COMMIT:
-            raise RuntimeError(
-                f"LightGlue commit mismatch: {observed_commit} != {EXPECTED_REPO_COMMIT}"
-            )
+            raise RuntimeError(f"LightGlue commit mismatch: {observed_commit} != {EXPECTED_REPO_COMMIT}")
         for path in (self.superpoint_weights, self.lightglue_weights):
             if not path.is_file():
                 raise RuntimeError(f"LightGlue weight is missing: {path}")
@@ -165,24 +140,16 @@ class LightGlueRuntimeFrontend:
             expected = EXPECTED_WEIGHT_HASHES[path.name]
             if observed != expected:
                 raise RuntimeError(
-                    f"LightGlue weight hash mismatch for {path.name}: "
-                    f"{observed} != {expected}"
+                    f"LightGlue weight hash mismatch for {path.name}: {observed} != {expected}"
                 )
 
     @property
     def bindings(self) -> dict[str, Any]:
         return {
             "frontend_version": FRONTEND_VERSION,
-            "repo": {
-                "path": str(self.repo),
-                "commit": repo_commit(self.repo),
-            },
+            "repo": {"path": str(self.repo), "commit": repo_commit(self.repo)},
             "weights": {
-                path.name: {
-                    "path": str(path),
-                    "bytes": path.stat().st_size,
-                    "sha256": sha256(path),
-                }
+                path.name: {"path": str(path), "bytes": path.stat().st_size, "sha256": sha256(path)}
                 for path in (self.superpoint_weights, self.lightglue_weights)
             },
             "official_defaults": {
@@ -212,26 +179,23 @@ class LightGlueRuntimeFrontend:
         cached = self._source_cache.get(key)
         if cached is not None:
             self._source_cache.move_to_end(key)
-            return key, cached
+            return (key, cached)
         features = self._extract(image_bgr)
         self._source_cache[key] = features
         self._source_cache.move_to_end(key)
         while len(self._source_cache) > self.source_cache_limit:
             self._source_cache.popitem(last=False)
-        return key, features
+        return (key, features)
 
     def _current_features(self, image_bgr: np.ndarray) -> tuple[str, dict[str, Any]]:
         key = array_sha256(image_bgr)
         if key != self._query_key or self._query_features is None:
             self._query_features = self._extract(image_bgr)
             self._query_key = key
-        return key, self._query_features
+        return (key, self._query_features)
 
-    def correspondences(
-        self, source_bgr: np.ndarray, current_bgr: np.ndarray
-    ) -> dict[str, Any]:
+    def correspondences(self, source_bgr: np.ndarray, current_bgr: np.ndarray) -> dict[str, Any]:
         """Return all official matcher correspondences without post-filtering."""
-
         started = time.perf_counter()
         source_array_key = array_sha256(source_bgr)
         current_array_key = array_sha256(current_bgr)
@@ -239,22 +203,15 @@ class LightGlueRuntimeFrontend:
         cached = self._pair_cache.get(pair_key)
         if cached is not None:
             self._pair_cache.move_to_end(pair_key)
-            return {
-                **cached,
-                "cache_hit": True,
-                "cache_lookup_s": time.perf_counter() - started,
-            }
+            return {**cached, "cache_hit": True, "cache_lookup_s": time.perf_counter() - started}
         with self.torch.inference_mode():
             source_key, source_features = self._source_features(source_bgr)
             current_key, current_features = self._current_features(current_bgr)
-            matched = self.matcher(
-                {"image0": source_features, "image1": current_features}
-            )
+            matched = self.matcher({"image0": source_features, "image1": current_features})
             if self.device.type == "cuda":
                 self.torch.cuda.synchronize(self.device)
             source_unbatched, current_unbatched, match_unbatched = [
-                self.rbd(row)
-                for row in (source_features, current_features, matched)
+                self.rbd(row) for row in (source_features, current_features, matched)
             ]
             indices = match_unbatched["matches"]
             source_points = source_unbatched["keypoints"][indices[..., 0]]
@@ -273,9 +230,7 @@ class LightGlueRuntimeFrontend:
                 "matches": int(len(indices)),
                 "source_points": source_points.detach().cpu().numpy(),
                 "target_points": current_points.detach().cpu().numpy(),
-                "match_scores": (
-                    scores.detach().cpu().numpy() if scores is not None else None
-                ),
+                "match_scores": scores.detach().cpu().numpy() if scores is not None else None,
                 "inference_s": time.perf_counter() - started,
                 "cache_hit": False,
                 "cache_lookup_s": None,
@@ -297,9 +252,7 @@ class LightGlueRuntimeFrontend:
             "target_keypoints": receipt["target_keypoints"],
             "matches": receipt["matches"],
             "match_score_min": float(np.min(scores)) if scores is not None and len(scores) else None,
-            "match_score_median": (
-                float(np.median(scores)) if scores is not None and len(scores) else None
-            ),
+            "match_score_median": float(np.median(scores)) if scores is not None and len(scores) else None,
             "match_score_max": float(np.max(scores)) if scores is not None and len(scores) else None,
             "inference_s": receipt["inference_s"],
             "cache_hit": receipt.get("cache_hit", False),

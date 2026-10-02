@@ -1,49 +1,54 @@
 # DAFC — Typed Selective Routing
 
-Reuse a GUI action only when its successful source outcome and its coordinate
-transport contract are both supported. Otherwise use the same target actor.
-The maintained implementation is the `dafc` package under `src/`; historical
-script names are thin compatibility entry points.
+DAFC reuses a GUI action when its successful source outcome and coordinate
+transport contract are supported, and otherwise invokes the same target actor.
+The maintained interface is the independently installable `dafc` package.
 
-## Install and verify
+## Install, check and try offline
 
-Python 3.12 is the development target. From this repository:
+Use Python 3.12 and uv from the repository root:
 
 ```sh
-python3.12 -m venv .venv
-.venv/bin/python -m pip install -r requirements-dev.lock
-.venv/bin/python examples/routing_smoke.py
-.venv/bin/python -m pytest
-.venv/bin/python reproduce/verify.py
+uv sync --locked
+uv run --no-sync dafc doctor
+uv run --no-sync dafc demo
+uv run --no-sync dafc reproduce
+uv run --no-sync pytest
 ```
 
-The smoke example makes no model, browser, network or emulator calls. Real
-execution requires the explicitly supplied resources in `docs/RESOURCES.md`.
-Run `scripts/android_atomic_closed_loop.py --help` for the retained arguments.
+The demo exercises geometric action transfer and failed-source fallback with a
+fixed seed. It needs no model, browser, network or emulator. `reproduce` recomputes
+the public historical estimates and their 20,000-sample bootstrap intervals.
 
-## Evidence status
+## Explicit runs
 
-The original C587-v3 Android diagnostic completed **1120 jobs**, with one
-additional retained infrastructure attempt. Both actors used 25% fewer target
-model calls under DAFC. Qwen had 120/140 successes (always:119/140), and UI-TARS
-100/140 (always:99/140). This is a fixed seven-task, action-level diagnostic;
-it does not establish AndroidWorld-wide performance. Older notes reporting
-51/1120 are obsolete. Browser V5 evidence and exploratory studies are retained
-in the private research archive and listed as external material.
+```sh
+uv run --no-sync python examples/make_routing_inputs.py --directory "$HOME/research/data/DAFC/example"
+uv run --no-sync dafc doctor --config configs/routing.yaml
+uv run --no-sync dafc run --config configs/routing.yaml
+```
 
-`reproduce/verify.py` rebuilds summaries and paired task-cluster bootstrap
-intervals without models. See `reproduce/README.md` for the raw evidence boundary.
+Choose a fresh `run_id` for another experiment. The sample configuration places
+outputs under `~/research/runs/DAFC/`. It can be copied anywhere: its relative paths
+resolve from the configuration file, never from the invoking shell's directory.
+See [resources](docs/RESOURCES.md) before configuring a real browser or Android
+episode, atomic batch, model service or learned matcher. Live runs are explicit;
+installation and the four basic checks do not download models or datasets.
 
-## Layout
+## Research scope and evidence
 
-* `dafc.registration`, `routing`, `coordinates`: image transport and fallback.
-* `dafc.evidence`, `storage`: contracts, append-only records and immutable writes.
-* `dafc.models`: model/service clients and retained baseline implementations.
-* `dafc.adapters`: Android and browser interaction.
-* `dafc.experiments`, `evaluation`: orchestration and statistics.
+The sealed C587-v3 Android diagnostic contains 1120 jobs and one additional
+retained infrastructure attempt. Both actors used 25% fewer target model calls
+under DAFC: Qwen had 120/140 successes (always: 119/140), and UI-TARS 100/140
+(always: 99/140). This fixed seven-task action-level diagnostic does not establish
+AndroidWorld-wide performance. Browser studies and full raw evidence are external.
 
-Necessary predecessor registration implementations remain because V6 uses
-their fitting and selection primitives. They are not separate maintained methods.
-Owned code is Apache-2.0. External runtimes/models keep their own licenses and
-are not copied into this repository. Export only the reviewed public manifest:
-`python scripts/export_public.py --target /path/to/new/export`.
+Current runs have a new source identity and `paper_evidence: false`. Original
+evidence, checksums and source are retained byte-for-byte; see
+[migration](docs/MIGRATION.md) and [validation](docs/VALIDATION.md).
+
+The [architecture](docs/ARCHITECTURE.md) separates routing, transition state,
+platform interaction, model adapters, run ownership and evidence. Predecessor
+registration layers remain only where current algorithms depend on them.
+Owned code is Apache-2.0; external resources retain their own terms.
+See [contributing](CONTRIBUTING.md) and [release notes](docs/RELEASE_NOTES.md).

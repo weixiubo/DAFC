@@ -1,0 +1,164 @@
+{
+  "baseline_revision": "8b0eae11468195ce86ccb33fea980334c72ac2d6",
+  "tests": [
+    {
+      "baseline": "tests/test_atomic.py::test_failed_receipt_forces_fallback_for_every_hybrid",
+      "current": "tests/test_atomic.py::test_failed_receipt_forces_fallback_for_every_hybrid",
+      "assertion_count": 2,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_atomic.py::test_standard_identity_maps_the_action",
+      "current": "tests/test_atomic.py::test_standard_identity_maps_the_action",
+      "assertion_count": 4,
+      "owner_changes": [
+        [
+          "self.assertGreaterEqual(receipt['inliers'], atomic.STANDARD_MIN_INLIERS)",
+          "self.assertGreaterEqual(receipt['inliers'], routing.STANDARD_MIN_INLIERS)"
+        ]
+      ]
+    },
+    {
+      "baseline": "tests/test_atomic.py::test_model_coordinate_normalization_is_bounded",
+      "current": "tests/test_atomic.py::test_model_coordinate_normalization_is_bounded",
+      "assertion_count": 2,
+      "owner_changes": [
+        [
+          "self.assertEqual(atomic.normalized_to_pixel({'valid': True, 'normalized_xy': [1.2, -0.1]}, image), [107.0, 0.0])",
+          "self.assertEqual(responses.normalized_to_pixel({'valid': True, 'normalized_xy': [1.2, -0.1]}, image), [107.0, 0.0])"
+        ],
+        [
+          "self.assertIsNone(atomic.normalized_to_pixel({'valid': False, 'normalized_xy': [0.5, 0.5]}, image))",
+          "self.assertIsNone(responses.normalized_to_pixel({'valid': False, 'normalized_xy': [0.5, 0.5]}, image))"
+        ]
+      ]
+    },
+    {
+      "baseline": "tests/test_atomic.py::test_target_prompt_exposes_no_setup_label",
+      "current": "tests/test_atomic.py::test_target_prompt_exposes_no_setup_label",
+      "assertion_count": 2,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_atomic.py::test_exactly_one_predecision_retry",
+      "current": "tests/test_atomic.py::test_exactly_one_predecision_retry",
+      "assertion_count": 3,
+      "owner_changes": [
+        [
+          "self.assertEqual(atomic.next_attempt(root, 'qwen25vl', job), 0)",
+          "self.assertEqual(attempts.next_attempt(root, 'qwen25vl', job), 0)"
+        ],
+        [
+          "self.assertEqual(atomic.next_attempt(root, 'qwen25vl', job), 1)",
+          "self.assertEqual(attempts.next_attempt(root, 'qwen25vl', job), 1)"
+        ],
+        [
+          "self.assertIsNone(atomic.next_attempt(root, 'qwen25vl', job))",
+          "self.assertIsNone(attempts.next_attempt(root, 'qwen25vl', job))"
+        ]
+      ]
+    },
+    {
+      "baseline": "tests/test_attempts.py::test_single_outcome_attempt_is_terminal",
+      "current": "tests/test_attempts.py::test_single_outcome_attempt_is_terminal",
+      "assertion_count": 1,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_attempts.py::test_one_infrastructure_retry_then_outcome_is_valid",
+      "current": "tests/test_attempts.py::test_one_infrastructure_retry_then_outcome_is_valid",
+      "assertion_count": 1,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_attempts.py::test_outcome_retry_is_rejected",
+      "current": "tests/test_attempts.py::test_outcome_retry_is_rejected",
+      "assertion_count": 2,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_attempts.py::test_partial_retry_boundary_is_not_misreported_complete",
+      "current": "tests/test_attempts.py::test_partial_retry_boundary_is_not_misreported_complete",
+      "assertion_count": 2,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_audit_transitionguard_postcheck_baselines.py::test_detector_decisions_validate_logged_or",
+      "current": "tests/test_audit_transitionguard_postcheck_baselines.py::test_detector_decisions_validate_logged_or",
+      "assertion_count": 1,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_audit_transitionguard_postcheck_baselines.py::test_detector_decisions_reject_inconsistent_log",
+      "current": "tests/test_audit_transitionguard_postcheck_baselines.py::test_detector_decisions_reject_inconsistent_log",
+      "assertion_count": 1,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_audit_transitionguard_postcheck_baselines.py::test_natural_summary_counts_relative_only_semantics",
+      "current": "tests/test_audit_transitionguard_postcheck_baselines.py::test_natural_summary_counts_relative_only_semantics",
+      "assertion_count": 4,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_audit_transitionguard_postcheck_baselines.py::test_fault_summary_preserves_paired_disagreement",
+      "current": "tests/test_audit_transitionguard_postcheck_baselines.py::test_fault_summary_preserves_paired_disagreement",
+      "assertion_count": 2,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_audit_transitionguard_postcheck_baselines.py::test_percentile_interpolates",
+      "current": "tests/test_audit_transitionguard_postcheck_baselines.py::test_percentile_interpolates",
+      "assertion_count": 1,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_audit_transitionguard_postcheck_baselines.py::test_latex_table_keeps_secondary_claim_boundary",
+      "current": "tests/test_audit_transitionguard_postcheck_baselines.py::test_latex_table_keeps_secondary_claim_boundary",
+      "assertion_count": 4,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_integral_repair.py::test_float_pair_is_normalized_only_in_copy",
+      "current": "tests/test_integral_repair.py::test_float_pair_is_normalized_only_in_copy",
+      "assertion_count": 6,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_integral_repair.py::test_integer_pair_remains_valid",
+      "current": "tests/test_integral_repair.py::test_integer_pair_remains_valid",
+      "assertion_count": 2,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_integral_repair.py::test_fractional_bool_nonfinite_and_mismatch_are_rejected",
+      "current": "tests/test_integral_repair.py::test_fractional_bool_nonfinite_and_mismatch_are_rejected",
+      "assertion_count": 1,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_integral_repair.py::test_no_action_step_is_not_changed",
+      "current": "tests/test_integral_repair.py::test_no_action_step_is_not_changed",
+      "assertion_count": 2,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_routing_regression.py::test_original_seeded_geometry_receipts",
+      "current": "tests/test_routing_regression.py::test_original_seeded_geometry_receipts",
+      "assertion_count": 2,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_routing_regression.py::test_source_tampering_fails_closed",
+      "current": "tests/test_routing_regression.py::test_source_tampering_fails_closed",
+      "assertion_count": 0,
+      "owner_changes": []
+    },
+    {
+      "baseline": "tests/test_routing_regression.py::test_ledger_integrity_and_no_overwrite",
+      "current": "tests/test_routing_regression.py::test_ledger_integrity_and_no_overwrite",
+      "assertion_count": 0,
+      "owner_changes": []
+    }
+  ]
+}

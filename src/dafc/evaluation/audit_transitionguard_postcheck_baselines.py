@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Read-only component-baseline audit for frozen TransitionGuard V5 logs.
 
 The analysis is bound by
@@ -8,28 +7,20 @@ It never imports the runtime, recomputes a threshold, or mutates a formal root.
 """
 
 from __future__ import annotations
-from importlib import import_module
-from dafc.optional import LazyModule
 
 import argparse
-from collections import Counter, defaultdict
 import hashlib
 import json
 import math
-from pathlib import Path
 import random
+from collections import Counter, defaultdict
+from pathlib import Path
 from typing import Any, Iterable
-
 
 AUDIT_VERSION = "transitionguard-v6-postcheck-component-baselines-v1"
 BOOTSTRAP_SEED = 20260719
-BOOTSTRAP_RESAMPLES = 10_000
-DETECTORS = (
-    "change_only",
-    "absolute_template",
-    "directional_effect",
-    "transition_contract",
-)
+BOOTSTRAP_RESAMPLES = 10000
+DETECTORS = ("change_only", "absolute_template", "directional_effect", "transition_contract")
 SEMANTIC_CLASSES = ("advanced", "nonadvancing", "harmful")
 EXPECTED_LEDGER_HASHES = {
     "natural/qwen25vl": "d887b636c17106edbd170588c01854a8492f137c32c75bf3da70101f2fda7ae3",
@@ -64,7 +55,6 @@ def _required_bool(value: Any, field: str) -> bool:
 
 def detector_decisions(post: dict[str, Any]) -> dict[str, bool]:
     """Extract the four preregistered decisions from one logged post-check."""
-
     if not isinstance(post, dict):
         raise ValueError("post_verification must be an object")
     absolute = post.get("absolute_postcondition")
@@ -75,56 +65,30 @@ def detector_decisions(post: dict[str, Any]) -> dict[str, bool]:
     if not isinstance(checks, dict):
         raise ValueError("relative_effect.checks is missing")
     decisions = {
-        "change_only": _required_bool(
-            checks.get("target_change"),
-            "relative_effect.checks.target_change",
-        ),
-        "absolute_template": _required_bool(
-            absolute.get("accepted"), "absolute_postcondition.accepted"
-        ),
-        "directional_effect": _required_bool(
-            relative.get("accepted"), "relative_effect.accepted"
-        ),
+        "change_only": _required_bool(checks.get("target_change"), "relative_effect.checks.target_change"),
+        "absolute_template": _required_bool(absolute.get("accepted"), "absolute_postcondition.accepted"),
+        "directional_effect": _required_bool(relative.get("accepted"), "relative_effect.accepted"),
     }
-    decisions["transition_contract"] = bool(
-        decisions["absolute_template"] or decisions["directional_effect"]
-    )
+    decisions["transition_contract"] = bool(decisions["absolute_template"] or decisions["directional_effect"])
     logged = _required_bool(post.get("post_verified"), "post_verified")
     if logged != decisions["transition_contract"]:
-        raise ValueError(
-            "logged post_verified disagrees with absolute OR directional effect"
-        )
+        raise ValueError("logged post_verified disagrees with absolute OR directional effect")
     return decisions
 
 
 def read_completed_full_attempts(
-    *,
-    root: Path,
-    ledger_relative: Path,
-    expected_ledger_sha256: str,
+    *, root: Path, ledger_relative: Path, expected_ledger_sha256: str
 ) -> tuple[list[tuple[dict[str, Any], dict[str, Any], Path]], dict[str, Any]]:
     """Load completed Full attempts after ledger and artifact validation."""
-
     ledger = root / ledger_relative
     observed_ledger_sha256 = sha256(ledger)
     if observed_ledger_sha256 != expected_ledger_sha256:
-        raise ValueError(
-            f"ledger hash mismatch for {ledger}: {observed_ledger_sha256}"
-        )
-    rows = [
-        json.loads(line)
-        for line in ledger.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
-    selected = [
-        row
-        for row in rows
-        if row.get("status") == "completed" and row.get("policy") == "full"
-    ]
+        raise ValueError(f"ledger hash mismatch for {ledger}: {observed_ledger_sha256}")
+    rows = [json.loads(line) for line in ledger.read_text(encoding="utf-8").splitlines() if line.strip()]
+    selected = [row for row in rows if row.get("status") == "completed" and row.get("policy") == "full"]
     logical_ids = [str(row.get("logical_id")) for row in selected]
     if len(logical_ids) != len(set(logical_ids)):
         raise ValueError(f"duplicate completed Full logical IDs in {ledger}")
-
     attempts: list[tuple[dict[str, Any], dict[str, Any], Path]] = []
     for row in selected:
         artifact = root / str(row.get("artifact"))
@@ -142,16 +106,11 @@ def read_completed_full_attempts(
         "ledger_sha256": observed_ledger_sha256,
         "validated_artifacts": len(attempts),
     }
-    return attempts, receipt
+    return (attempts, receipt)
 
 
 def _unit(
-    *,
-    actor: str,
-    row: dict[str, Any],
-    step: dict[str, Any],
-    artifact: Path,
-    semantic_required: bool,
+    *, actor: str, row: dict[str, Any], step: dict[str, Any], artifact: Path, semantic_required: bool
 ) -> dict[str, Any]:
     post = step.get("post_verification")
     if not isinstance(post, dict):
@@ -182,29 +141,18 @@ def _unit(
 
 
 def natural_units(
-    actor: str,
-    attempts: Iterable[tuple[dict[str, Any], dict[str, Any], Path]],
+    actor: str, attempts: Iterable[tuple[dict[str, Any], dict[str, Any], Path]]
 ) -> list[dict[str, Any]]:
     units: list[dict[str, Any]] = []
     for row, document, artifact in attempts:
         for step in document.get("steps", []):
             if step.get("action_source") != "transition_guard":
                 continue
-            units.append(
-                _unit(
-                    actor=actor,
-                    row=row,
-                    step=step,
-                    artifact=artifact,
-                    semantic_required=True,
-                )
-            )
+            units.append(_unit(actor=actor, row=row, step=step, artifact=artifact, semantic_required=True))
     return units
 
 
-def _step_by_index(
-    document: dict[str, Any], index: int, artifact: Path
-) -> dict[str, Any]:
+def _step_by_index(document: dict[str, Any], index: int, artifact: Path) -> dict[str, Any]:
     matches = [step for step in document.get("steps", []) if step.get("step") == index]
     if len(matches) != 1:
         raise ValueError(f"expected one injected step {index}: {artifact}")
@@ -215,14 +163,13 @@ def _step_by_index(
 
 
 def drop_units(
-    actor: str,
-    attempts: Iterable[tuple[dict[str, Any], dict[str, Any], Path]],
+    actor: str, attempts: Iterable[tuple[dict[str, Any], dict[str, Any], Path]]
 ) -> list[dict[str, Any]]:
     units: list[dict[str, Any]] = []
     for row, document, artifact in attempts:
         instrumentation = document.get("disturbance_instrumentation")
         dropped = instrumentation.get("dropped_steps") if isinstance(instrumentation, dict) else None
-        if not isinstance(dropped, list) or len(dropped) != 1 or not isinstance(dropped[0], int):
+        if not isinstance(dropped, list) or len(dropped) != 1 or (not isinstance(dropped[0], int)):
             raise ValueError(f"expected exactly one dropped step: {artifact}")
         units.append(
             _unit(
@@ -237,8 +184,7 @@ def drop_units(
 
 
 def adjacent_units(
-    actor: str,
-    attempts: Iterable[tuple[dict[str, Any], dict[str, Any], Path]],
+    actor: str, attempts: Iterable[tuple[dict[str, Any], dict[str, Any], Path]]
 ) -> list[dict[str, Any]]:
     units: list[dict[str, Any]] = []
     for row, document, artifact in attempts:
@@ -266,52 +212,21 @@ def _rate(numerator: int, denominator: int) -> float | None:
 def summarize_natural(units: list[dict[str, Any]]) -> dict[str, Any]:
     summary: dict[str, Any] = {
         "evaluated_steps": len(units),
-        "semantic_totals": dict(
-            sorted(Counter(unit["semantic_class"] for unit in units).items())
-        ),
+        "semantic_totals": dict(sorted(Counter((unit["semantic_class"] for unit in units)).items())),
     }
     detector_rows: dict[str, Any] = {}
     for detector in DETECTORS:
-        accepted = [unit for unit in units if unit["decisions"][detector]]
-        accepted_semantics = Counter(unit["semantic_class"] for unit in accepted)
-        rejected_semantics = Counter(
-            unit["semantic_class"]
-            for unit in units
-            if not unit["decisions"][detector]
-        )
-        advanced_total = sum(unit["semantic_class"] == "advanced" for unit in units)
-        adverse_total = len(units) - advanced_total
-        accepted_advanced = accepted_semantics["advanced"]
-        accepted_adverse = (
-            accepted_semantics["nonadvancing"] + accepted_semantics["harmful"]
-        )
-        detector_rows[detector] = {
-            "accepted": len(accepted),
-            "accepted_advanced": accepted_advanced,
-            "accepted_advanced_rate": _rate(accepted_advanced, advanced_total),
-            "accepted_adverse": accepted_adverse,
-            "accepted_adverse_rate": _rate(accepted_adverse, adverse_total),
-            "accepted_semantics": {
-                name: accepted_semantics[name] for name in SEMANTIC_CLASSES
-            },
-            "acceptance_rate": _rate(len(accepted), len(units)),
-            "rejected": len(units) - len(accepted),
-            "rejected_semantics": {
-                name: rejected_semantics[name] for name in SEMANTIC_CLASSES
-            },
-        }
+        detector_rows[detector] = _detector_summary(units, detector)
     relative_only = [
         unit
         for unit in units
-        if unit["decisions"]["transition_contract"]
-        and not unit["decisions"]["absolute_template"]
+        if unit["decisions"]["transition_contract"] and (not unit["decisions"]["absolute_template"])
     ]
     summary["detectors"] = detector_rows
     summary["relative_only_acceptances"] = {
         "count": len(relative_only),
         "semantics": {
-            name: sum(unit["semantic_class"] == name for unit in relative_only)
-            for name in SEMANTIC_CLASSES
+            name: sum((unit["semantic_class"] == name for unit in relative_only)) for name in SEMANTIC_CLASSES
         },
     }
     return summary
@@ -330,16 +245,13 @@ def disagreement(units: list[dict[str, Any]], baseline: str) -> dict[str, int]:
             counts["baseline_only"] += 1
         else:
             counts["both_reject"] += 1
-    return {
-        key: counts[key]
-        for key in ("both_accept", "contract_only", "baseline_only", "both_reject")
-    }
+    return {key: counts[key] for key in ("both_accept", "contract_only", "baseline_only", "both_reject")}
 
 
 def summarize_fault(units: list[dict[str, Any]]) -> dict[str, Any]:
     detector_rows = {}
     for detector in DETECTORS:
-        accepted = sum(unit["decisions"][detector] for unit in units)
+        accepted = sum((unit["decisions"][detector] for unit in units))
         rejected = len(units) - accepted
         detector_rows[detector] = {
             "accepted": accepted,
@@ -351,8 +263,7 @@ def summarize_fault(units: list[dict[str, Any]]) -> dict[str, Any]:
         "detectors": detector_rows,
         "evaluated_steps": len(units),
         "paired_disagreement": {
-            baseline: disagreement(units, baseline)
-            for baseline in ("change_only", "absolute_template")
+            baseline: disagreement(units, baseline) for baseline in ("change_only", "absolute_template")
         },
     }
 
@@ -361,8 +272,8 @@ def _advanced_difference(units: list[dict[str, Any]]) -> float:
     advanced = [unit for unit in units if unit["semantic_class"] == "advanced"]
     if not advanced:
         raise ValueError("bootstrap sample contains no advanced action")
-    contract = sum(unit["decisions"]["transition_contract"] for unit in advanced)
-    absolute = sum(unit["decisions"]["absolute_template"] for unit in advanced)
+    contract = sum((unit["decisions"]["transition_contract"] for unit in advanced))
+    absolute = sum((unit["decisions"]["absolute_template"] for unit in advanced))
     return (contract - absolute) / len(advanced)
 
 
@@ -377,9 +288,7 @@ def _percentile(values: list[float], probability: float) -> float:
     return ordered[lower] * (1.0 - fraction) + ordered[upper] * fraction
 
 
-def cluster_bootstrap(
-    units: list[dict[str, Any]], *, stratify_actor: bool
-) -> dict[str, Any]:
+def cluster_bootstrap(units: list[dict[str, Any]], *, stratify_actor: bool) -> dict[str, Any]:
     actors = sorted({unit["actor"] for unit in units})
     strata = actors if stratify_actor else ["all"]
     by_stratum: dict[str, dict[str, list[dict[str, Any]]]] = {}
@@ -389,7 +298,6 @@ def cluster_bootstrap(
         for unit in eligible:
             clusters[str(unit["source_cluster_id"])].append(unit)
         by_stratum[stratum] = dict(clusters)
-
     rng = random.Random(BOOTSTRAP_SEED)
     estimates: list[float] = []
     for _ in range(BOOTSTRAP_RESAMPLES):
@@ -401,11 +309,8 @@ def cluster_bootstrap(
                 sampled.extend(clusters[rng.choice(cluster_ids)])
         estimates.append(_advanced_difference(sampled))
     return {
-        "cluster_count": sum(len(clusters) for clusters in by_stratum.values()),
-        "confidence_interval_95": [
-            _percentile(estimates, 0.025),
-            _percentile(estimates, 0.975),
-        ],
+        "cluster_count": sum((len(clusters) for clusters in by_stratum.values())),
+        "confidence_interval_95": [_percentile(estimates, 0.025), _percentile(estimates, 0.975)],
         "estimate": _advanced_difference(units),
         "resamples": BOOTSTRAP_RESAMPLES,
         "seed": BOOTSTRAP_SEED,
@@ -416,17 +321,13 @@ def cluster_bootstrap(
 def grouped_natural(units: list[dict[str, Any]], field: str) -> dict[str, Any]:
     values = sorted({str(unit[field]) for unit in units})
     return {
-        value: summarize_natural([unit for unit in units if str(unit[field]) == value])
-        for value in values
+        value: summarize_natural([unit for unit in units if str(unit[field]) == value]) for value in values
     }
 
 
 def grouped_fault(units: list[dict[str, Any]], field: str) -> dict[str, Any]:
     values = sorted({str(unit[field]) for unit in units})
-    return {
-        value: summarize_fault([unit for unit in units if str(unit[field]) == value])
-        for value in values
-    }
+    return {value: summarize_fault([unit for unit in units if str(unit[field]) == value]) for value in values}
 
 
 def interpretation_gate(report: dict[str, Any]) -> dict[str, Any]:
@@ -444,10 +345,10 @@ def interpretation_gate(report: dict[str, Any]) -> dict[str, Any]:
     checks = {
         "advanced_acceptance_gain_at_least_5pp": natural_difference >= 0.05,
         "advanced_gain_ci_lower_above_zero": bootstrap["confidence_interval_95"][0] > 0.0,
-        "adjacent_contract_rejection_at_least_90pct": adjacent_contract_rejection >= 0.90,
-        "adjacent_rejection_gain_over_change_at_least_10pp": (
-            adjacent_contract_rejection - adjacent_change_rejection >= 0.10
-        ),
+        "adjacent_contract_rejection_at_least_90pct": adjacent_contract_rejection >= 0.9,
+        "adjacent_rejection_gain_over_change_at_least_10pp": adjacent_contract_rejection
+        - adjacent_change_rejection
+        >= 0.1,
         "all_dropped_actions_rejected": drop_contract_rejection == 1.0,
     }
     return {
@@ -456,9 +357,7 @@ def interpretation_gate(report: dict[str, Any]) -> dict[str, Any]:
             "advanced_acceptance_gain": natural_difference,
             "advanced_gain_ci_lower": bootstrap["confidence_interval_95"][0],
             "adjacent_contract_rejection": adjacent_contract_rejection,
-            "adjacent_rejection_gain_over_change": (
-                adjacent_contract_rejection - adjacent_change_rejection
-            ),
+            "adjacent_rejection_gain_over_change": adjacent_contract_rejection - adjacent_change_rejection,
             "drop_contract_rejection": drop_contract_rejection,
         },
         "passed": all(checks.values()),
@@ -471,32 +370,17 @@ def audit(formal_root: Path, adjacent_root: Path) -> dict[str, Any]:
     inputs = {
         "natural/qwen25vl": (formal_root, Path("target/qwen25vl/ledger.jsonl")),
         "natural/uitars": (formal_root, Path("target/uitars/ledger.jsonl")),
-        "drop/qwen25vl": (
-            formal_root,
-            Path("stress/dropped_action_receipt_repair/qwen25vl/ledger.jsonl"),
-        ),
-        "drop/uitars": (
-            formal_root,
-            Path("stress/dropped_action_receipt_repair/uitars/ledger.jsonl"),
-        ),
-        "adjacent/qwen25vl": (
-            adjacent_root,
-            Path("stress/adjacent_substitution/qwen25vl/ledger.jsonl"),
-        ),
-        "adjacent/uitars": (
-            adjacent_root,
-            Path("stress/adjacent_substitution/uitars/ledger.jsonl"),
-        ),
+        "drop/qwen25vl": (formal_root, Path("stress/dropped_action_receipt_repair/qwen25vl/ledger.jsonl")),
+        "drop/uitars": (formal_root, Path("stress/dropped_action_receipt_repair/uitars/ledger.jsonl")),
+        "adjacent/qwen25vl": (adjacent_root, Path("stress/adjacent_substitution/qwen25vl/ledger.jsonl")),
+        "adjacent/uitars": (adjacent_root, Path("stress/adjacent_substitution/uitars/ledger.jsonl")),
     }
     loaded: dict[str, list[tuple[dict[str, Any], dict[str, Any], Path]]] = {}
     receipts: dict[str, Any] = {}
     for name, (root, ledger) in inputs.items():
         loaded[name], receipts[name] = read_completed_full_attempts(
-            root=root,
-            ledger_relative=ledger,
-            expected_ledger_sha256=EXPECTED_LEDGER_HASHES[name],
+            root=root, ledger_relative=ledger, expected_ledger_sha256=EXPECTED_LEDGER_HASHES[name]
         )
-
     natural: list[dict[str, Any]] = []
     drops: list[dict[str, Any]] = []
     adjacent: list[dict[str, Any]] = []
@@ -504,7 +388,6 @@ def audit(formal_root: Path, adjacent_root: Path) -> dict[str, Any]:
         natural.extend(natural_units(actor, loaded[f"natural/{actor}"]))
         drops.extend(drop_units(actor, loaded[f"drop/{actor}"]))
         adjacent.extend(adjacent_units(actor, loaded[f"adjacent/{actor}"]))
-
     report: dict[str, Any] = {
         "audit_version": AUDIT_VERSION,
         "detector_definitions": {
@@ -523,12 +406,10 @@ def audit(formal_root: Path, adjacent_root: Path) -> dict[str, Any]:
             "advanced_contract_minus_absolute_bootstrap": {
                 "pooled": cluster_bootstrap(natural, stratify_actor=True),
                 "qwen25vl": cluster_bootstrap(
-                    [unit for unit in natural if unit["actor"] == "qwen25vl"],
-                    stratify_actor=False,
+                    [unit for unit in natural if unit["actor"] == "qwen25vl"], stratify_actor=False
                 ),
                 "uitars": cluster_bootstrap(
-                    [unit for unit in natural if unit["actor"] == "uitars"],
-                    stratify_actor=False,
+                    [unit for unit in natural if unit["actor"] == "uitars"], stratify_actor=False
                 ),
             },
             "by_actor": grouped_natural(natural, "actor"),
@@ -539,25 +420,17 @@ def audit(formal_root: Path, adjacent_root: Path) -> dict[str, Any]:
         "preregistration": "reports/transitionguard_v6_postcheck_baseline_preregistration.md",
         "scope": "read-only logged component comparison over frozen V5 evidence",
         "faults": {
-            "adjacent": {
-                "by_actor": grouped_fault(adjacent, "actor"),
-                "pooled": summarize_fault(adjacent),
-            },
-            "drop": {
-                "by_actor": grouped_fault(drops, "actor"),
-                "pooled": summarize_fault(drops),
-            },
+            "adjacent": {"by_actor": grouped_fault(adjacent, "actor"), "pooled": summarize_fault(adjacent)},
+            "drop": {"by_actor": grouped_fault(drops, "actor"), "pooled": summarize_fault(drops)},
         },
     }
     report["expectations"] = {
         "adjacent_full_attempts_are_48": len(adjacent) == 48,
         "drop_full_attempts_are_48": len(drops) == 48,
         "ledger_hashes_match_preregistration": all(
-            receipts[name]["ledger_sha256"] == expected
-            for name, expected in EXPECTED_LEDGER_HASHES.items()
+            (receipts[name]["ledger_sha256"] == expected for name, expected in EXPECTED_LEDGER_HASHES.items())
         ),
-        "natural_has_both_actors": set(unit["actor"] for unit in natural)
-        == {"qwen25vl", "uitars"},
+        "natural_has_both_actors": set((unit["actor"] for unit in natural)) == {"qwen25vl", "uitars"},
         "natural_units_are_nonempty": bool(natural),
     }
     report["expectations_passed"] = all(report["expectations"].values())
@@ -565,181 +438,9 @@ def audit(formal_root: Path, adjacent_root: Path) -> dict[str, Any]:
     return report
 
 
-def markdown_report(report: dict[str, Any]) -> str:
-    natural = report["natural"]["pooled"]
-    boot = report["natural"]["advanced_contract_minus_absolute_bootstrap"]["pooled"]
-    adjacent = report["faults"]["adjacent"]["pooled"]
-    drop = report["faults"]["drop"]["pooled"]
-    gate = report["interpretation_gate"]
-    lines = [
-        "# TransitionGuard V6 post-check component-baseline audit",
-        "",
-        f"Decision gate: **{'PASS' if gate['passed'] else 'FAIL'}**.",
-        "",
-        "This is the preregistered, read-only secondary analysis of frozen V5",
-        "logs. It is not a new policy run or a published-system reproduction.",
-        "",
-        "## Natural observed guarded actions",
-        "",
-        "| Detector | Accepted advanced | Advanced rate | Accepted adverse | Adverse rate |",
-        "|---|---:|---:|---:|---:|",
-    ]
-    for detector in DETECTORS:
-        row = natural["detectors"][detector]
-        lines.append(
-            f"| {detector} | {row['accepted_advanced']} | "
-            f"{100 * row['accepted_advanced_rate']:.1f}% | "
-            f"{row['accepted_adverse']} | {100 * row['accepted_adverse_rate']:.1f}% |"
-        )
-    relative_only = natural["relative_only_acceptances"]
-    lines.extend(
-        [
-            "",
-            f"The complete contract rescued {relative_only['count']} decisions rejected by the "
-            f"absolute template: {relative_only['semantics']}.",
-            f"Its paired advanced-action gain was {100 * boot['estimate']:.1f} points "
-            f"(source-cluster bootstrap 95% CI "
-            f"[{100 * boot['confidence_interval_95'][0]:.1f}, "
-            f"{100 * boot['confidence_interval_95'][1]:.1f}]).",
-            "",
-            "## Matched fault steps",
-            "",
-            "| Detector | Drop rejected | Adjacent rejected |",
-            "|---|---:|---:|",
-        ]
-    )
-    for detector in DETECTORS:
-        drop_row = drop["detectors"][detector]
-        adjacent_row = adjacent["detectors"][detector]
-        lines.append(
-            f"| {detector} | {drop_row['rejected']}/{drop['evaluated_steps']} | "
-            f"{adjacent_row['rejected']}/{adjacent['evaluated_steps']} |"
-        )
-    lines.extend(
-        [
-            "",
-            "## Predeclared gate",
-            "",
-        ]
-    )
-    for name, passed in gate["checks"].items():
-        lines.append(f"- [{'x' if passed else ' '}] `{name}`")
-    lines.extend(
-        [
-            "",
-            "## Claim boundary",
-            "",
-            "A pass supports only a component-level coverage--fault-rejection",
-            "tradeoff over the logged change-only and absolute-template checks.",
-            "It does not show natural episode-success gains, safety, unseen-instance",
-            "transfer, or superiority to PreAct, GPA, AutoRPA, or ViBR.",
-            "",
-        ]
-    )
-    return "\n".join(lines)
-
-
-def latex_numbers(report: dict[str, Any]) -> str:
-    """Render mechanically bound macros for prose outside the result table."""
-
-    natural = report["natural"]["pooled"]
-    bootstrap = report["natural"][
-        "advanced_contract_minus_absolute_bootstrap"
-    ]["pooled"]
-    drop = report["faults"]["drop"]["pooled"]
-    adjacent = report["faults"]["adjacent"]["pooled"]
-    relative_only = natural["relative_only_acceptances"]
-    semantic_totals = natural["semantic_totals"]
-    contract = natural["detectors"]["transition_contract"]
-    absolute = natural["detectors"]["absolute_template"]
-    values = {
-        "TGPostNaturalActions": natural["evaluated_steps"],
-        "TGPostAdvancedActions": semantic_totals["advanced"],
-        "TGPostAdverseActions": (
-            semantic_totals.get("nonadvancing", 0)
-            + semantic_totals.get("harmful", 0)
-        ),
-        "TGPostContractAdvancedRate": (
-            f"{100 * contract['accepted_advanced_rate']:.1f}\\%"
-        ),
-        "TGPostAbsoluteAdvancedRate": (
-            f"{100 * absolute['accepted_advanced_rate']:.1f}\\%"
-        ),
-        "TGPostAdvancedGain": f"{100 * bootstrap['estimate']:.1f}",
-        "TGPostAdvancedGainCILow": (
-            f"{100 * bootstrap['confidence_interval_95'][0]:.1f}"
-        ),
-        "TGPostAdvancedGainCIHigh": (
-            f"{100 * bootstrap['confidence_interval_95'][1]:.1f}"
-        ),
-        "TGPostRelativeOnly": relative_only["count"],
-        "TGPostRelativeOnlyAdvanced": relative_only["semantics"]["advanced"],
-        "TGPostRelativeOnlyNonadvancing": relative_only["semantics"]["nonadvancing"],
-        "TGPostRelativeOnlyHarmful": relative_only["semantics"]["harmful"],
-        "TGPostDropRejected": drop["detectors"]["transition_contract"]["rejected"],
-        "TGPostAdjacentRejected": adjacent["detectors"]["transition_contract"]["rejected"],
-        "TGPostChangeAdjacentRejected": adjacent["detectors"]["change_only"]["rejected"],
-        "TGPostAbsoluteAdjacentRejected": adjacent["detectors"]["absolute_template"]["rejected"],
-    }
-    return "\n".join(
-        f"\\newcommand{{\\{name}}}{{{value}}}" for name, value in values.items()
-    ) + "\n"
-
-
-def latex_table(report: dict[str, Any]) -> str:
-    """Render the compact, claim-bounded table used by the manuscript."""
-
-    natural = report["natural"]["pooled"]
-    adjacent = report["faults"]["adjacent"]["pooled"]
-    drop = report["faults"]["drop"]["pooled"]
-    labels = {
-        "change_only": "Change only",
-        "absolute_template": "Absolute template",
-        "directional_effect": "Directional effect",
-        "transition_contract": "\\textbf{Complete contract}",
-    }
-    lines = [
-        "% Generated by scripts/audit_transitionguard_postcheck_baselines.py.",
-        "% Secondary logged-component analysis; not a new policy run.",
-        "\\begin{table}[t]",
-        "\\centering",
-        "\\scriptsize",
-        "\\setlength{\\tabcolsep}{3pt}",
-        "\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}lrrrr@{}}",
-        "\\toprule",
-        "Post-check & Adv. acc. & Adverse acc. & Drop rej. & Adj. rej. \\\\",
-        "\\midrule",
-    ]
-    for detector in DETECTORS:
-        natural_row = natural["detectors"][detector]
-        drop_row = drop["detectors"][detector]
-        adjacent_row = adjacent["detectors"][detector]
-        lines.append(
-            f"{labels[detector]} & "
-            f"{100 * natural_row['accepted_advanced_rate']:.1f} & "
-            f"{100 * natural_row['accepted_adverse_rate']:.1f} & "
-            f"{drop_row['rejected']}/{drop['evaluated_steps']} & "
-            f"{adjacent_row['rejected']}/{adjacent['evaluated_steps']} \\\\"
-        )
-    lines.extend(
-        [
-            "\\bottomrule",
-            "\\end{tabular*}",
-            "\\caption{Same-observation post-check baselines. Natural columns are "
-            "acceptance percentages over 1,087 independently advancing and 160 "
-            "harmful-or-nonadvancing guarded actions; fault columns are rejected "
-            "injections. This preregistered read-only secondary analysis changes "
-            "no V5 decision or threshold and implies no counterfactual episode "
-            "success.}",
-            "\\label{tab:tg-postcheck-baselines}",
-            "\\end{table}",
-            "",
-        ]
-    )
-    return "\n".join(lines)
-
-
 def main() -> int:
+    from dafc.evaluation.postcheck_report import latex_numbers, latex_table, markdown_report
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--formal-root", type=Path, required=True)
     parser.add_argument("--adjacent-root", type=Path, required=True)
@@ -763,12 +464,32 @@ def main() -> int:
         args.output_tex.write_text(latex_table(report), encoding="utf-8")
     if args.output_numbers_tex:
         args.output_numbers_tex.parent.mkdir(parents=True, exist_ok=True)
-        args.output_numbers_tex.write_text(
-            latex_numbers(report),
-            encoding="utf-8",
-        )
+        args.output_numbers_tex.write_text(latex_numbers(report), encoding="utf-8")
     return int(not report["expectations_passed"])
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+def _detector_summary(units, detector):
+    accepted = [unit for unit in units if unit["decisions"][detector]]
+    accepted_semantics = Counter((unit["semantic_class"] for unit in accepted))
+    rejected_semantics = Counter(
+        (unit["semantic_class"] for unit in units if not unit["decisions"][detector])
+    )
+    advanced_total = sum((unit["semantic_class"] == "advanced" for unit in units))
+    adverse_total = len(units) - advanced_total
+    accepted_advanced = accepted_semantics["advanced"]
+    accepted_adverse = accepted_semantics["nonadvancing"] + accepted_semantics["harmful"]
+    return {
+        "accepted": len(accepted),
+        "accepted_advanced": accepted_advanced,
+        "accepted_advanced_rate": _rate(accepted_advanced, advanced_total),
+        "accepted_adverse": accepted_adverse,
+        "accepted_adverse_rate": _rate(accepted_adverse, adverse_total),
+        "accepted_semantics": {name: accepted_semantics[name] for name in SEMANTIC_CLASSES},
+        "acceptance_rate": _rate(len(accepted), len(units)),
+        "rejected": len(units) - len(accepted),
+        "rejected_semantics": {name: rejected_semantics[name] for name in SEMANTIC_CLASSES},
+    }

@@ -1,0 +1,8 @@
+{
+  "rows.json": "5d0eb9265795f9b4cfb866194f71155f83632ab24174477eb22fd2cd18a5389c",
+  "expected.json": "ca678762e341cf3f24ce4c680eca33dabc92970ee4ed4de85d513f7f5b935acf",
+  "frozen_statistics.py": "6ded72322bd2c5c36fb430b463ff147231e5d29c063e6fc27b5e7db86bfce9c9",
+  "raw_manifest.json": "8e86611ed012151031501c97b0fe360506ea2d48cfda5b53515ece72ff1479bf",
+  "redactions.json": "b48e6b4dc0e6e3ab286673805be5bb3093ac6f5ad56c6bb9b416153af7bd50e2",
+  "SOURCE.json": "ad19947ce762b565f55c5ec9464eb1b043c781c32b2b5d48cdfdf0fdced364a9"
+}

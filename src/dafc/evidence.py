@@ -1,9 +1,6 @@
-#!/usr/bin/env python3
 """Shared protocol primitives for the TransitionGuard formal experiment."""
 
 from __future__ import annotations
-from importlib import import_module
-from dafc.optional import LazyModule
 
 import hashlib
 import json
@@ -12,7 +9,6 @@ import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
-
 
 PROTOCOL_VERSION = "transitionguard-aaai27-formal-v1"
 SOURCE_CANDIDATE_CAP = 128
@@ -29,9 +25,7 @@ def sha256(path: Path) -> str:
 
 
 def canonical_json_sha256(row: Any) -> str:
-    payload = json.dumps(
-        row, sort_keys=True, separators=(",", ":"), ensure_ascii=False
-    ).encode("utf-8")
+    payload = json.dumps(row, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
 
 
@@ -47,16 +41,12 @@ def atomic_write_json(path: Path, row: dict[str, Any]) -> None:
         handle.write("\n")
         handle.flush()
         os.fsync(handle.fileno())
-    # A same-directory hard link publishes the fully flushed inode while
-    # preserving O_EXCL semantics for the final name.  Path.replace() would
-    # silently overwrite an existing formal artifact after a resume race.
     os.link(temporary, path)
     temporary.unlink()
 
 
 def verify_external_file_bindings(rows: Iterable[dict[str, Any]]) -> None:
     """Verify absolute, hash-pinned runtime files declared by a manifest."""
-
     for row in rows:
         path = Path(str(row["path"]))
         if not path.is_absolute() or not path.is_file():
@@ -70,49 +60,36 @@ def verify_external_file_bindings(rows: Iterable[dict[str, Any]]) -> None:
 
 def directory_fingerprint(path: Path) -> dict[str, Any]:
     """Hash a runtime package tree while ignoring interpreter bytecode."""
-
     root = path.resolve()
     if not root.is_dir():
         raise RuntimeError(f"runtime package tree is unavailable: {root}")
     rows = []
-    for child in sorted(item for item in root.rglob("*") if item.is_file()):
+    for child in sorted((item for item in root.rglob("*") if item.is_file())):
         relative = child.relative_to(root)
         if "__pycache__" in relative.parts or child.suffix in {".pyc", ".pyo"}:
             continue
-        rows.append(
-            {
-                "path": relative.as_posix(),
-                "bytes": child.stat().st_size,
-                "sha256": sha256(child),
-            }
-        )
+        rows.append({"path": relative.as_posix(), "bytes": child.stat().st_size, "sha256": sha256(child)})
     return {
         "files": len(rows),
-        "bytes": sum(int(row["bytes"]) for row in rows),
+        "bytes": sum((int(row["bytes"]) for row in rows)),
         "sha256": canonical_json_sha256(rows),
     }
 
 
 def verify_external_tree_bindings(rows: Iterable[dict[str, Any]]) -> None:
     """Verify tree-level hashes for installed runtime packages."""
-
     for row in rows:
         path = Path(str(row["path"]))
         if not path.is_absolute():
             raise RuntimeError(f"bound external tree is not absolute: {path}")
         observed = directory_fingerprint(path)
-        expected = {
-            "files": int(row["files"]),
-            "bytes": int(row["bytes"]),
-            "sha256": str(row["sha256"]),
-        }
+        expected = {"files": int(row["files"]), "bytes": int(row["bytes"]), "sha256": str(row["sha256"])}
         if observed != expected:
             raise RuntimeError(f"bound external tree changed: {path}")
 
 
 def verify_external_git_bindings(rows: Iterable[dict[str, Any]]) -> None:
     """Verify external source repositories used by the formal runtime."""
-
     for row in rows:
         path = Path(str(row["path"]))
         if not path.is_absolute() or not (path / ".git").exists():
@@ -139,27 +116,20 @@ def verify_external_git_bindings(rows: Iterable[dict[str, Any]]) -> None:
         for binding in row.get("status_file_bindings", []):
             changed = path / str(binding["path"])
             if not changed.is_file():
-                raise RuntimeError(
-                    f"bound external repository file is unavailable: {changed}"
-                )
+                raise RuntimeError(f"bound external repository file is unavailable: {changed}")
             if changed.stat().st_size != int(binding["bytes"]):
-                raise RuntimeError(
-                    f"bound external repository file size changed: {changed}"
-                )
+                raise RuntimeError(f"bound external repository file size changed: {changed}")
             if sha256(changed) != str(binding["sha256"]):
-                raise RuntimeError(
-                    f"bound external repository file hash changed: {changed}"
-                )
+                raise RuntimeError(f"bound external repository file hash changed: {changed}")
         if row.get("require_clean") and status:
             raise RuntimeError(f"bound external repository is dirty: {path}")
 
 
 def walk_seed_fields(value: Any) -> Iterable[int]:
     """Yield integer ``seed`` fields below a task-keyed JSON subtree."""
-
     if isinstance(value, dict):
         seed = value.get("seed")
-        if isinstance(seed, int) and not isinstance(seed, bool):
+        if isinstance(seed, int) and (not isinstance(seed, bool)):
             yield seed
         for child in value.values():
             yield from walk_seed_fields(child)
@@ -177,21 +147,15 @@ def walk_task_seeds(value: Any, tasks: set[str]) -> Iterable[tuple[str, int]]:
     conservatively cover both; otherwise merely previewed protocol seeds could
     be selected again after their values were observed.
     """
-
     if isinstance(value, dict):
         task = value.get("task")
         seed = value.get("seed")
-        if (
-            isinstance(task, str)
-            and task in tasks
-            and isinstance(seed, int)
-            and not isinstance(seed, bool)
-        ):
-            yield task, seed
+        if isinstance(task, str) and task in tasks and isinstance(seed, int) and (not isinstance(seed, bool)):
+            yield (task, seed)
         for key, child in value.items():
             if key in tasks:
                 for nested_seed in walk_seed_fields(child):
-                    yield key, nested_seed
+                    yield (key, nested_seed)
             yield from walk_task_seeds(child, tasks)
     elif isinstance(value, list):
         for child in value:
@@ -215,16 +179,14 @@ def development_seed_inventory(
         bindings[path.name] = sha256(path)
         for task, seed in found:
             result[task].add(seed)
-    return result, bindings
+    return (result, bindings)
 
 
 def candidate_seed(task: str, index: int) -> int:
     if not task or index < 0:
         raise ValueError("candidate seed requires task and non-negative index")
-    digest = hashlib.sha256(
-        f"{PROTOCOL_VERSION}|source|{task}|{index}".encode("utf-8")
-    ).digest()
-    seed = int.from_bytes(digest[:8], "big") & 0x7FFFFFFF
+    digest = hashlib.sha256(f"{PROTOCOL_VERSION}|source|{task}|{index}".encode("utf-8")).digest()
+    seed = int.from_bytes(digest[:8], "big") & 2147483647
     return seed or 1
 
 
@@ -233,7 +195,7 @@ def eligible_candidate_seeds(
 ) -> list[dict[str, int]]:
     if count <= 0:
         raise ValueError("candidate count must be positive")
-    blocked = set(int(row) for row in excluded)
+    blocked = set((int(row) for row in excluded))
     rows = []
     seen = set()
     index = 0
@@ -257,7 +219,7 @@ class ExperienceRecord:
     source_episode: str
 
     def __post_init__(self) -> None:
-        if not self.record_id or not self.goal or not self.task:
+        if not self.record_id or not self.goal or (not self.task):
             raise ValueError("experience identity fields must be non-empty")
         if not isinstance(self.seed, int) or isinstance(self.seed, bool):
             raise ValueError("experience seed must be an integer")
@@ -279,17 +241,20 @@ class ExperienceIndex:
         rejected = [row for row in self.records if row.goal != goal]
         if len(rejected) < minimum_distractors:
             raise RuntimeError("experience query lacks required distractors")
-        return matched, {
-            "retrieval": "exact normalized goal equality",
-            "query_goal": goal,
-            "bank_records": len(self.records),
-            "matched_records": len(matched),
-            "rejected_records": len(rejected),
-            "matched_record_ids": [row.record_id for row in matched],
-            "rejected_record_ids": [row.record_id for row in rejected],
-            "minimum_distractors": minimum_distractors,
-            "step_or_progress_input": None,
-        }
+        return (
+            matched,
+            {
+                "retrieval": "exact normalized goal equality",
+                "query_goal": goal,
+                "bank_records": len(self.records),
+                "matched_records": len(matched),
+                "rejected_records": len(rejected),
+                "matched_record_ids": [row.record_id for row in matched],
+                "rejected_record_ids": [row.record_id for row in rejected],
+                "minimum_distractors": minimum_distractors,
+                "step_or_progress_input": None,
+            },
+        )
 
 
 class AppendOnlyLedger:
@@ -316,9 +281,7 @@ class AppendOnlyLedger:
                 row = json.loads(line)
                 missing = self.REQUIRED - set(row)
                 if missing:
-                    raise RuntimeError(
-                        f"ledger line {line_number} lacks fields: {sorted(missing)}"
-                    )
+                    raise RuntimeError(f"ledger line {line_number} lacks fields: {sorted(missing)}")
                 rows.append(row)
         ids = [str(row["record_id"]) for row in rows]
         if len(ids) != len(set(ids)):
@@ -340,7 +303,7 @@ class AppendOnlyLedger:
         if missing:
             raise ValueError(f"ledger row lacks fields: {sorted(missing)}")
         existing = self.verify()
-        if any(old["record_id"] == row["record_id"] for old in existing):
+        if any((old["record_id"] == row["record_id"] for old in existing)):
             raise FileExistsError(f"ledger record already exists: {row['record_id']}")
         artifact = self.artifact_path(str(row["artifact"]))
         if not artifact.is_file() or sha256(artifact) != row["artifact_sha256"]:
@@ -368,10 +331,7 @@ class LedgerSession:
         if record_id in self.record_ids:
             raise FileExistsError(f"ledger record already exists: {record_id}")
         artifact = self.ledger.artifact_path(str(row["artifact"]))
-        if (
-            not artifact.is_file()
-            or sha256(artifact) != row["artifact_sha256"]
-        ):
+        if not artifact.is_file() or sha256(artifact) != row["artifact_sha256"]:
             raise RuntimeError("new ledger artifact is absent or hash-mismatched")
         self.ledger.path.parent.mkdir(parents=True, exist_ok=True)
         with self.ledger.path.open("a", encoding="utf-8", newline="\n") as handle:

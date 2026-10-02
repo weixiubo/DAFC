@@ -1,10 +1,13 @@
 from __future__ import annotations
-import hashlib, json, math, time
+
+import hashlib
+import json
+import os
 from pathlib import Path
 from typing import Any
+
 import cv2
 import numpy as np
-import os
 
 
 def sha256(path: Path) -> str:
@@ -14,11 +17,11 @@ def sha256(path: Path) -> str:
             digest.update(chunk)
     return digest.hexdigest()
 
+
 def canonical_sha256(value: Any) -> str:
-    raw = json.dumps(
-        value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
-    ).encode("ascii")
+    raw = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("ascii")
     return hashlib.sha256(raw).hexdigest()
+
 
 def load_json(path: Path) -> dict[str, Any]:
     value = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -26,15 +29,12 @@ def load_json(path: Path) -> dict[str, Any]:
         raise RuntimeError(f"expected JSON object: {path}")
     return value
 
+
 def write_new_json(path: Path, value: Any) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     raw = json.dumps(value, indent=2, sort_keys=True) + "\n"
-    descriptor = os.open(
-        path,
-        os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_CLOEXEC,
-        0o600,
-    )
+    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_CLOEXEC, 384)
     try:
         with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
             handle.write(raw)
@@ -47,14 +47,11 @@ def write_new_json(path: Path, value: Any) -> None:
             pass
         raise
 
+
 def write_new_text(path: Path, value: str) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    descriptor = os.open(
-        path,
-        os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_CLOEXEC,
-        0o600,
-    )
+    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_CLOEXEC, 384)
     try:
         with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
             handle.write(value)
@@ -66,6 +63,7 @@ def write_new_text(path: Path, value: str) -> None:
         except OSError:
             pass
         raise
+
 
 def image_receipt(path: Path, image: np.ndarray) -> dict[str, Any]:
     path = Path(path)

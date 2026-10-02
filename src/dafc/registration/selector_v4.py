@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Simplified dual-certificate v4 visual action-contract selector.
 
 V4 keeps v3's target-free candidate fitting and all-path gross photometric
@@ -11,8 +10,6 @@ independent confirmation of it.
 """
 
 from __future__ import annotations
-from importlib import import_module
-from dafc.optional import LazyModule
 
 from typing import Any
 
@@ -22,7 +19,7 @@ import numpy as np
 import dafc.registration.base as v1
 import dafc.registration.selector_v2 as v2
 import dafc.registration.selector_v3 as v3
-
+from dafc.registration.types import PointMatcher
 
 SELECTOR_RNG_SEED = v3.SELECTOR_RNG_SEED
 
@@ -33,11 +30,7 @@ def certificate_thresholds() -> dict[str, Any]:
     return thresholds
 
 
-def photometric_certificate(
-    source: np.ndarray,
-    target: np.ndarray,
-    matrix: np.ndarray,
-) -> dict[str, Any]:
+def photometric_certificate(source: np.ndarray, target: np.ndarray, matrix: np.ndarray) -> dict[str, Any]:
     certificate = v3.photometric_certificate(source, target, matrix)
     return {**certificate, "thresholds": certificate_thresholds()}
 
@@ -58,19 +51,18 @@ def v4_result_from_v2(base_result: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
+def register_contract(
+    source: np.ndarray, target: np.ndarray, *, matcher: PointMatcher | None = None
+) -> dict[str, Any]:
     cv2.setNumThreads(1)
     cv2.setRNGSeed(SELECTOR_RNG_SEED)
-    base_result = v2.register_contract(source, target)
+    base_result = v2.register_contract(source, target, matcher=matcher)
     preserved = v4_result_from_v2(base_result)
     if base_result["supported"]:
         if base_result.get("selected_family") == "identity":
             return {
                 **preserved,
-                "gross_photometric_gate": {
-                    "pass": True,
-                    "checks": {"exact_pixel_identity": True},
-                },
+                "gross_photometric_gate": {"pass": True, "checks": {"exact_pixel_identity": True}},
             }
         base_matrix = np.asarray(base_result["matrix"], dtype=np.float64)
         certificate = photometric_certificate(source, target, base_matrix)
@@ -105,19 +97,14 @@ def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
     failed_checks = v3.failed_support_checks(selected_metrics)
     if failed_checks != ["source_coverage"]:
         return {**preserved, "failed_v2_support_checks": failed_checks}
-
-    source_points, target_points, counts = v1.mutual_ratio_matches(
-        source, target
-    )
+    source_points, target_points, counts = (matcher or v1.mutual_ratio_matches)(source, target)
     if len(source_points) < 32:
         return {
             **preserved,
             "failed_v2_support_checks": failed_checks,
             "decision_path": "low_coverage_rescue_internal_match_failure",
         }
-    final_matrix, final_inliers = v1.fit_family(
-        selected_family, source_points, target_points
-    )
+    final_matrix, final_inliers = v1.fit_family(selected_family, source_points, target_points)
     if final_matrix is None:
         return {
             **preserved,
@@ -133,12 +120,7 @@ def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
         ),
     }
     stability = v2.fit_stability(
-        selected_family,
-        final_matrix,
-        source_points,
-        target_points,
-        source.shape[1],
-        source.shape[0],
+        selected_family, final_matrix, source_points, target_points, source.shape[1], source.shape[0]
     )
     certificate = photometric_certificate(source, target, final_matrix)
     gross_gate = v3.gross_photometric_gate(certificate)
@@ -146,11 +128,9 @@ def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
     return {
         **preserved,
         "supported": rescued,
-        "reason": (
-            "low_coverage_rescued_by_geometric_and_photometric_certificates"
-            if rescued
-            else "low_coverage_dual_certificate_failed"
-        ),
+        "reason": "low_coverage_rescued_by_geometric_and_photometric_certificates"
+        if rescued
+        else "low_coverage_dual_certificate_failed",
         "decision_path": "low_coverage_dual_certificate_rescue",
         "v2_reason": base_result.get("reason"),
         "low_coverage_rescue_eligible": True,
@@ -163,21 +143,3 @@ def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
         "candidate_matrix_audit": final_matrix.tolist(),
         "matrix": final_matrix.tolist() if rescued else None,
     }
-
-
-def main() -> int:
-    print(
-        {
-            "selector_version": "dual-certificate-v4",
-            "status": (
-                "selected by frozen C371 ablation; requires new disjoint "
-                "confirmation"
-            ),
-            "certificate_thresholds": certificate_thresholds(),
-        }
-    )
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())

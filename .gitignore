@@ -15,3 +15,8 @@ outputs/
 !.env.example
 .release-ready.json
 .DS_Store
+
+.mypy_cache/
+.ruff_cache/
+.coverage*
+htmlcov/

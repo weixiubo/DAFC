@@ -1,0 +1,9 @@
+workflow: routing
+run_id: routing-example-001
+inputs:
+  source: {path: "{data}/example/source.png"}
+  target: {path: "{data}/example/target.png"}
+parameters:
+  policy: dafc
+  source_success: true
+  action_xy: [160, 120]

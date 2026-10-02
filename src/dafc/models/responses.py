@@ -1,18 +1,14 @@
 from __future__ import annotations
-import hashlib, json, math, time
-from pathlib import Path
+
+import math
 from typing import Any
-import cv2
+
 import numpy as np
 
 
 def target_instruction(goal: str) -> str:
-    return (
-        f"Original Android task: {goal}\n"
-        "The benchmark harness has placed the required app at the final "
-        "decision state. Using only the current screenshot, select exactly "
-        "one executable tap that completes the task. Do not explain the answer."
-    )
+    return f"Original Android task: {goal}\nThe benchmark harness has placed the required app at the final decision state. Using only the current screenshot, select exactly one executable tap that completes the task. Do not explain the answer."
+
 
 def compact_model_response(response: dict[str, Any]) -> dict[str, Any]:
     result = response.get("result") or {}
@@ -29,6 +25,7 @@ def compact_model_response(response: dict[str, Any]) -> dict[str, Any]:
         "inference_s": result.get("inference_s"),
     }
 
+
 def normalized_to_pixel(parsed: dict[str, Any], image: np.ndarray) -> list[float] | None:
     if not parsed.get("valid"):
         return None
@@ -36,8 +33,8 @@ def normalized_to_pixel(parsed: dict[str, Any], image: np.ndarray) -> list[float
     if (
         not isinstance(values, list)
         or len(values) != 2
-        or not all(isinstance(v, (int, float)) and not isinstance(v, bool) for v in values)
-        or not all(math.isfinite(float(v)) for v in values)
+        or (not all((isinstance(v, (int, float)) and (not isinstance(v, bool)) for v in values)))
+        or (not all((math.isfinite(float(v)) for v in values)))
     ):
         return None
     height, width = image.shape[:2]

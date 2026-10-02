@@ -1,9 +1,6 @@
-#!/usr/bin/env python3
-"""Hash-verifying client for remote_open_gui_grounder_v5_service.py."""
+"""Hash-verifying client for service.py."""
 
 from __future__ import annotations
-from importlib import import_module
-from dafc.optional import LazyModule
 
 import argparse
 import base64
@@ -59,18 +56,14 @@ def infer(
         raise RuntimeError(f"grounder HTTP {error.code}: {detail}") from error
     observed = result.get("result", {}).get("image_sha256")
     if observed != payload["image_sha256"]:
-        raise RuntimeError(
-            f"service image hash mismatch: {observed} != {payload['image_sha256']}"
-        )
+        raise RuntimeError(f"service image hash mismatch: {observed} != {payload['image_sha256']}")
     if result.get("result", {}).get("id") != request_id:
         raise RuntimeError("service response id mismatch")
     return result
 
 
 def health(base_url: str, timeout_s: float = 10.0) -> dict[str, Any]:
-    with urllib.request.urlopen(
-        f"{base_url.rstrip('/')}/health", timeout=timeout_s
-    ) as response:
+    with urllib.request.urlopen(f"{base_url.rstrip('/')}/health", timeout=timeout_s) as response:
         return json.loads(response.read())
 
 

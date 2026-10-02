@@ -1,0 +1,4 @@
+# Preserve manifest and original evidence bytes across platforms.
+* -text
+*.png binary
+*.pdf binary

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Tail-aware dual-certificate v5 visual action-contract selector.
 
 V5 preserves v4 except for a target-free nested-family underfit alarm on the
@@ -15,8 +14,6 @@ No instruction, target box, or generated transform is consumed.
 """
 
 from __future__ import annotations
-from importlib import import_module
-from dafc.optional import LazyModule
 
 from typing import Any
 
@@ -26,39 +23,25 @@ import numpy as np
 import dafc.registration.base as v1
 import dafc.registration.selector_v3 as v3
 import dafc.registration.selector_v4 as v4
-
+from dafc.registration.types import PointMatcher
 
 FAMILY_ORDER = ("similarity", "affine", "homography")
 SELECTED_VALIDATION_P90_UNDERFIT_PX = 6.0
 HIGHER_VALIDATION_P90_GOOD_PX = 3.0
-MINIMUM_HIGHER_SOURCE_COVERAGE_GAIN = 0.10
+MINIMUM_HIGHER_SOURCE_COVERAGE_GAIN = 0.1
 SELECTOR_RNG_SEED = v4.SELECTOR_RNG_SEED
 
 
 def escalation_thresholds() -> dict[str, float]:
     return {
-        "selected_validation_p90_underfit_px": (
-            SELECTED_VALIDATION_P90_UNDERFIT_PX
-        ),
+        "selected_validation_p90_underfit_px": SELECTED_VALIDATION_P90_UNDERFIT_PX,
         "higher_validation_p90_good_px": HIGHER_VALIDATION_P90_GOOD_PX,
-        "minimum_higher_source_coverage_gain": (
-            MINIMUM_HIGHER_SOURCE_COVERAGE_GAIN
-        ),
+        "minimum_higher_source_coverage_gain": MINIMUM_HIGHER_SOURCE_COVERAGE_GAIN,
     }
 
 
-def higher_family_candidate(
-    result: dict[str, Any],
-) -> tuple[str, dict[str, Any]] | None:
-    if (
-        result.get("supported") is not True
-        or result.get("base_v2_supported") is not True
-        or result.get("selected_family") not in FAMILY_ORDER
-        or result.get("decision_path")
-        != "v2_supported_with_gross_photometric_gate"
-        or (result.get("gross_photometric_gate") or {}).get("pass") is not True
-        or (result.get("photometric_certificate") or {}).get("pass") is True
-    ):
+def higher_family_candidate(result: dict[str, Any]) -> tuple[str, dict[str, Any]] | None:
+    if not _eligible_for_escalation(result):
         return None
     selected_family = result["selected_family"]
     families = result.get("families") or {}
@@ -79,18 +62,15 @@ def higher_family_candidate(
         if (
             metrics.get("supported") is True
             and validation_p90 is not None
-            and validation_p90 <= HIGHER_VALIDATION_P90_GOOD_PX
-            and coverage is not None
-            and coverage - selected_coverage
-            >= MINIMUM_HIGHER_SOURCE_COVERAGE_GAIN
+            and (validation_p90 <= HIGHER_VALIDATION_P90_GOOD_PX)
+            and (coverage is not None)
+            and (coverage - selected_coverage >= MINIMUM_HIGHER_SOURCE_COVERAGE_GAIN)
         ):
-            return family, metrics
+            return (family, metrics)
     return None
 
 
-def with_v5_metadata(
-    result: dict[str, Any], escalation: dict[str, Any]
-) -> dict[str, Any]:
+def with_v5_metadata(result: dict[str, Any], escalation: dict[str, Any]) -> dict[str, Any]:
     return {
         **result,
         "selector_version": "tail-aware-dual-certificate-v5",
@@ -99,38 +79,27 @@ def with_v5_metadata(
     }
 
 
-def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
+def register_contract(
+    source: np.ndarray, target: np.ndarray, *, matcher: PointMatcher | None = None
+) -> dict[str, Any]:
     cv2.setNumThreads(1)
     cv2.setRNGSeed(SELECTOR_RNG_SEED)
-    base = v4.register_contract(source, target)
+    base = v4.register_contract(source, target, matcher=matcher)
     candidate = higher_family_candidate(base)
     if candidate is None:
-        return with_v5_metadata(
-            base,
-            {
-                "triggered": False,
-                "thresholds": escalation_thresholds(),
-            },
-        )
-
+        return with_v5_metadata(base, {"triggered": False, "thresholds": escalation_thresholds()})
     higher_family, higher_metrics = candidate
     selected_family = base["selected_family"]
     selected_metrics = base["families"][selected_family]
-    source_points, target_points, counts = v1.mutual_ratio_matches(source, target)
-    matrix, inliers = v1.fit_family(
-        higher_family, source_points, target_points
-    )
+    source_points, target_points, counts = (matcher or v1.mutual_ratio_matches)(source, target)
+    matrix, inliers = v1.fit_family(higher_family, source_points, target_points)
     escalation: dict[str, Any] = {
         "triggered": True,
         "thresholds": escalation_thresholds(),
         "from_family": selected_family,
         "to_family": higher_family,
-        "selected_validation_p90_error": selected_metrics[
-            "validation_p90_error"
-        ],
-        "higher_validation_p90_error": higher_metrics[
-            "validation_p90_error"
-        ],
+        "selected_validation_p90_error": selected_metrics["validation_p90_error"],
+        "higher_validation_p90_error": higher_metrics["validation_p90_error"],
         "selected_source_coverage": selected_metrics["source_coverage"],
         "higher_source_coverage": higher_metrics["source_coverage"],
         "match_counts": counts,
@@ -147,14 +116,11 @@ def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
             },
             {**escalation, "fit": False, "dense_certificate_pass": False},
         )
-
     full_refit = {
         "matches": int(len(source_points)),
         "inliers": int(inliers.sum()),
         "inlier_rate": float(inliers.mean()),
-        "source_coverage": v1.coverage_fraction(
-            source_points[inliers], source.shape[1], source.shape[0]
-        ),
+        "source_coverage": v1.coverage_fraction(source_points[inliers], source.shape[1], source.shape[0]),
     }
     certificate = v4.photometric_certificate(source, target, matrix)
     gross_gate = v3.gross_photometric_gate(certificate)
@@ -164,11 +130,9 @@ def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
             **base,
             "supported": accepted,
             "selected_family": higher_family,
-            "reason": (
-                "validation_tail_underfit_upgraded_and_dense_certified"
-                if accepted
-                else "validation_tail_underfit_upgrade_dense_certificate_failed"
-            ),
+            "reason": "validation_tail_underfit_upgraded_and_dense_certified"
+            if accepted
+            else "validation_tail_underfit_upgrade_dense_certificate_failed",
             "decision_path": "tail_aware_family_escalation",
             "full_refit": full_refit,
             "photometric_certificate": certificate,
@@ -186,19 +150,12 @@ def register_contract(source: np.ndarray, target: np.ndarray) -> dict[str, Any]:
     )
 
 
-def main() -> int:
-    print(
-        {
-            "selector_version": "tail-aware-dual-certificate-v5",
-            "status": (
-                "post-C374 development; requires disjoint reserve confirmation"
-            ),
-            "certificate_thresholds": v4.certificate_thresholds(),
-            "escalation_thresholds": escalation_thresholds(),
-        }
+def _eligible_for_escalation(result):
+    return not (
+        result.get("supported") is not True
+        or result.get("base_v2_supported") is not True
+        or result.get("selected_family") not in FAMILY_ORDER
+        or (result.get("decision_path") != "v2_supported_with_gross_photometric_gate")
+        or ((result.get("gross_photometric_gate") or {}).get("pass") is not True)
+        or ((result.get("photometric_certificate") or {}).get("pass") is True)
     )
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())

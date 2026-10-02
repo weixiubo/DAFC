@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Local process boundary for the pinned LightGlue runtime front end.
 
 AndroidWorld is pinned in a Python 3.11 environment, while the vision runtime
@@ -13,19 +12,17 @@ nodes, or target action annotations cross this boundary.
 """
 
 from __future__ import annotations
-from importlib import import_module
-from dafc.optional import LazyModule
 
 import argparse
 import base64
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from pathlib import Path
 from typing import Any
 from urllib import error, request
 
 import cv2
 import numpy as np
-
 
 SERVICE_VERSION = "transitionguard-lightglue-loopback-v1"
 MAX_REQUEST_BYTES = 64 * 1024 * 1024
@@ -62,9 +59,7 @@ class LightGlueServiceClient:
         if self.timeout_s <= 0:
             raise ValueError("timeout_s must be positive")
 
-    def _json_request(
-        self, path: str, payload: dict[str, Any] | None = None
-    ) -> dict[str, Any]:
+    def _json_request(self, path: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
         data = None
         method = "GET"
         headers = {"Accept": "application/json"}
@@ -72,20 +67,13 @@ class LightGlueServiceClient:
             data = json.dumps(payload, separators=(",", ":")).encode("utf-8")
             method = "POST"
             headers["Content-Type"] = "application/json"
-        req = request.Request(
-            self.base_url + path,
-            data=data,
-            headers=headers,
-            method=method,
-        )
+        req = request.Request(self.base_url + path, data=data, headers=headers, method=method)
         try:
             with request.urlopen(req, timeout=self.timeout_s) as response:
                 body = response.read()
         except error.HTTPError as exc:
             detail = exc.read().decode("utf-8", errors="replace")
-            raise RuntimeError(
-                f"LightGlue service HTTP {exc.code}: {detail}"
-            ) from exc
+            raise RuntimeError(f"LightGlue service HTTP {exc.code}: {detail}") from exc
         except error.URLError as exc:
             raise RuntimeError(f"LightGlue service unavailable: {exc}") from exc
         decoded = json.loads(body)
@@ -96,28 +84,17 @@ class LightGlueServiceClient:
     def health(self) -> dict[str, Any]:
         return self._json_request("/health")
 
-    def correspondences(
-        self, source_bgr: np.ndarray, current_bgr: np.ndarray
-    ) -> dict[str, Any]:
+    def correspondences(self, source_bgr: np.ndarray, current_bgr: np.ndarray) -> dict[str, Any]:
         receipt = self._json_request(
             "/correspondences",
-            {
-                "source_png": _encode_png(source_bgr),
-                "current_png": _encode_png(current_bgr),
-            },
+            {"source_png": _encode_png(source_bgr), "current_png": _encode_png(current_bgr)},
         )
         for key in ("source_points", "target_points"):
             points = np.asarray(receipt[key], dtype=np.float64)
             if points.size == 0:
                 points = np.empty((0, 2), dtype=np.float64)
-            if (
-                points.ndim != 2
-                or points.shape[1:] != (2,)
-                or not np.isfinite(points).all()
-            ):
-                raise RuntimeError(
-                    f"LightGlue service returned invalid {key}"
-                )
+            if points.ndim != 2 or points.shape[1:] != (2,) or (not np.isfinite(points).all()):
+                raise RuntimeError(f"LightGlue service returned invalid {key}")
             receipt[key] = points
         if receipt["source_points"].shape != receipt["target_points"].shape:
             raise RuntimeError("LightGlue point arrays have different shapes")
@@ -125,12 +102,9 @@ class LightGlueServiceClient:
         if matches != len(receipt["source_points"]):
             raise RuntimeError("LightGlue match count disagrees with points")
         scores = receipt.get("match_scores")
-        receipt["match_scores"] = (
-            np.asarray(scores, dtype=np.float64) if scores is not None else None
-        )
+        receipt["match_scores"] = np.asarray(scores, dtype=np.float64) if scores is not None else None
         if receipt["match_scores"] is not None and (
-            receipt["match_scores"].shape != (matches,)
-            or not np.isfinite(receipt["match_scores"]).all()
+            receipt["match_scores"].shape != (matches,) or not np.isfinite(receipt["match_scores"]).all()
         ):
             raise RuntimeError("LightGlue service returned invalid match scores")
         return receipt
@@ -144,12 +118,12 @@ def _jsonable_receipt(receipt: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
-def serve(host: str, port: int) -> None:
+def serve(host: str, port: int, *, repo: Path, weights: Path, device: str = "cuda") -> None:
     if host != "127.0.0.1":
         raise ValueError("refusing non-loopback LightGlue service binding")
     from dafc.models.lightglue_runtime_frontend import LightGlueRuntimeFrontend
 
-    frontend = LightGlueRuntimeFrontend()
+    frontend = LightGlueRuntimeFrontend(repo=repo, weight_dir=weights, device=device)
 
     class Handler(BaseHTTPRequestHandler):
         server_version = SERVICE_VERSION
@@ -162,20 +136,15 @@ def serve(host: str, port: int) -> None:
             self.end_headers()
             self.wfile.write(body)
 
-        def do_GET(self) -> None:  # noqa: N802 - BaseHTTPRequestHandler API
+        def do_GET(self) -> None:
             if self.path != "/health":
                 self._send(404, {"error": "not_found"})
                 return
             self._send(
-                200,
-                {
-                    "ready": True,
-                    "service_version": SERVICE_VERSION,
-                    "bindings": frontend.bindings,
-                },
+                200, {"ready": True, "service_version": SERVICE_VERSION, "bindings": frontend.bindings}
             )
 
-        def do_POST(self) -> None:  # noqa: N802 - BaseHTTPRequestHandler API
+        def do_POST(self) -> None:
             if self.path != "/correspondences":
                 self._send(404, {"error": "not_found"})
                 return
@@ -190,11 +159,8 @@ def serve(host: str, port: int) -> None:
                 current = _decode_png(payload["current_png"])
                 receipt = frontend.correspondences(source, current)
                 self._send(200, _jsonable_receipt(receipt))
-            except Exception as exc:  # return an auditable failure to the client
-                self._send(
-                    400,
-                    {"error": type(exc).__name__, "detail": str(exc)},
-                )
+            except Exception as exc:
+                self._send(400, {"error": type(exc).__name__, "detail": str(exc)})
 
         def log_message(self, format: str, *args: Any) -> None:
             print(f"{self.client_address[0]} {format % args}", flush=True)
@@ -221,10 +187,13 @@ def main() -> int:
     parser.add_argument("--serve", action="store_true")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=48242)
+    parser.add_argument("--repo", required=True, type=Path)
+    parser.add_argument("--weights", required=True, type=Path)
+    parser.add_argument("--device", default="cuda")
     args = parser.parse_args()
     if not args.serve:
         parser.error("--serve is required")
-    serve(args.host, args.port)
+    serve(args.host, args.port, repo=args.repo, weights=args.weights, device=args.device)
     return 0
 
 

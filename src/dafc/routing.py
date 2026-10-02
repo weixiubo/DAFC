@@ -1,50 +1,44 @@
 from __future__ import annotations
-import hashlib, json, math, time
+
+import math
+import time
 from pathlib import Path
 from typing import Any
+
 import cv2
 import numpy as np
-from dafc.evidence import sha256
-from dafc.registration import selector_v5 as V5, action_contract as V6
 
+from dafc.evidence import sha256
+from dafc.registration import action_contract as V6
+from dafc.registration import selector_v5 as V5
 
 POLICIES = ("always", "s_only", "standard_ransac", "dafc")
-
 STANDARD_RNG_SEED = 585001
-
 STANDARD_RANSAC_THRESHOLD_PX = 4.0
-
-STANDARD_MAX_ITERS = 5_000
-
+STANDARD_MAX_ITERS = 5000
 STANDARD_CONFIDENCE = 0.999
-
 STANDARD_MIN_INLIERS = 16
-
-STANDARD_MIN_INLIER_RATIO = 0.90
-
+STANDARD_MIN_INLIER_RATIO = 0.9
 TARGET_BOUNDARY_MARGIN_PX = 4.0
+
 
 def apply_homography(matrix: np.ndarray, point: list[float]) -> list[float] | None:
     mapped = cv2.perspectiveTransform(
-        np.asarray(point, dtype=np.float64).reshape(1, 1, 2),
-        np.asarray(matrix, dtype=np.float64),
+        np.asarray(point, dtype=np.float64).reshape(1, 1, 2), np.asarray(matrix, dtype=np.float64)
     ).reshape(2)
     if not np.isfinite(mapped).all():
         return None
     return [float(mapped[0]), float(mapped[1])]
 
+
 def point_in_bounds(point: list[float] | None, image: np.ndarray, margin: float = 0.0) -> bool:
-    if point is None or len(point) != 2 or not all(math.isfinite(v) for v in point):
+    if point is None or len(point) != 2 or (not all((math.isfinite(v) for v in point))):
         return False
     height, width = image.shape[:2]
-    return bool(
-        margin <= point[0] < width - margin
-        and margin <= point[1] < height - margin
-    )
+    return bool(margin <= point[0] < width - margin and margin <= point[1] < height - margin)
 
-def standard_registration(
-    source: np.ndarray, target: np.ndarray, action_xy: list[float]
-) -> dict[str, Any]:
+
+def standard_registration(source: np.ndarray, target: np.ndarray, action_xy: list[float]) -> dict[str, Any]:
     started = time.perf_counter()
     source_points, target_points, counts = V5.v1.mutual_ratio_matches(source, target)
     if len(source_points) < 4:
@@ -68,7 +62,7 @@ def standard_registration(
         maxIters=STANDARD_MAX_ITERS,
         confidence=STANDARD_CONFIDENCE,
     )
-    if matrix is None or mask is None or not np.isfinite(matrix).all():
+    if matrix is None or mask is None or (not np.isfinite(matrix).all()):
         return {
             "accepted": False,
             "reason": "homography_fit_failed",
@@ -107,6 +101,7 @@ def standard_registration(
         "runtime_s": time.perf_counter() - started,
     }
 
+
 def compact_dafc(receipt: dict[str, Any], action_xy: list[float]) -> dict[str, Any]:
     mapped = None
     if receipt.get("supported") and receipt.get("matrix") is not None:
@@ -127,18 +122,10 @@ def compact_dafc(receipt: dict[str, Any], action_xy: list[float]) -> dict[str, A
         },
     }
 
-def authorize(
-    policy: str,
-    source: dict[str, Any],
-    target: np.ndarray,
-) -> dict[str, Any]:
+
+def authorize(policy: str, source: dict[str, Any], target: np.ndarray) -> dict[str, Any]:
     if policy not in POLICIES or policy == "always":
-        return {
-            "accepted": False,
-            "reason": "always_reground",
-            "mapped_action_xy": None,
-            "runtime_s": 0.0,
-        }
+        return {"accepted": False, "reason": "always_reground", "mapped_action_xy": None, "runtime_s": 0.0}
     if not source["source_success"]:
         return {
             "accepted": False,
@@ -167,8 +154,8 @@ def authorize(
     receipt = V6.register_action_contract(source_image, target, action)
     compact = compact_dafc(receipt, action)
     compact["runtime_s"] = time.perf_counter() - started
-    if compact["accepted"] and not point_in_bounds(
-        compact["mapped_action_xy"], target, TARGET_BOUNDARY_MARGIN_PX
+    if compact["accepted"] and (
+        not point_in_bounds(compact["mapped_action_xy"], target, TARGET_BOUNDARY_MARGIN_PX)
     ):
         raise RuntimeError("DAFC accepted an out-of-bounds action")
     return compact

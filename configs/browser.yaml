@@ -1,0 +1,13 @@
+workflow: browser-episode
+run_id: browser-example-001
+inputs:
+  chromedriver: {path: "{data}/runtime/chromedriver"}
+  checkpoint_attestation: {path: "{data}/runtime/qwen-checkpoint.json"}
+parameters:
+  task: click-button-sequence
+  seed: 1
+  actor: qwen25vl
+  policy: always
+  contract: source
+services:
+  model: http://127.0.0.1:48241

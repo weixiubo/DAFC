@@ -1,7 +1,6 @@
 # Contributing
 
-Use this repository's `.venv`: `uv sync --locked`. Do not use a sibling project's
-environment, a restored `.venv`, global Python packages or hard-coded home paths.
+Create the project-local Python 3.12 environment with `uv sync --locked`.
 
 ```sh
 uv run --no-sync ruff check .
@@ -12,25 +11,19 @@ uv run --no-sync pytest
 uv run --no-sync dafc reproduce
 uv build --out-dir dist
 uv run --no-sync python scripts/check_release.py
+uv run --no-sync python scripts/check_sdist.py
 ```
 
-Use explicit types at configuration and run-state boundaries. Keep maintained
-modules at most 600 lines, functions at most 120 lines and complexity at most 15.
-Frozen statistical code is byte-checked, not formatted or rewritten. There are
-no ordinary-code structure exceptions. Preserve original test scenarios and add
-behavioral checks when changing state transitions or scientific decisions.
+Use explicit types at configuration and run-state boundaries. Maintained
+modules have a 600-line limit, functions a 120-line limit and McCabe complexity
+a limit of 15. Add behavioral tests when changing routing decisions, state
+transitions or platform recovery. Original statistical code and regression
+references retain their SHA-256 identities.
 
-For a release, review and regenerate `PUBLIC_MANIFEST.json`, then run
-`python scripts/export_public.py --target /path/to/new/export`. The exporter
-rejects changed bytes and unsafe paths. Run the documented checks in that export
-with a new environment before publishing. Do not export private evidence, model
-weights, service audit files, credentials or virtual environments.
-
-## Source distribution validation
-
-After `uv build`, run `uv run --no-sync python scripts/check_sdist.py`.
-It checks that the source distribution contains every declared test, fixture,
-helper and example, creates a fresh environment from its own lock, runs the full
-suite, and verifies that rebuilding its wheel preserves the distribution payload.
-Dependencies must already be cached by the normal locked development setup;
-this check runs offline and removes its temporary environment afterward.
+Keep complete datasets, model weights, credentials and private run records
+in configured external locations. Before export, review the file set, update
+`PUBLIC_MANIFEST.json` and run `scripts/export_public.py --target PATH` with a
+new target directory. Release checks validate installed-wheel behavior; the
+sdist check runs the full suite in a fresh locked environment and compares
+rebuilt wheel contents. Cache development dependencies before this offline
+distribution check.

@@ -1,15 +1,13 @@
-# 0.2.0
+# Version 0.2.0
 
-Portable installed commands replace pilot wrappers. Coordinate logic, registration,
-transition state, device operations, model strategies, experiment phases and
-receipt storage now have explicit boundaries. Model loading imports torch where
-used and only loads local checkpoints. Runtime paths no longer bind to the shell
-working directory during import. Services own their backend rather than changing
-another module's globals.
+- Installed `dafc` commands provide diagnostics, examples, configured execution
+  and evidence reproduction.
+- Coordinate logic, registration, transition state, device operations, model
+  adapters and receipt storage have explicit component boundaries.
+- Model loading uses local checkpoints and explicit framework imports.
+- Paths resolve from configuration files; services own their backend instances.
+- Run recovery checks source, inputs, configuration and service receipts.
+  Atomic recovery requires a durable action outcome before continuing.
 
-Current run recovery is bound to source, input, configuration and service receipts;
-atomic ledger recovery refuses ambiguous action replay. Old signed research
-artifacts and verification source remain frozen with their original identities.
-
-This is a locally validated source release, with device/GPU integrations pending
-resource restoration. Nothing has been published automatically. See VALIDATION.md.
+See [migration](MIGRATION.md) for command changes and
+[validation](VALIDATION.md) for regression and distribution checks.

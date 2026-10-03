@@ -1,4 +1,4 @@
-"""Write a deterministic toy image pair into an explicitly selected directory."""
+"""Write a deterministic example image pair into an explicitly selected directory."""
 
 import argparse
 from pathlib import Path

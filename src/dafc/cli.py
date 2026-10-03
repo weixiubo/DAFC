@@ -28,7 +28,7 @@ def parser() -> argparse.ArgumentParser:
     run = commands.add_parser("run", help="Execute an explicit YAML configuration")
     run.add_argument("--config", type=Path, required=True)
     _paths(run)
-    reproduce = commands.add_parser("reproduce", help="Recompute frozen public estimates")
+    reproduce = commands.add_parser("reproduce", help="Recompute published statistical estimates")
     reproduce.add_argument("--raw-root", type=Path)
     return root
 

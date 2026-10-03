@@ -23,13 +23,13 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "a0ae0a40924de524e72b6c03b3f09579052dd97e425708caf7ee2da09038dbf4",
-      "bytes": 1731
+      "sha256": "43689b07ad0e87c48e16d34e4ea66e3998dbd8e84c90d72818c7e1afa18e522d",
+      "bytes": 1245
     },
     {
       "path": "DEVELOPMENT.md",
-      "sha256": "f92966a0194aa88f8644d2b77e29299b503778874b63882eb4c69cd02662156c",
-      "bytes": 672
+      "sha256": "39062626ed5f1ebcb067a84afbcf2957deb947c4f0b03f1c0f8b1a3211430a3b",
+      "bytes": 554
     },
     {
       "path": "LICENSE",
@@ -43,18 +43,23 @@
     },
     {
       "path": "OPEN_SOURCE_STATUS.md",
-      "sha256": "494ef420b3cfd038c66333cb7b16b0b101fbbf19cdc5b14598d688995c1cf69c",
-      "bytes": 350
+      "sha256": "4e553bbedbf5d62d223c32c91a3f68f9de3525ee9e0039b9963efa05429b6d63",
+      "bytes": 472
     },
     {
       "path": "README.md",
-      "sha256": "bbf36cc00e4ff340cb6b1d67df4a18ccd0047e33fb226dd5913382c1fea21501",
-      "bytes": 2561
+      "sha256": "7bd8e60e8976197206853d9d448a4422d06cbaaf41378f3ea30edbb9fabab401",
+      "bytes": 2418
     },
     {
       "path": "SOURCE_PROVENANCE.json",
       "sha256": "8747b7faaf714d47712e6ff349194f21b6ad897f55f46fd6792523c8812d2284",
       "bytes": 795
+    },
+    {
+      "path": "THIRD_PARTY.md",
+      "sha256": "67e7a4c0bed01a4997bc2b5ff5b625c2f549f93e8238645dc39789de257525a5",
+      "bytes": 1075
     },
     {
       "path": "configs/android.yaml",
@@ -78,23 +83,23 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "f2182b5bd60bf31cab27f75808f826194209e07e497b6c6fd51b13f38f9bc13e",
-      "bytes": 2365
+      "sha256": "4ef79331bb58b84198be27b7f9ce2c7c277481dd20771c8a0e3bfc593a54f6d9",
+      "bytes": 2115
     },
     {
       "path": "docs/BASELINES.md",
-      "sha256": "eced76bef17bff91ed4e17709ba5e6e7d075c001f4f5c6b09490eee5f87612d7",
-      "bytes": 855
+      "sha256": "a403af5c6837bb3f7b3c6ae066eb9d1dffa5ec3a6117d64d9bd4478571eb7eb4",
+      "bytes": 583
     },
     {
       "path": "docs/MATERIALS.md",
-      "sha256": "023bb5237a1d966d908881e2ebb7c9a4ecc91024c536bf90501f877b5e90b347",
-      "bytes": 1359
+      "sha256": "aebfddd8229b74488b2e219d5f85b3eeb137a1023701686c325332b7ce8d37d7",
+      "bytes": 1225
     },
     {
       "path": "docs/MIGRATION.md",
-      "sha256": "cf56a1b6b6903127013bcbcd4700900c55d59f6aa75fd18bae6c37d69987f975",
-      "bytes": 1978
+      "sha256": "7a098149beea2b05eb633cd1f05089e8bce9b3e5d46bc1413dbb8bc806bc3146",
+      "bytes": 1652
     },
     {
       "path": "docs/MODULE_MIGRATION.json",
@@ -103,13 +108,13 @@
     },
     {
       "path": "docs/RELEASE_NOTES.md",
-      "sha256": "25c3b6651959e6bc1ec5080d47a98fe2ec7f1a47230ca41bc4ba23b18e20dfe6",
-      "bytes": 844
+      "sha256": "00b66bced1fbc5d883ffd0e7d0657c0123d7d95e38cd0306946865c8331a4e3b",
+      "bytes": 689
     },
     {
       "path": "docs/RESOURCES.md",
-      "sha256": "5ff7f4bb495f2994f4aac43c19af0ef84201c2eaac01d8809aed4e19965418fc",
-      "bytes": 4237
+      "sha256": "8ba08b20c5c598b65579ab5159e7ef8c30c9dac7ced703f18c275cc5c94795d0",
+      "bytes": 3302
     },
     {
       "path": "docs/TEST_MIGRATION.json",
@@ -118,13 +123,13 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "1b3ed1eda5f073fd931ef9feb82f6b51504156abab03109bf07b0d15b9199e81",
-      "bytes": 3836
+      "sha256": "750d348b11d1317f879d7725e14f1cc5e4859c66c9a9ca86fb0678ff16cfc388",
+      "bytes": 1689
     },
     {
       "path": "examples/make_routing_inputs.py",
-      "sha256": "a7f9f16c4195e1425aa03e3108ff86bccb65c8267a8ee34daf9ac77c46b00bcd",
-      "bytes": 805
+      "sha256": "daa1472444bde0de9df7c46be9f8130e2fb29696620cda406ca53670b7ada0a8",
+      "bytes": 809
     },
     {
       "path": "examples/routing_smoke.py",
@@ -133,13 +138,13 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "804dd59c505c75482902a8b46f6c5dc88fcdfe5fbd187fd91250a86a394d750b",
-      "bytes": 2014
+      "sha256": "ae0bd012a2c971da83ace14e9562028757755840699d5c1e04507fc420f55a43",
+      "bytes": 2032
     },
     {
       "path": "reproduce/README.md",
-      "sha256": "b0b89c1330eed3b8845876f131446e3d957896596d9ca0c784afdcc768c82b1f",
-      "bytes": 1540
+      "sha256": "9ea6e48a0787240b10ec3d617b626ba153db8222b454fc63f5cfda8999317702",
+      "bytes": 1429
     },
     {
       "path": "reproduce/SOURCE.json",
@@ -308,8 +313,8 @@
     },
     {
       "path": "src/dafc/cli.py",
-      "sha256": "163422df076cddff9e6d7ac7eb1ffe35fdd92c0ccf9a9c3e77c45462cfe80b2c",
-      "bytes": 3648
+      "sha256": "213cb5cecc92fb28c3e5bdb1caa7ef7067531874ac831e8ab90cec4bebe4537d",
+      "bytes": 3656
     },
     {
       "path": "src/dafc/configuration.py",
@@ -578,13 +583,13 @@
     },
     {
       "path": "src/dafc/reproduction.py",
-      "sha256": "bcbdb2d98901b870e6a05faaa8316f4395e3578be0961ef1c7549ed2373d6775",
-      "bytes": 4128
+      "sha256": "b2b7de2f49b22901d9ab5b5b2f55f1f7e6ce90aa1f17ba16869c5d485e91150c",
+      "bytes": 4124
     },
     {
       "path": "src/dafc/resource_catalog.json",
-      "sha256": "b56dcb7abb00a50fb73c73a728dfb9c62a9ad89e7495af95e1573efac97982fc",
-      "bytes": 8305
+      "sha256": "a5db6b1a856f7158d6a0930df3961111752ebe9b30e04f079f400ed988725f09",
+      "bytes": 8040
     },
     {
       "path": "src/dafc/resources.py",
@@ -658,8 +663,8 @@
     },
     {
       "path": "tests/reference/README.md",
-      "sha256": "7506c5e8ce25350210cc293888b672b18a72b75a28c853d4c8ce04c52ab96f21",
-      "bytes": 660
+      "sha256": "1863fc8d8ac898ec301240694a7c9f51a025c97eda61a9ff6a3026da9ea04b56",
+      "bytes": 536
     },
     {
       "path": "tests/reference/source/LICENSE",
@@ -757,5 +762,5 @@
       "bytes": 252986
     }
   ],
-  "material_policy": "Required tested references and scientific evidence are explicit. Unused whole-source bundles and obsolete environments are removed."
+  "material_policy": "Source exports include project code, documentation, tests, regression references and scientific verification resources."
 }

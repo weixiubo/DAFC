@@ -6,27 +6,27 @@
       "id": "android-source-registry",
       "purpose": "Seven-task source outcomes and image receipts",
       "version": "recovered-v2",
-      "source": "Owner research archive",
+      "source": "Original source-episode registry",
       "license": "Private research evidence; review before redistribution",
       "root": "data",
       "path": "android-source/registry.json",
       "kind": "file",
       "sha256": null,
       "restoration_status": "not_restored_to_default_layout",
-      "how_to_get": "Recover the selected_successes/retained_failures registry and its referenced outcomes and images from the owner archive. Bind inputs.source_registry to the registry and parameters.resource_base to the restored evidence root. Run doctor --config before execution."
+      "how_to_get": "Supply the selected_successes/retained_failures registry and its referenced outcomes and images. Bind inputs.source_registry and parameters.resource_base, then run doctor --config."
     },
     {
       "id": "android-raw-evidence",
       "purpose": "Independent verification of 1121 retained attempts and 3360 images",
       "version": "C587-v3",
-      "source": "Owner research archive; reproduce/raw_manifest.json",
+      "source": "Original C587-v3 attempt records; reproduce/raw_manifest.json",
       "license": "Private research evidence; public derivative only",
       "root": "data",
       "path": "android-atomic-original",
       "kind": "directory",
       "sha256": null,
       "restoration_status": "not_restored_to_default_layout",
-      "how_to_get": "Restore the original C587-v3 directory from the owner archive, preserving relative paths; run dafc reproduce --raw-root PATH to verify every entry against reproduce/raw_manifest.json."
+      "how_to_get": "Supply the original C587-v3 directory with its relative paths and run dafc reproduce --raw-root PATH to check reproduce/raw_manifest.json."
     },
     {
       "id": "android-world",
@@ -39,7 +39,7 @@
       "kind": "directory",
       "sha256": null,
       "restoration_status": "not_restored_to_default_layout",
-      "how_to_get": "Restore or clone https://github.com/google-research/android_world at 3e50888527ef9f29b9157ecd537e408008bb1c85 into {data}/runtime/android_world. Run uv sync --extra android, then uv pip install --no-deps PATH. Upstream exact Python 3.11 dependencies and the current Python 3.12 integration differ; live validation is outstanding."
+      "how_to_get": "Check out google-research/android_world at 3e50888527ef9f29b9157ecd537e408008bb1c85 in {data}/runtime/android_world. Run uv sync --locked --extra android and uv pip install --no-deps PATH. See docs/RESOURCES.md for the current Python 3.12 and original Python 3.11 dependency sets."
     },
     {
       "id": "accessibility-apk",
@@ -52,7 +52,7 @@
       "kind": "file",
       "sha256": "97a56a544e44d79f9b3181fc7dbdd72cffa908efd3d53c82afad1773061a350a",
       "restoration_status": "not_restored_to_default_layout",
-      "how_to_get": "Recover 2024.05.13-accessibility_forwarder.apk from the verified original Android runtime; place at the catalog path and bind inputs.a11y_apk. doctor enforces SHA-256 before device startup."
+      "how_to_get": "Supply the recorded 2024.05.13-accessibility_forwarder.apk, place it at the catalog path, and bind inputs.a11y_apk. Preflight checks its SHA-256 before device startup."
     },
     {
       "id": "chromedriver",
@@ -65,7 +65,7 @@
       "kind": "file",
       "sha256": "51df048171813deb307f7bd26baf49db030032f9332cedce8ce2797e03b86be1",
       "restoration_status": "not_restored_to_default_layout",
-      "how_to_get": "Obtain Linux x64 ChromeDriver 146.0.7680.165 from Chrome for Testing or the original runtime archive. Verify the catalog hash, make the executable user-executable, and bind inputs.chromedriver. Install a matching Chrome browser separately."
+      "how_to_get": "Obtain Linux x64 ChromeDriver 146.0.7680.165 from Chrome for Testing or the recorded runtime package. Check the catalog hash, grant user execute permission, bind inputs.chromedriver, and install the matching Chrome version."
     },
     {
       "id": "miniwob-tasks",
@@ -78,7 +78,7 @@
       "kind": "directory",
       "sha256": null,
       "restoration_status": "not_restored_to_default_layout",
-      "how_to_get": "Restore the MiniWoB task tree and record its Git revision. Install uv sync --extra browser; start its local HTML service as described by the pinned upstream task source. Record the URL in MINIWOB_BASE_URL for new experiments."
+      "how_to_get": "Supply the MiniWoB task tree and record its Git revision. Install uv sync --locked --extra browser, start the task HTML service, and set MINIWOB_BASE_URL."
     },
     {
       "id": "lightglue-source",

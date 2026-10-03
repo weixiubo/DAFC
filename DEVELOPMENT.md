@@ -1,11 +1,11 @@
-# Local development
+# Development
 
-Source: `~/project/DAFC`; virtual environment: `.venv` within this repository.
-Inputs: `~/research/data/DAFC`; checkpoints: `~/research/models`; outputs:
-`~/research/runs/DAFC/<run-id>`; historical originals: `~/research/data/<project>/evidence`.
+Use Python 3.12 with the repository's `uv.lock` and project-local `.venv`.
+`uv sync --locked` installs the routing implementation and development tools.
+Optional groups provide browser, Android, inference and learned-matcher
+dependencies.
 
-All locations are configurable; see docs/RESOURCES.md. Install only the optional
-groups needed by the process you are running. Basic development and verification
-use the root Python 3.12 uv.lock. The original Android runtime used a separate
-Python 3.11 environment; that environment is historical evidence, not a current
-installation recipe. See the explicit compatibility boundary in the resource doc.
+Source resides in `~/project/DAFC`; data, models and outputs use configurable
+research roots. See [resources](docs/RESOURCES.md) for path resolution and the
+Python 3.11 environment recorded for the original Android experiment.
+[Contributing](CONTRIBUTING.md) lists the complete validation commands.

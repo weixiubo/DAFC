@@ -1,25 +1,35 @@
-# Offline reproduction
+# Statistical reproduction
 
-Run `python reproduce/verify.py` after installing the project. It hashes the
-reviewed publication inputs, checks all 1120 outcome rows, and recomputes the
-8 policy summaries and 6 paired 20,000-resample task-cluster bootstrap intervals
-with the original seeds. Statistical function bodies are copied unchanged from
-the C588 analyzer; `SOURCE.json` records the original full-file digest.
+```sh
+uv run --no-sync dafc reproduce
+```
 
-The public rows are a separately identified **redacted derivative**: only the
-absolute attempt-path field was changed to a relative path. Full machine binding
-and infrastructure diagnostic objects are omitted. `redactions.json` records
-every changed row. Original analysis, manifest, source and raw attempts retain
-their exact bytes in the private archive; no old checksum was rewritten.
+The verifier checks the publication-input hashes and all 1,120 outcome rows,
+then recomputes eight policy summaries and six paired, task-cluster bootstrap
+comparisons with 20,000 resamples and the original seeds. The statistical
+functions retain the C588 analyzer's implementation; `SOURCE.json` records
+its original file identity. `python reproduce/verify.py` is the repository
+entrypoint.
 
-For full local raw verification run:
-`python reproduce/verify.py --raw-root /path/to/formal_android_atomic_c587_v3`.
-This checks every file against `raw_manifest.json`, image-receipt hashes, the
-single permitted infrastructure retry, exactly one outcome per job, and equality
-of the raw-to-public projection. The raw material is about 853 MB and is not
-embedded in the package. Without it, the default verifier establishes result
-reconstruction from the published derivative, not complete raw provenance.
+## Published inputs
 
-No model experiment was rerun. The refactored source has a new identity and is
-not claimed to have produced the recorded evidence. Generate a new manifest for
-new runs; never substitute this source into an old source-bound manifest.
+Public outcome rows form an identified derivative: absolute attempt paths
+are replaced by relative paths, and machine-binding and infrastructure
+diagnostic objects are omitted. `redactions.json` records the transformation.
+The original source and raw records retain their separate identities.
+
+## Original-attempt verification
+
+```sh
+uv run --no-sync dafc reproduce --raw-root /path/to/formal_android_atomic_c587_v3
+```
+
+This mode requires the original attempt directory, approximately 853 MB.
+It checks `raw_manifest.json`, image-receipt hashes, the single permitted
+infrastructure retry, one outcome per job and the raw-to-public projection.
+The default mode reconstructs statistics from the packaged public inputs;
+this additional mode verifies their original-attempt provenance.
+
+New experiments record the current source and inputs under a distinct run
+identity. Browser and Android setup is described in
+[resources](../docs/RESOURCES.md).

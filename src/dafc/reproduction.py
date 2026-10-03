@@ -1,4 +1,4 @@
-"""Recompute public historical estimates without loading an actor or device."""
+"""Recompute published statistical estimates from the supplied evidence."""
 
 import json
 from collections import defaultdict

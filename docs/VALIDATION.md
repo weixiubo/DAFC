@@ -1,62 +1,33 @@
-# Validation — 2026-10-02
+# Validation
 
-Baseline public revision: `8b0eae11468195ce86ccb33fea980334c72ac2d6`.
+Run the checks in [CONTRIBUTING.md](../CONTRIBUTING.md) using the locked
+Python 3.12 environment.
 
-## Executed successfully
+| Check | Coverage |
+| --- | --- |
+| Main suite | 108 tests and five subtests, including the original 22 scenarios |
+| Controller comparisons | 20 deterministic browser/Android cases |
+| Selector comparisons | 16 transition-selection cases |
+| Atomic trials | 10 cases covering decisions, retries, outcomes and cleanup |
+| Public boundaries | Configuration precedence, resource hashes, service isolation, checkpoint identities and recovery |
+| Engineering checks | Ruff, five strict type boundaries, 600-line modules, 120-line functions and McCabe complexity 15 |
 
-- 108 tests and five subtests, including the original 22 scenarios. The test
-  mapping keeps all original assert expressions and unittest assertions; six
-  call expressions change only the module owning the same tested function.
-- Exact seeded routing receipts for identity, translation and blank targets.
-- Twenty original/current browser and Android controller comparisons, sixteen
-  transition-selector comparisons and ten atomic-trial comparisons. These
-  compare event order, state/progress, actions, model-call budgets, retry/failure
-  classification and cleanup with deterministic platform stand-ins. Original
-  function bodies come from the hash-verified reference fixtures.
-- Model-service backend isolation, local-only model loading, checkpoint content
-  hashes, matcher source/weight identity, explicit configuration precedence,
-  missing resources, malformed inputs, result tampering and ambiguous recovery.
-- Ruff formatting/lint, strict mypy on five configuration/resource/run-ownership
-  boundaries, and 600-line / 120-line / complexity-15 structure checks.
-- A wheel and sdist include the Apache-2.0 license and required public evidence.
-  An independent wheel environment outside the source tree imports every module,
-  runs doctor/demo, executes real small-image routing and recomputes historical
-  estimates. Imports and diagnostics create no caller or user resource folders.
-- A checksum-controlled source export builds a new `.venv` from uv.lock and runs
-  the complete suite outside the original checkout.
-- Public-file and proposed-history credential-pattern scan, manifest export and
-  byte comparison of all original reproduce/ files. Pattern scans are a bounded
-  check, not proof that every possible private datum can be detected.
+Controller comparisons use deterministic platform stand-ins and compare
+event order, progress, actions, call budgets and failure classification.
+Reference function bodies are verified against their producer hashes.
+`TEST_MIGRATION.json` records assertion and ownership mappings.
 
-## Historical frozen results
+## Evidence verification
 
-The 1120 published outcomes, eight policy summaries and six paired comparisons
-recompute with 20,000 bootstrap samples. Original evidence and checksum bytes
-are unchanged. The original complete source is separately hash-bound. New
-experiments explicitly set `paper_evidence: false` and have new run identities.
+`dafc reproduce` processes 1,120 published outcomes, eight policy summaries
+and six paired comparisons using 20,000 bootstrap samples and the recorded
+seeds. `--raw-root PATH` additionally validates original attempts and image
+receipts. See the [reproduction guide](../reproduce/README.md).
 
-## Resource-dependent checks outstanding
+## Distribution verification
 
-Full raw-image/attempt re-verification, GPU numerical inference, actual browser
-and Android execution remain pending restoration. Controller stand-ins do not
-establish real-device equivalence. The Python 3.12 Android dependency group differs
-from the old Python 3.11 runtime; that integration is declared and locked but
-unverified. Model checkpoints, large task data and emulator assets were not
-downloaded automatically. No paid model or remote experiment service was called.
-
-The material-cleanup checks and current retained source list are documented in
-MATERIALS.md and tests/reference/MANIFEST.json. Whole-source bundles are no longer
-part of the current distribution. Scientific evidence identities are unchanged.
-
-## Final distribution audit — 2026-10-03
-
-The current suite passed 108 collected cases. The five DAFC subtests also passed. The source distribution was unpacked into a new directory and installed in its own new locked environment.
-All required test fixtures and helper files were present. The rebuilt wheel
-payload matched the wheel built from the maintained checkout. Installed commands
-ran outside the source directory with their declared resource and optional
-dependency checks. Lint, formatting, types, structural limits and lock consistency
-passed. CI now includes `check_sdist.py` after the ordinary build.
-
-This verifies the maintained offline software and distribution boundaries.
-The resource-dependent experiments listed above remain unverified; the test
-result does not imply a new GPU experiment or a changed scientific conclusion.
+Wheel checks import installed modules and execute diagnostics, image routing
+and statistical reproduction outside the source tree. Source-distribution
+checks create a fresh locked environment, run the full suite and compare
+rebuilt wheel contents. `PUBLIC_MANIFEST.json` authenticates source-export
+files. Platform execution uses the separate setups in [RESOURCES.md](RESOURCES.md).

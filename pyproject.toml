@@ -9,7 +9,7 @@ description = "Typed selective routing for outcome-validated GUI action reuse"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 license = "Apache-2.0"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "THIRD_PARTY.md"]
 dependencies = ["numpy==2.4.4", "opencv-python==4.13.0.92", "Pillow==12.2.0", "PyYAML==6.0.3"]
 
 [project.scripts]

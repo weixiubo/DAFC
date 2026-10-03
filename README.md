@@ -1,10 +1,11 @@
 # DAFC — Typed Selective Routing
 
-DAFC reuses a GUI action when its successful source outcome and coordinate
-transport contract are supported, and otherwise invokes the same target actor.
-The maintained interface is the independently installable `dafc` package.
+DAFC transfers a GUI action when its successful source outcome and coordinate
+transport contract support reuse. Otherwise, it invokes the target actor.
+The `dafc` package provides routing, browser and Android execution interfaces,
+model adapters and evidence verification.
 
-## Install, check and try offline
+## Installation and example
 
 Use Python 3.12 and uv from the repository root:
 
@@ -13,14 +14,13 @@ uv sync --locked
 uv run --no-sync dafc doctor
 uv run --no-sync dafc demo
 uv run --no-sync dafc reproduce
-uv run --no-sync pytest
 ```
 
-The demo exercises geometric action transfer and failed-source fallback with a
-fixed seed. It needs no model, browser, network or emulator. `reproduce` recomputes
-the public historical estimates and their 20,000-sample bootstrap intervals.
+The deterministic demo exercises geometric action transfer and fallback after
+a failed source action. It uses small offline inputs. `reproduce` rebuilds
+the published estimates and their 20,000-sample bootstrap intervals.
 
-## Explicit runs
+## Configured execution
 
 ```sh
 uv run --no-sync python examples/make_routing_inputs.py --directory "$HOME/research/data/DAFC/example"
@@ -28,29 +28,31 @@ uv run --no-sync dafc doctor --config configs/routing.yaml
 uv run --no-sync dafc run --config configs/routing.yaml
 ```
 
-Choose a fresh `run_id` for another experiment. The sample configuration places
-outputs under `~/research/runs/DAFC/`. It can be copied anywhere: its relative paths
-resolve from the configuration file, never from the invoking shell's directory.
-See [resources](docs/RESOURCES.md) before configuring a real browser or Android
-episode, atomic batch, model service or learned matcher. Live runs are explicit;
-installation and the four basic checks do not download models or datasets.
+Assign a distinct `run_id` to each experiment. The example writes to
+`~/research/runs/DAFC/`. Relative input paths resolve from the configuration
+file, so the configuration can be invoked from another working directory.
 
-## Research scope and evidence
+Browser episodes, Android episodes and atomic batches use explicit platform,
+model-service and matcher resources. [Resources](docs/RESOURCES.md) describes
+the optional dependency groups, configuration templates and preflight checks.
 
-The sealed C587-v3 Android diagnostic contains 1120 jobs and one additional
-retained infrastructure attempt. Both actors used 25% fewer target model calls
-under DAFC: Qwen had 120/140 successes (always: 119/140), and UI-TARS 100/140
-(always: 99/140). This fixed seven-task action-level diagnostic does not establish
-AndroidWorld-wide performance. Browser studies and full raw evidence are external.
+## Research evidence
 
-Current runs have a new source identity and `paper_evidence: false`. Original
-evidence, checksums and source are retained byte-for-byte; see
-[migration](docs/MIGRATION.md) and [validation](docs/VALIDATION.md).
+The C587-v3 Android study is a seven-task, action-level diagnostic with
+1,120 jobs and one retained infrastructure retry. DAFC used 25% fewer target
+model calls for each actor. Qwen achieved 120/140 successes, compared with
+119/140 under the always-call control; UI-TARS achieved 100/140, compared
+with 99/140. The [reproduction guide](reproduce/README.md) describes the
+published outcome records, statistical analysis and original-attempt checks.
 
-The [architecture](docs/ARCHITECTURE.md) separates routing, transition state,
-platform interaction, model adapters, run ownership and evidence. Predecessor
-registration layers remain only where current algorithms depend on them.
-Owned code is Apache-2.0; external resources retain their own terms.
-See [contributing](CONTRIBUTING.md) and [release notes](docs/RELEASE_NOTES.md).
+Each configured run records its source, inputs, configuration and service
+identities. The original study records retain their producer identities.
 
-Material ownership and deletion rules: [docs/MATERIALS.md](docs/MATERIALS.md).
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) and [repository layout](docs/MATERIALS.md)
+- [Development](DEVELOPMENT.md) and [contributing](CONTRIBUTING.md)
+- [Migration](docs/MIGRATION.md), [release notes](docs/RELEASE_NOTES.md) and [validation](docs/VALIDATION.md)
+- [Third-party notices](THIRD_PARTY.md)
+
+Project code is licensed under Apache-2.0.

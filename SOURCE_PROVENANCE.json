@@ -1,0 +1,18 @@
+{
+  "project": "DAFC",
+  "source_revision": "8b0eae11468195ce86ccb33fea980334c72ac2d6",
+  "earlier_preparation": {
+    "project": "DAFC",
+    "baseline_commit": "82f2166d536c9ba118dca6eea3a3f255d15b8126",
+    "baseline_description": "Typed Selective Routing current working tree, including uncommitted changes; historical experiment identities are separate.",
+    "cleanup_date": "2026-10-02",
+    "refactor_preserves_algorithm": true,
+    "historical_evidence_is_not_new_execution": true
+  },
+  "frozen_source": "tests/reference/MANIFEST.json",
+  "current_run_scheme": "dafc-configured-v1",
+  "new_atomic_design": "dafc-configured-atomic-v1",
+  "historical_evidence_is_not_new_execution": true,
+  "baseline_scenarios": "docs/TEST_MIGRATION.json",
+  "current_validation": "docs/VALIDATION.md"
+}

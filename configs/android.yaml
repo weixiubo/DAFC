@@ -1,0 +1,16 @@
+workflow: android-episode
+run_id: android-example-001
+inputs:
+  adb: {path: "{data}/runtime/platform-tools/adb"}
+  a11y_apk: {path: "{data}/runtime/2024.05.13-accessibility_forwarder.apk"}
+  checkpoint_attestation: {path: "{data}/runtime/qwen-checkpoint.json"}
+parameters:
+  task: ClockStopWatchRunning
+  contract: identity
+  actor: qwen25vl
+  policy: always
+  serial: emulator-5554
+  console_port: 5554
+  grpc_port: 8554
+services:
+  model: http://127.0.0.1:48241

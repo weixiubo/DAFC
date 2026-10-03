@@ -1,0 +1,976 @@
+{
+  "summary": {
+    "qwen25vl": {
+      "always": {
+        "authorization_rate": 0.0,
+        "authorizations": 0,
+        "authorized_success_rate": null,
+        "authorized_successes": 0,
+        "by_contract": {
+          "density-480": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "font-1.15": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "identity": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.8285714285714286,
+            "successes": 29
+          },
+          "jpeg-70": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          }
+        },
+        "by_task": {
+          "AudioRecorderRecordAudio": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "ClockStopWatchRunning": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "ClockTimerEntry": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 0.95,
+            "successes": 19
+          },
+          "SystemBluetoothTurnOn": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOn": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          }
+        },
+        "episodes": 140,
+        "model_calls": 140,
+        "success_rate": 0.85,
+        "successes": 119,
+        "target_call_rate": 1.0,
+        "target_call_reduction": 0.0,
+        "task_equal_success_rate": 0.85
+      },
+      "dafc": {
+        "authorization_rate": 0.25,
+        "authorizations": 35,
+        "authorized_success_rate": 1.0,
+        "authorized_successes": 35,
+        "by_contract": {
+          "density-480": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "font-1.15": {
+            "authorization_rate": 0.14285714285714285,
+            "episodes": 35,
+            "model_calls": 30,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "identity": {
+            "authorization_rate": 0.42857142857142855,
+            "episodes": 35,
+            "model_calls": 20,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "jpeg-70": {
+            "authorization_rate": 0.42857142857142855,
+            "episodes": 35,
+            "model_calls": 20,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          }
+        },
+        "by_task": {
+          "AudioRecorderRecordAudio": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "ClockStopWatchRunning": {
+            "authorization_rate": 0.75,
+            "episodes": 20,
+            "model_calls": 5,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "ClockTimerEntry": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOff": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOn": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOn": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          }
+        },
+        "episodes": 140,
+        "model_calls": 105,
+        "success_rate": 0.8571428571428571,
+        "successes": 120,
+        "target_call_rate": 0.75,
+        "target_call_reduction": 0.25,
+        "task_equal_success_rate": 0.8571428571428571
+      },
+      "s_only": {
+        "authorization_rate": 0.7142857142857143,
+        "authorizations": 100,
+        "authorized_success_rate": 0.65,
+        "authorized_successes": 65,
+        "by_contract": {
+          "density-480": {
+            "authorization_rate": 0.7142857142857143,
+            "episodes": 35,
+            "model_calls": 10,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "font-1.15": {
+            "authorization_rate": 0.7142857142857143,
+            "episodes": 35,
+            "model_calls": 10,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "identity": {
+            "authorization_rate": 0.7142857142857143,
+            "episodes": 35,
+            "model_calls": 10,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "jpeg-70": {
+            "authorization_rate": 0.7142857142857143,
+            "episodes": 35,
+            "model_calls": 10,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          }
+        },
+        "by_task": {
+          "AudioRecorderRecordAudio": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "ClockStopWatchRunning": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "ClockTimerEntry": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOff": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOn": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 0.5,
+            "successes": 10
+          },
+          "SystemWifiTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOn": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 0.75,
+            "successes": 15
+          }
+        },
+        "episodes": 140,
+        "model_calls": 40,
+        "success_rate": 0.75,
+        "successes": 105,
+        "target_call_rate": 0.2857142857142857,
+        "target_call_reduction": 0.7142857142857143,
+        "task_equal_success_rate": 0.75
+      },
+      "standard_ransac": {
+        "authorization_rate": 0.21428571428571427,
+        "authorizations": 30,
+        "authorized_success_rate": 1.0,
+        "authorized_successes": 30,
+        "by_contract": {
+          "density-480": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "font-1.15": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "identity": {
+            "authorization_rate": 0.42857142857142855,
+            "episodes": 35,
+            "model_calls": 20,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          },
+          "jpeg-70": {
+            "authorization_rate": 0.42857142857142855,
+            "episodes": 35,
+            "model_calls": 20,
+            "success_rate": 0.8571428571428571,
+            "successes": 30
+          }
+        },
+        "by_task": {
+          "AudioRecorderRecordAudio": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "ClockStopWatchRunning": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "ClockTimerEntry": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOff": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOn": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOn": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          }
+        },
+        "episodes": 140,
+        "model_calls": 110,
+        "success_rate": 0.8571428571428571,
+        "successes": 120,
+        "target_call_rate": 0.7857142857142857,
+        "target_call_reduction": 0.2142857142857143,
+        "task_equal_success_rate": 0.8571428571428571
+      }
+    },
+    "uitars": {
+      "always": {
+        "authorization_rate": 0.0,
+        "authorizations": 0,
+        "authorized_success_rate": null,
+        "authorized_successes": 0,
+        "by_contract": {
+          "density-480": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "font-1.15": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.6857142857142857,
+            "successes": 24
+          },
+          "identity": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "jpeg-70": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          }
+        },
+        "by_task": {
+          "AudioRecorderRecordAudio": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "ClockStopWatchRunning": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "ClockTimerEntry": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "SystemBluetoothTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOn": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 0.95,
+            "successes": 19
+          },
+          "SystemWifiTurnOn": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          }
+        },
+        "episodes": 140,
+        "model_calls": 140,
+        "success_rate": 0.7071428571428572,
+        "successes": 99,
+        "target_call_rate": 1.0,
+        "target_call_reduction": 0.0,
+        "task_equal_success_rate": 0.7071428571428572
+      },
+      "dafc": {
+        "authorization_rate": 0.25,
+        "authorizations": 35,
+        "authorized_success_rate": 1.0,
+        "authorized_successes": 35,
+        "by_contract": {
+          "density-480": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "font-1.15": {
+            "authorization_rate": 0.14285714285714285,
+            "episodes": 35,
+            "model_calls": 30,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "identity": {
+            "authorization_rate": 0.42857142857142855,
+            "episodes": 35,
+            "model_calls": 20,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "jpeg-70": {
+            "authorization_rate": 0.42857142857142855,
+            "episodes": 35,
+            "model_calls": 20,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          }
+        },
+        "by_task": {
+          "AudioRecorderRecordAudio": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "ClockStopWatchRunning": {
+            "authorization_rate": 0.75,
+            "episodes": 20,
+            "model_calls": 5,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "ClockTimerEntry": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "SystemBluetoothTurnOff": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOn": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOn": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          }
+        },
+        "episodes": 140,
+        "model_calls": 105,
+        "success_rate": 0.7142857142857143,
+        "successes": 100,
+        "target_call_rate": 0.75,
+        "target_call_reduction": 0.25,
+        "task_equal_success_rate": 0.7142857142857143
+      },
+      "s_only": {
+        "authorization_rate": 0.7142857142857143,
+        "authorizations": 100,
+        "authorized_success_rate": 0.65,
+        "authorized_successes": 65,
+        "by_contract": {
+          "density-480": {
+            "authorization_rate": 0.7142857142857143,
+            "episodes": 35,
+            "model_calls": 10,
+            "success_rate": 0.5714285714285714,
+            "successes": 20
+          },
+          "font-1.15": {
+            "authorization_rate": 0.7142857142857143,
+            "episodes": 35,
+            "model_calls": 10,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "identity": {
+            "authorization_rate": 0.7142857142857143,
+            "episodes": 35,
+            "model_calls": 10,
+            "success_rate": 0.5428571428571428,
+            "successes": 19
+          },
+          "jpeg-70": {
+            "authorization_rate": 0.7142857142857143,
+            "episodes": 35,
+            "model_calls": 10,
+            "success_rate": 0.5714285714285714,
+            "successes": 20
+          }
+        },
+        "by_task": {
+          "AudioRecorderRecordAudio": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "ClockStopWatchRunning": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "ClockTimerEntry": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "SystemBluetoothTurnOff": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOn": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 0.5,
+            "successes": 10
+          },
+          "SystemWifiTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 0.95,
+            "successes": 19
+          },
+          "SystemWifiTurnOn": {
+            "authorization_rate": 1.0,
+            "episodes": 20,
+            "model_calls": 0,
+            "source_success": true,
+            "success_rate": 0.75,
+            "successes": 15
+          }
+        },
+        "episodes": 140,
+        "model_calls": 40,
+        "success_rate": 0.6,
+        "successes": 84,
+        "target_call_rate": 0.2857142857142857,
+        "target_call_reduction": 0.7142857142857143,
+        "task_equal_success_rate": 0.6
+      },
+      "standard_ransac": {
+        "authorization_rate": 0.21428571428571427,
+        "authorizations": 30,
+        "authorized_success_rate": 1.0,
+        "authorized_successes": 30,
+        "by_contract": {
+          "density-480": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "font-1.15": {
+            "authorization_rate": 0.0,
+            "episodes": 35,
+            "model_calls": 35,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          },
+          "identity": {
+            "authorization_rate": 0.42857142857142855,
+            "episodes": 35,
+            "model_calls": 20,
+            "success_rate": 0.6571428571428571,
+            "successes": 23
+          },
+          "jpeg-70": {
+            "authorization_rate": 0.42857142857142855,
+            "episodes": 35,
+            "model_calls": 20,
+            "success_rate": 0.7142857142857143,
+            "successes": 25
+          }
+        },
+        "by_task": {
+          "AudioRecorderRecordAudio": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "ClockStopWatchRunning": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "ClockTimerEntry": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 0.0,
+            "successes": 0
+          },
+          "SystemBluetoothTurnOff": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemBluetoothTurnOn": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          },
+          "SystemWifiTurnOff": {
+            "authorization_rate": 0.0,
+            "episodes": 20,
+            "model_calls": 20,
+            "source_success": false,
+            "success_rate": 0.9,
+            "successes": 18
+          },
+          "SystemWifiTurnOn": {
+            "authorization_rate": 0.5,
+            "episodes": 20,
+            "model_calls": 10,
+            "source_success": true,
+            "success_rate": 1.0,
+            "successes": 20
+          }
+        },
+        "episodes": 140,
+        "model_calls": 110,
+        "success_rate": 0.7,
+        "successes": 98,
+        "target_call_rate": 0.7857142857142857,
+        "target_call_reduction": 0.2142857142857143,
+        "task_equal_success_rate": 0.7000000000000001
+      }
+    }
+  },
+  "comparisons": {
+    "qwen25vl": {
+      "dafc_minus_always": {
+        "both_failure": 20,
+        "both_success": 119,
+        "left": "dafc",
+        "left_only_success": 1,
+        "pairs": 140,
+        "right": "always",
+        "right_only_success": 0,
+        "success_difference": 0.007142857142857143,
+        "task_cluster_bootstrap": {
+          "ci95": [
+            0.0,
+            0.02142857142857143
+          ],
+          "cluster_unit": "task",
+          "clusters": 7,
+          "observed_difference": 0.007142857142857143,
+          "replicates": 20000,
+          "rng_seed": 588001
+        }
+      },
+      "dafc_minus_s_only": {
+        "both_failure": 20,
+        "both_success": 105,
+        "left": "dafc",
+        "left_only_success": 15,
+        "pairs": 140,
+        "right": "s_only",
+        "right_only_success": 0,
+        "success_difference": 0.10714285714285714,
+        "task_cluster_bootstrap": {
+          "ci95": [
+            0.0,
+            0.25
+          ],
+          "cluster_unit": "task",
+          "clusters": 7,
+          "observed_difference": 0.10714285714285714,
+          "replicates": 20000,
+          "rng_seed": 588002
+        }
+      },
+      "dafc_minus_standard_ransac": {
+        "both_failure": 20,
+        "both_success": 120,
+        "left": "dafc",
+        "left_only_success": 0,
+        "pairs": 140,
+        "right": "standard_ransac",
+        "right_only_success": 0,
+        "success_difference": 0.0,
+        "task_cluster_bootstrap": {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "cluster_unit": "task",
+          "clusters": 7,
+          "observed_difference": 0.0,
+          "replicates": 20000,
+          "rng_seed": 588003
+        }
+      }
+    },
+    "uitars": {
+      "dafc_minus_always": {
+        "both_failure": 40,
+        "both_success": 99,
+        "left": "dafc",
+        "left_only_success": 1,
+        "pairs": 140,
+        "right": "always",
+        "right_only_success": 0,
+        "success_difference": 0.007142857142857143,
+        "task_cluster_bootstrap": {
+          "ci95": [
+            0.0,
+            0.02142857142857143
+          ],
+          "cluster_unit": "task",
+          "clusters": 7,
+          "observed_difference": 0.007142857142857143,
+          "replicates": 20000,
+          "rng_seed": 588004
+        }
+      },
+      "dafc_minus_s_only": {
+        "both_failure": 40,
+        "both_success": 84,
+        "left": "dafc",
+        "left_only_success": 16,
+        "pairs": 140,
+        "right": "s_only",
+        "right_only_success": 0,
+        "success_difference": 0.11428571428571428,
+        "task_cluster_bootstrap": {
+          "ci95": [
+            0.007142857142857143,
+            0.2571428571428571
+          ],
+          "cluster_unit": "task",
+          "clusters": 7,
+          "observed_difference": 0.11428571428571428,
+          "replicates": 20000,
+          "rng_seed": 588005
+        }
+      },
+      "dafc_minus_standard_ransac": {
+        "both_failure": 40,
+        "both_success": 98,
+        "left": "dafc",
+        "left_only_success": 2,
+        "pairs": 140,
+        "right": "standard_ransac",
+        "right_only_success": 0,
+        "success_difference": 0.014285714285714285,
+        "task_cluster_bootstrap": {
+          "ci95": [
+            0.0,
+            0.04285714285714286
+          ],
+          "cluster_unit": "task",
+          "clusters": 7,
+          "observed_difference": 0.014285714285714285,
+          "replicates": 20000,
+          "rng_seed": 588006
+        }
+      }
+    }
+  },
+  "interpretive_target": {
+    "qwen25vl": {
+      "lower_ci": 0.0,
+      "met": true,
+      "minimum_target_call_reduction": 0.2,
+      "noninferiority_margin": -0.05,
+      "target_call_reduction": 0.25
+    },
+    "uitars": {
+      "lower_ci": 0.0,
+      "met": true,
+      "minimum_target_call_reduction": 0.2,
+      "noninferiority_margin": -0.05,
+      "target_call_reduction": 0.25
+    }
+  },
+  "criteria": {
+    "all_attempts_retained": true,
+    "all_complete_rows_observation_ui_clean": true,
+    "always_has_one_model_call": true,
+    "exact_1120_outcome_rows": true,
+    "exact_140_rows_per_actor_policy": true,
+    "exact_560_rows_per_actor": true,
+    "performance_not_used_as_integrity_gate": true,
+    "source_failure_tasks_never_authorized": true,
+    "unique_complete_job_keys": true,
+    "zero_new_model_or_environment_calls_during_analysis": true
+  }
+}

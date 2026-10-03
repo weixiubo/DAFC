@@ -1,0 +1,10 @@
+include LICENSE README.md CONTRIBUTING.md DEVELOPMENT.md pyproject.toml uv.lock .python-version
+graft src
+graft docs
+graft scripts
+graft configs
+graft examples
+graft reproduce
+include PUBLIC_MANIFEST.json SOURCE_PROVENANCE.json
+graft tests
+global-exclude __pycache__ *.py[cod]

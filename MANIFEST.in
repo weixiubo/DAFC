@@ -8,3 +8,4 @@ graft reproduce
 include PUBLIC_MANIFEST.json SOURCE_PROVENANCE.json
 graft tests
 global-exclude __pycache__ *.py[cod]
+recursive-include handoff *

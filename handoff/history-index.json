@@ -1,0 +1,9 @@
+{
+  "reason": "User explicitly requested deletion of downloaded third-party full texts on 2026-10-15.",
+  "stores": [],
+  "deleted_fulltext_hashes": [
+    "5197d26f4a9082219685d7ba66b25cb1e047185250efff5906af01f50ff83571",
+    "6b89bc347724e6c5d022ec07ed3d3465b601bbf7e113d58688faab6f2cb1b24c",
+    "b09af6a2ce41c4beba07e0642583c6ac7d31aa2d4abd1317388e2927edbc13b3"
+  ]
+}

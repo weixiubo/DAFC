@@ -67,3 +67,10 @@ inputs, service ports and new run ID. Memory paths identify successful source
 episodes. `parameters.resource_base` relocates relative image references
 while preserving receipt bytes. Model and dataset terms are summarized in
 [third-party notices](../THIRD_PARTY.md).
+
+## Preserved handoff resources
+
+The [handoff guide](HANDOFF.md) provides restored local research inputs,
+resource bindings, exact download identities and historical limitations.
+Use those bindings for retained inputs and the setup below for new external
+models or services.

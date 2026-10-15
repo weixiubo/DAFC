@@ -1,5 +1,12 @@
 # DAFC — Typed Selective Routing
 
+## Project handoff
+
+Start with the [handoff guide](docs/HANDOFF.md) to recover the research records,
+paper sources, datasets and historical development versions. The
+[material release](https://github.com/weixiubo/DAFC/releases/tag/handoff-2026-10-15) is public;
+the restoration script downloads and verifies its contents without a GitHub login.
+
 DAFC transfers a GUI action when its successful source outcome and coordinate
 transport contract support reuse. Otherwise, it invokes the target actor.
 The `dafc` package provides routing, browser and Android execution interfaces,

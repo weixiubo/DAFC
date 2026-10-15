@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "project": "DAFC",
+  "repository": "weixiubo/DAFC",
+  "release": "handoff-2026-10-15",
+  "public": true,
+  "manifest": {
+    "name": "materials.json.gz",
+    "size": 13599039,
+    "sha256": "98fd1d573bd85745a454af5b74cd1d090bc42dd5b657ac441ad13fbdf1a7ed33"
+  },
+  "parts": [
+    {
+      "name": "materials.tar.gz.part001",
+      "size": 1073741824,
+      "sha256": "37daa0af7ac75d49ee4c74bb42b61a8b3a2535d9c210be2c11d7d584d221be6c"
+    },
+    {
+      "name": "materials.tar.gz.part002",
+      "size": 1073741824,
+      "sha256": "610a3a5fd0f1f28680d2487cd92db378e489adbca3103e650afd312001343d95"
+    },
+    {
+      "name": "materials.tar.gz.part003",
+      "size": 1073741824,
+      "sha256": "66b7280025d8f7770179fa028d4840dcd47c8836a9ac8ebf460d905581e74cee"
+    },
+    {
+      "name": "materials.tar.gz.part004",
+      "size": 1073741824,
+      "sha256": "4205ab0b1e3030e8e9662379327d067b8fc55815609c3163dd3c52e035c8cd6a"
+    },
+    {
+      "name": "materials.tar.gz.part005",
+      "size": 1073741824,
+      "sha256": "556df39e04b9804eed0b44ce852efe2d84dad33eb95dfaec6aaca9d3cfdd6c3e"
+    },
+    {
+      "name": "materials.tar.gz.part006",
+      "size": 1073741824,
+      "sha256": "07a68a5bdb33d5c5ad6b07e7f251e4d9a5e78df1a0f4baab69cc7de6a6e533f9"
+    },
+    {
+      "name": "materials.tar.gz.part007",
+      "size": 1073741824,
+      "sha256": "a0233306951fef8c052faa1ca1fb688fac6bac89a725290749c0cde8bcb9414b"
+    },
+    {
+      "name": "materials.tar.gz.part008",
+      "size": 1073741824,
+      "sha256": "4e18fee5720f89040523d915d0664f1be9798b2404dfdc80eeaea7bb92d86f54"
+    },
+    {
+      "name": "materials.tar.gz.part009",
+      "size": 1073741824,
+      "sha256": "2f34b0dece0c22abb1fbc6ebb585489d7beb3eef9c8bb0c9e103bd9f8d1b724a"
+    },
+    {
+      "name": "materials.tar.gz.part010",
+      "size": 1073741824,
+      "sha256": "3f58402fa565f772880d2965cc76b392e0c0cc88493194b7f13c7a03b5d88f63"
+    },
+    {
+      "name": "materials.tar.gz.part011",
+      "size": 158787219,
+      "sha256": "2159fb44729bad90e0d9055d3612a1e01512fdf389f7794c666ad7f4bad7ced7"
+    }
+  ],
+  "archive_sha256": "1d355f2c194946115c6613d84a8d18c546baedd9234423a8c94ab1220dc6b783",
+  "totals": {
+    "entries": 217294,
+    "files": 188103,
+    "logical_file_bytes": 17159228223,
+    "unique_objects": 120106,
+    "unique_bytes": 14171717135,
+    "excluded_paths": 4953,
+    "excluded_bytes": 396213689
+  },
+  "external_assets": [
+    {
+      "name": "superpoint_v1.pth",
+      "sha256": "52b6708629640ca883673b5d5c097c4ddad37d8048b33f09c8ca0d69db12c40e",
+      "size": 5206086,
+      "url": "https://github.com/cvg/LightGlue/releases/download/v0.1_arxiv/superpoint_v1.pth",
+      "source": "cvg/LightGlue official release; upstream model terms apply"
+    },
+    {
+      "name": "superpoint_lightglue.pth",
+      "sha256": "6ff7040d0a497fc6639337946d7538dae07428c18f77a067a0b5a960e7cc551a",
+      "size": 47500279,
+      "url": "https://github.com/cvg/LightGlue/releases/download/v0.1_arxiv/superpoint_lightglue.pth",
+      "source": "cvg/LightGlue official release; upstream model terms apply"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "project": "DAFC",
+  "transformations": [],
+  "discarded_bad_download_hashes": [],
+  "external_assets": [
+    {
+      "name": "superpoint_v1.pth",
+      "sha256": "52b6708629640ca883673b5d5c097c4ddad37d8048b33f09c8ca0d69db12c40e",
+      "size": 5206086,
+      "url": "https://github.com/cvg/LightGlue/releases/download/v0.1_arxiv/superpoint_v1.pth",
+      "source": "cvg/LightGlue official release; upstream model terms apply"
+    },
+    {
+      "name": "superpoint_lightglue.pth",
+      "sha256": "6ff7040d0a497fc6639337946d7538dae07428c18f77a067a0b5a960e7cc551a",
+      "size": 47500279,
+      "url": "https://github.com/cvg/LightGlue/releases/download/v0.1_arxiv/superpoint_lightglue.pth",
+      "source": "cvg/LightGlue official release; upstream model terms apply"
+    }
+  ],
+  "optional_models": [],
+  "totals": {
+    "entries": 217294,
+    "files": 188103,
+    "logical_file_bytes": 17159228223,
+    "unique_objects": 120106,
+    "unique_bytes": 14171717135,
+    "excluded_paths": 4953,
+    "excluded_bytes": 396213689
+  },
+  "manifest_sha256": "0d81afc4023b5a55e6b71778a7f4fad71c76e434ef133de092cdee2467ebd570"
+}

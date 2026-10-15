@@ -123,8 +123,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "750d348b11d1317f879d7725e14f1cc5e4859c66c9a9ca86fb0678ff16cfc388",
-      "bytes": 1689
+      "sha256": "4f8ff4a2d77a951e6abb1ca7542cd812e194a99ca4e6c0f829d6707ed20febae",
+      "bytes": 2098
     },
     {
       "path": "examples/make_routing_inputs.py",
@@ -613,8 +613,8 @@
     },
     {
       "path": "src/dafc/resource_catalog.json",
-      "sha256": "a5db6b1a856f7158d6a0930df3961111752ebe9b30e04f079f400ed988725f09",
-      "bytes": 8040
+      "sha256": "f53a684ee9a65dd6641a49f86a6485993a2476052e40fef9c755d2dbbc6bdcaa",
+      "bytes": 8024
     },
     {
       "path": "src/dafc/resources.py",

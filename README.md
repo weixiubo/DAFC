@@ -9,7 +9,7 @@ model adapters and evidence verification.
 
 The [artifact guide](docs/ARTIFACTS.md) describes the recorded experiments,
 manuscript sources, datasets and historical source versions in the
-[research archive](https://github.com/weixiubo/DAFC/releases/tag/research-artifacts-2026-10-16).
+[research archive](https://github.com/weixiubo/DAFC/releases/tag/research-artifacts-2026-10-17).
 Downloads are public and include file-level integrity verification.
 
 ## Installation and example

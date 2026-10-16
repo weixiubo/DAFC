@@ -33,3 +33,6 @@ this additional mode verifies their original-attempt provenance.
 New experiments record the current source and inputs under a distinct run
 identity. Browser and Android setup is described in
 [resources](../docs/RESOURCES.md).
+
+The current public edition omits recorded model-message bodies. Its integrity
+indexes bind the published records; recorded statistical outcomes are retained.

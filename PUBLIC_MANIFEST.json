@@ -48,7 +48,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "7bbf7676b18547312bd0fe4f2511b4a2977b2b65d58ee8dffde72371e32ea205",
+      "sha256": "3ddd18380ba8088c9b609ff22e72bc81be4df7e21ba2f115a6b72c5a77009b16",
       "bytes": 2750
     },
     {
@@ -88,8 +88,8 @@
     },
     {
       "path": "docs/ARTIFACTS.md",
-      "sha256": "76f79a6eee51f802c00f2b700634545dfe8646e5b2d25152be2cb782a5d375f8",
-      "bytes": 4243
+      "sha256": "887f154bbddc9246f0d0d2cd16516fa31d0d8273359f376a4eb524c40d22063e",
+      "bytes": 3471
     },
     {
       "path": "docs/BASELINES.md",
@@ -128,7 +128,7 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "d17766c35d4d12ee59b944ad2ffdebd6ffb988a48e8b383e2b896c9ec9904ff7",
+      "sha256": "b79f450a14ba5d7cd603ff43bbe373e0956ec286c1d8984c38b1099f8a02ab8d",
       "bytes": 2184
     },
     {
@@ -143,18 +143,18 @@
     },
     {
       "path": "handoff/catalog.json",
-      "sha256": "556d7dc8d260bd340915f2694fb5b9dd1e00ec761157e03664812eed8ee73137",
+      "sha256": "03e5e3073106d73132c3d782a8ec37a3f31d438732128029882604caf5c45d4e",
       "bytes": 2899
     },
     {
       "path": "handoff/history-index.json",
-      "sha256": "beb3bdb27fb73d7a9700f1a7f44b1d88eec7fdf471bc28cb4ff8b249c17ce933",
+      "sha256": "26637b41e997aaeed2d1d0d16bd54331ee95ef8652ee79e6389a881a5f925e1a",
       "bytes": 24008
     },
     {
       "path": "handoff/material-disposition.json",
-      "sha256": "ef2b9ba0b658efdbdcee93ef371ffb3089f4e693ccd22b1c412a57bd9ca04a75",
-      "bytes": 338
+      "sha256": "cd019ca17a6a24d215014cbdab78642e117c3f405fa02e45631de77bd1b82a62",
+      "bytes": 519
     },
     {
       "path": "pyproject.toml",
@@ -163,8 +163,8 @@
     },
     {
       "path": "reproduce/README.md",
-      "sha256": "9ea6e48a0787240b10ec3d617b626ba153db8222b454fc63f5cfda8999317702",
-      "bytes": 1429
+      "sha256": "a862fb9f52b2b7dfec3f271d37d0dee63235cac926835f0438c8ffb8ae9aa757",
+      "bytes": 1588
     },
     {
       "path": "reproduce/SOURCE.json",
@@ -173,7 +173,7 @@
     },
     {
       "path": "reproduce/checksums.json",
-      "sha256": "f72d924db085a86d50ee2c9d551a660d53d572cf2a23c840e3e568cc73355c67",
+      "sha256": "bb5712aad272960b6ffb6f49ebde4ee751a53fdf137b0e8343961446ede42efa",
       "bytes": 532
     },
     {
@@ -188,8 +188,8 @@
     },
     {
       "path": "reproduce/raw_manifest.json",
-      "sha256": "8e86611ed012151031501c97b0fe360506ea2d48cfda5b53515ece72ff1479bf",
-      "bytes": 1143152
+      "sha256": "b8c351b32570544237d06c8752619490f30fc737b770eaceb722d8a38b6bd1cc",
+      "bytes": 1216527
     },
     {
       "path": "reproduce/redactions.json",
@@ -198,13 +198,13 @@
     },
     {
       "path": "reproduce/rows.json",
-      "sha256": "5d0eb9265795f9b4cfb866194f71155f83632ab24174477eb22fd2cd18a5389c",
+      "sha256": "7c3996fd9c1857ff214567af324cd37e9c92dd2ec97cfd7692ab828d6d60a60b",
       "bytes": 938716
     },
     {
       "path": "reproduce/verify.py",
-      "sha256": "5ce4a9dfcf741c7ffbd77239a22146e4e38e742004f359949b86189a6db8b69a",
-      "bytes": 3221
+      "sha256": "7c68ba5f9c6908fa46efbfbab83151d20371bc8def98509cc19ad78c6f735b26",
+      "bytes": 3233
     },
     {
       "path": "scripts/check_release.py",
@@ -398,7 +398,7 @@
     },
     {
       "path": "src/dafc/evidence_data/checksums.json",
-      "sha256": "f72d924db085a86d50ee2c9d551a660d53d572cf2a23c840e3e568cc73355c67",
+      "sha256": "bb5712aad272960b6ffb6f49ebde4ee751a53fdf137b0e8343961446ede42efa",
       "bytes": 532
     },
     {
@@ -413,8 +413,8 @@
     },
     {
       "path": "src/dafc/evidence_data/raw_manifest.json",
-      "sha256": "8e86611ed012151031501c97b0fe360506ea2d48cfda5b53515ece72ff1479bf",
-      "bytes": 1143152
+      "sha256": "b8c351b32570544237d06c8752619490f30fc737b770eaceb722d8a38b6bd1cc",
+      "bytes": 1216527
     },
     {
       "path": "src/dafc/evidence_data/redactions.json",
@@ -423,7 +423,7 @@
     },
     {
       "path": "src/dafc/evidence_data/rows.json",
-      "sha256": "5d0eb9265795f9b4cfb866194f71155f83632ab24174477eb22fd2cd18a5389c",
+      "sha256": "7c3996fd9c1857ff214567af324cd37e9c92dd2ec97cfd7692ab828d6d60a60b",
       "bytes": 938716
     },
     {
@@ -608,8 +608,8 @@
     },
     {
       "path": "src/dafc/reproduction.py",
-      "sha256": "b2b7de2f49b22901d9ab5b5b2f55f1f7e6ce90aa1f17ba16869c5d485e91150c",
-      "bytes": 4124
+      "sha256": "608f8a60979f39b6df09db720ab1ceed581e4da9f9d0bce8b4c42eba907d2b0e",
+      "bytes": 4221
     },
     {
       "path": "src/dafc/resource_catalog.json",

@@ -51,13 +51,15 @@ def verify(raw_root=None):
         "bootstrap_samples": 20000,
         "raw_evidence_verified": raw_root is not None,
         "historical_result": True,
+        "evidence_edition": "public-2026-10-17",
+        "model_message_bodies_included": False,
     }
 
 
 def _verify_raw(raw_root, rows):
     root = Path(raw_root).resolve()
     if not root.is_dir():
-        raise FileNotFoundError(f"Supply the original C587-v3 evidence directory: {root}")
+        raise FileNotFoundError(f"Supply the published C587-v3 attempt directory: {root}")
     files = load(HERE / "raw_manifest.json")["files"]
     for record in files:
         path = (root / record["path"]).resolve()

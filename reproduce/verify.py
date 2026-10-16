@@ -1,4 +1,4 @@
-"""Rebuild all C588 estimates and optionally verify complete original raw evidence."""
+"""Rebuild all C588 estimates and optionally verify published attempt records and images."""
 import argparse, hashlib, json
 from collections import defaultdict
 from pathlib import Path
@@ -25,7 +25,7 @@ def verify(raw_root=None):
     assert comparisons==expected['comparisons'], 'paired estimates or bootstrap intervals changed'
     if raw_root is not None:
         root=Path(raw_root).resolve()
-        if not root.is_dir():raise FileNotFoundError(f"Supply the original C587-v3 evidence directory: {root}")
+        if not root.is_dir():raise FileNotFoundError(f"Supply the published C587-v3 attempt directory: {root}")
         files=load(HERE/'raw_manifest.json')['files']
         for record in files:
             path=(root/record['path']).resolve()
@@ -48,7 +48,7 @@ def verify(raw_root=None):
         for attempts in lifecycle.values():
             assert not sequence_errors(sorted(attempts,key=lambda x:x['attempt']),require_complete=True)
         assert outcomes=={r['job_id']:r for r in rows}, 'raw-to-public projection changed'
-        print(f"Verified {len(files)} raw files, 1121 attempts, 3360 image receipts and public projections")
+        print(f"Verified {len(files)} published files, 1121 attempts, 3360 image receipts and public projections")
     print('Verified 1120 outcomes; rebuilt 8 policy summaries and 6 paired 20000-sample bootstrap comparisons')
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)

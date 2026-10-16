@@ -5,7 +5,7 @@ Python 3.12 environment.
 
 | Check | Coverage |
 | --- | --- |
-| Main suite | 119 tests and five subtests, including the original 22 scenarios |
+| Main suite | 123 tests and five subtests, including the original 22 scenarios |
 | Controller comparisons | 20 deterministic browser/Android cases |
 | Selector comparisons | 16 transition-selection cases |
 | Atomic trials | 10 cases covering decisions, retries, outcomes and cleanup |
@@ -34,8 +34,8 @@ files. Platform execution uses the separate setups in [RESOURCES.md](RESOURCES.m
 
 ## Artifact restoration checks
 
-Six artifact restoration tests cover Unicode paths, missing and corrupt parts,
-repeat execution, modified-file protection, upstream assets and optional
-models. The suite counts above include these cases. The restoration and
-research-material checks performed on 2026-10-15 are recorded in the
-[research archive](https://github.com/weixiubo/DAFC/releases/tag/handoff-2026-10-15).
+Ten artifact restoration tests cover Unicode paths, missing and corrupt parts,
+repeat execution, modified-file protection, upstream assets, optional
+models and independent Git history with reference and link protection. The suite counts above include these cases. The restoration and
+research-material checks for the distributed archive edition are recorded in the
+[research archive](https://github.com/weixiubo/DAFC/releases/tag/research-artifacts-2026-10-16).

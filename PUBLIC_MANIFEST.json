@@ -48,8 +48,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "6c1d0fddd740d50b5fdf4ae489532446afe9927a4d753356f567415ce27ca571",
-      "bytes": 2739
+      "sha256": "7bbf7676b18547312bd0fe4f2511b4a2977b2b65d58ee8dffde72371e32ea205",
+      "bytes": 2750
     },
     {
       "path": "SOURCE_PROVENANCE.json",
@@ -88,8 +88,8 @@
     },
     {
       "path": "docs/ARTIFACTS.md",
-      "sha256": "ff46d37609a5f810bdbd783d24d2af5329a3d3abd0f6d753b6b3c2dbbb89040c",
-      "bytes": 4465
+      "sha256": "76f79a6eee51f802c00f2b700634545dfe8646e5b2d25152be2cb782a5d375f8",
+      "bytes": 4243
     },
     {
       "path": "docs/BASELINES.md",
@@ -128,8 +128,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "9bd7b631a8cee3189c884f5549a781e67e98e523c22aa5fb855509baba8b0cc8",
-      "bytes": 2101
+      "sha256": "d17766c35d4d12ee59b944ad2ffdebd6ffb988a48e8b383e2b896c9ec9904ff7",
+      "bytes": 2184
     },
     {
       "path": "examples/make_routing_inputs.py",
@@ -143,18 +143,18 @@
     },
     {
       "path": "handoff/catalog.json",
-      "sha256": "64bed28ae4b5ddade6d253d3869c0bf3f16f1e87728fd46152338a9e48322d5a",
-      "bytes": 3112
+      "sha256": "556d7dc8d260bd340915f2694fb5b9dd1e00ec761157e03664812eed8ee73137",
+      "bytes": 2899
     },
     {
       "path": "handoff/history-index.json",
-      "sha256": "9feef01d9652570c797ec025cfe810b3b473aa9b9d255929e90520b4262a1d0b",
-      "bytes": 390
+      "sha256": "beb3bdb27fb73d7a9700f1a7f44b1d88eec7fdf471bc28cb4ff8b249c17ce933",
+      "bytes": 24008
     },
     {
       "path": "handoff/material-disposition.json",
-      "sha256": "f29efffc0d03305086f789d11794af4e78b0115b0a720444c611cf6e06243a1d",
-      "bytes": 1124
+      "sha256": "ef2b9ba0b658efdbdcee93ef371ffb3089f4e693ccd22b1c412a57bd9ca04a75",
+      "bytes": 338
     },
     {
       "path": "pyproject.toml",
@@ -228,8 +228,8 @@
     },
     {
       "path": "scripts/handoff.py",
-      "sha256": "c5bfd4bfb0887d23c05ae1c62de24d569a69b0e007aecf428bb35b35bea564e6",
-      "bytes": 15235
+      "sha256": "5d87a8f1856f266cdb6cbab6160f807931b02ef0b1162d313cf1b349938ce485",
+      "bytes": 18292
     },
     {
       "path": "src/dafc/__init__.py",
@@ -758,8 +758,8 @@
     },
     {
       "path": "tests/test_handoff_restore.py",
-      "sha256": "c02aa994345e2e4122f72bdfd825a7c0b95d54b73e59dee3c581ab17a74e17ad",
-      "bytes": 7615
+      "sha256": "9374f53699cb3f40e1515e3ea09116ff804dfb6717fb6a585bc0410d161e1d0f",
+      "bytes": 13103
     },
     {
       "path": "tests/test_integral_repair.py",

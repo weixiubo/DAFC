@@ -1,80 +1,73 @@
 {
-  "schema": 1,
+  "schema": 2,
   "project": "DAFC",
   "repository": "weixiubo/DAFC",
-  "release": "handoff-2026-10-15",
+  "release": "research-artifacts-2026-10-16",
   "public": true,
   "manifest": {
     "name": "materials.json.gz",
-    "size": 13599039,
-    "sha256": "98fd1d573bd85745a454af5b74cd1d090bc42dd5b657ac441ad13fbdf1a7ed33"
+    "size": 13134411,
+    "sha256": "9c1ff1765148757ff2b685ce91e0ccf27fc4ffb2bec0c6f592bd26c2b7ad9569"
   },
   "parts": [
     {
       "name": "materials.tar.gz.part001",
       "size": 1073741824,
-      "sha256": "37daa0af7ac75d49ee4c74bb42b61a8b3a2535d9c210be2c11d7d584d221be6c"
+      "sha256": "5927477b66c5358d33070582fbce4ea6f392dedd8c91f28708f5759291348102"
     },
     {
       "name": "materials.tar.gz.part002",
       "size": 1073741824,
-      "sha256": "610a3a5fd0f1f28680d2487cd92db378e489adbca3103e650afd312001343d95"
+      "sha256": "8e4219f89f6c4c04590e4812b851ed853c9d61742389c23573597b94f32791ed"
     },
     {
       "name": "materials.tar.gz.part003",
       "size": 1073741824,
-      "sha256": "66b7280025d8f7770179fa028d4840dcd47c8836a9ac8ebf460d905581e74cee"
+      "sha256": "d796906fd12192e1d02e15220b05df87f64f9f32ae67a2fd30ee32c783a2a0c0"
     },
     {
       "name": "materials.tar.gz.part004",
       "size": 1073741824,
-      "sha256": "4205ab0b1e3030e8e9662379327d067b8fc55815609c3163dd3c52e035c8cd6a"
+      "sha256": "797fcff8e3eccfe91d3615f7afc8e06c13270dc30e985b9659d5dfb8b6b7547c"
     },
     {
       "name": "materials.tar.gz.part005",
       "size": 1073741824,
-      "sha256": "556df39e04b9804eed0b44ce852efe2d84dad33eb95dfaec6aaca9d3cfdd6c3e"
+      "sha256": "0237ac576d5f58f66593ea8069dd18bcdf649c0fb943c1a1092fa505d768a739"
     },
     {
       "name": "materials.tar.gz.part006",
       "size": 1073741824,
-      "sha256": "07a68a5bdb33d5c5ad6b07e7f251e4d9a5e78df1a0f4baab69cc7de6a6e533f9"
+      "sha256": "589994e1a6b17addd741da877321de1ada94b4c376d40a8d44e76b677c2bf467"
     },
     {
       "name": "materials.tar.gz.part007",
       "size": 1073741824,
-      "sha256": "a0233306951fef8c052faa1ca1fb688fac6bac89a725290749c0cde8bcb9414b"
+      "sha256": "c57efab339ad6396972eca8fd3f162475b0630a913dcb7d960d3f47480c69c16"
     },
     {
       "name": "materials.tar.gz.part008",
       "size": 1073741824,
-      "sha256": "4e18fee5720f89040523d915d0664f1be9798b2404dfdc80eeaea7bb92d86f54"
+      "sha256": "f53815c7799dfbbc3b5db7b73e5a9517fdc2dcaf645a812af46ae0141e949b8b"
     },
     {
       "name": "materials.tar.gz.part009",
       "size": 1073741824,
-      "sha256": "2f34b0dece0c22abb1fbc6ebb585489d7beb3eef9c8bb0c9e103bd9f8d1b724a"
+      "sha256": "7b01adf2659b63bb66024a3aa7c0e78e8c03d47f7f94abfc0e05317ba0398f01"
     },
     {
       "name": "materials.tar.gz.part010",
-      "size": 1073741824,
-      "sha256": "3f58402fa565f772880d2965cc76b392e0c0cc88493194b7f13c7a03b5d88f63"
-    },
-    {
-      "name": "materials.tar.gz.part011",
-      "size": 158787219,
-      "sha256": "2159fb44729bad90e0d9055d3612a1e01512fdf389f7794c666ad7f4bad7ced7"
+      "size": 499381126,
+      "sha256": "d5ce1e7cde5f63fbdf8848a6a84dab7dd49d6d1eca2c85f912a00d0a2a40d43c"
     }
   ],
-  "archive_sha256": "1d355f2c194946115c6613d84a8d18c546baedd9234423a8c94ab1220dc6b783",
+  "archive_sha256": "2257becf058bd77fb75141b9ca8a23c4fdfcd6c805dd863fa4a4da6030916ac4",
   "totals": {
-    "entries": 217294,
-    "files": 188103,
-    "logical_file_bytes": 17159228223,
-    "unique_objects": 120106,
-    "unique_bytes": 14171717135,
-    "excluded_paths": 4953,
-    "excluded_bytes": 396213689
+    "entries": 214366,
+    "files": 185780,
+    "logical_file_bytes": 16394517120,
+    "unique_objects": 118346,
+    "unique_bytes": 13426139667
   },
   "external_assets": [
     {

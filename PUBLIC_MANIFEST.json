@@ -48,8 +48,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "12779730e0ad997b57d9bef2efcadc7c8c648f942c0529ee574c8ade6534842e",
-      "bytes": 2764
+      "sha256": "6c1d0fddd740d50b5fdf4ae489532446afe9927a4d753356f567415ce27ca571",
+      "bytes": 2739
     },
     {
       "path": "SOURCE_PROVENANCE.json",
@@ -87,6 +87,11 @@
       "bytes": 2115
     },
     {
+      "path": "docs/ARTIFACTS.md",
+      "sha256": "ff46d37609a5f810bdbd783d24d2af5329a3d3abd0f6d753b6b3c2dbbb89040c",
+      "bytes": 4465
+    },
+    {
       "path": "docs/BASELINES.md",
       "sha256": "a403af5c6837bb3f7b3c6ae066eb9d1dffa5ec3a6117d64d9bd4478571eb7eb4",
       "bytes": 583
@@ -113,8 +118,8 @@
     },
     {
       "path": "docs/RESOURCES.md",
-      "sha256": "51efb2edfe21d1227a3b377265f4fdeb66530033bac44a776b4ff462ce005a3e",
-      "bytes": 3577
+      "sha256": "e80b0c31af5ad5429f830e1f6078900e4a4024d30e1e7373787deab9a262633c",
+      "bytes": 3592
     },
     {
       "path": "docs/TEST_MIGRATION.json",
@@ -123,8 +128,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "4f8ff4a2d77a951e6abb1ca7542cd812e194a99ca4e6c0f829d6707ed20febae",
-      "bytes": 2098
+      "sha256": "9bd7b631a8cee3189c884f5549a781e67e98e523c22aa5fb855509baba8b0cc8",
+      "bytes": 2101
     },
     {
       "path": "examples/make_routing_inputs.py",
@@ -143,13 +148,8 @@
     },
     {
       "path": "handoff/history-index.json",
-      "sha256": "b6bdd82510b54e2c0d1100b73ea5778eec15e223e39fdf0311087eb511c03d94",
-      "bytes": 371
-    },
-    {
-      "path": "handoff/local-state/previous-release-ready.json",
-      "sha256": "d0f770d9a81ae993c38a7ca10481d99b9dada53c66b2c58a0833e7255f6fb2a6",
-      "bytes": 316
+      "sha256": "9feef01d9652570c797ec025cfe810b3b473aa9b9d255929e90520b4262a1d0b",
+      "bytes": 390
     },
     {
       "path": "handoff/material-disposition.json",
@@ -228,8 +228,8 @@
     },
     {
       "path": "scripts/handoff.py",
-      "sha256": "e38364a671bd1101d787f010df1e5ca27aebabd592f3cf732a39646e730919ad",
-      "bytes": 15219
+      "sha256": "c5bfd4bfb0887d23c05ae1c62de24d569a69b0e007aecf428bb35b35bea564e6",
+      "bytes": 15235
     },
     {
       "path": "src/dafc/__init__.py",
@@ -613,8 +613,8 @@
     },
     {
       "path": "src/dafc/resource_catalog.json",
-      "sha256": "f53a684ee9a65dd6641a49f86a6485993a2476052e40fef9c755d2dbbc6bdcaa",
-      "bytes": 8024
+      "sha256": "d5c2314840189c6584fd4ae838ff8349955284433c3b61fac03a4f79ad2f8c14",
+      "bytes": 8040
     },
     {
       "path": "src/dafc/resources.py",
@@ -758,8 +758,8 @@
     },
     {
       "path": "tests/test_handoff_restore.py",
-      "sha256": "a1df9c41ecdcd0246779069bcf56149d8a70a51d0af9ac4959a1b8e80e6a7d28",
-      "bytes": 7614
+      "sha256": "c02aa994345e2e4122f72bdfd825a7c0b95d54b73e59dee3c581ab17a74e17ad",
+      "bytes": 7615
     },
     {
       "path": "tests/test_integral_repair.py",

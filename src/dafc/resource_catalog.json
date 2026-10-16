@@ -26,7 +26,7 @@
       "kind": "directory",
       "sha256": null,
       "restoration_status": "included_in_public_handoff",
-      "how_to_get": "Restore the public handoff (docs/HANDOFF.md), activate its resources, then run dafc reproduce --raw-root \"$DAFC_DATA_DIR/android-atomic-original\"."
+      "how_to_get": "Restore the research archive (docs/ARTIFACTS.md), activate its resources, then run dafc reproduce --raw-root \"$DAFC_DATA_DIR/android-atomic-original\"."
     },
     {
       "id": "android-world",
@@ -52,7 +52,7 @@
       "kind": "file",
       "sha256": "97a56a544e44d79f9b3181fc7dbdd72cffa908efd3d53c82afad1773061a350a",
       "restoration_status": "included_in_public_handoff",
-      "how_to_get": "Restore the public handoff to obtain the exact recorded APK under the configured data/runtime directory. The original catalog SHA-256 and upstream terms remain applicable."
+      "how_to_get": "Restore the research archive to obtain the exact recorded APK under the configured data/runtime directory. The original catalog SHA-256 and upstream terms remain applicable."
     },
     {
       "id": "chromedriver",
@@ -104,7 +104,7 @@
       "kind": "file",
       "sha256": "52b6708629640ca883673b5d5c097c4ddad37d8048b33f09c8ca0d69db12c40e",
       "restoration_status": "verified_official_github_download_in_handoff",
-      "how_to_get": "The handoff restore command downloads the pinned official cvg/LightGlue release asset and verifies this catalog SHA-256. Upstream weight terms remain applicable."
+      "how_to_get": "The artifact restoration command downloads the pinned official cvg/LightGlue release asset and verifies this catalog SHA-256. Upstream weight terms remain applicable."
     },
     {
       "id": "lightglue-weights",
@@ -117,7 +117,7 @@
       "kind": "file",
       "sha256": "6ff7040d0a497fc6639337946d7538dae07428c18f77a067a0b5a960e7cc551a",
       "restoration_status": "verified_official_github_download_in_handoff",
-      "how_to_get": "The handoff restore command downloads the pinned official cvg/LightGlue release asset and verifies this catalog SHA-256. Upstream weight terms remain applicable."
+      "how_to_get": "The artifact restoration command downloads the pinned official cvg/LightGlue release asset and verifies this catalog SHA-256. Upstream weight terms remain applicable."
     },
     {
       "id": "qwen25-vl-7b",

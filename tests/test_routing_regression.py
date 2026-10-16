@@ -10,6 +10,23 @@ from dafc.evidence import AppendOnlyLedger, atomic_write_json, sha256
 from dafc.registration import action_contract
 
 
+def assert_receipt_matches(actual, expected, path="receipt"):
+    """Preserve receipt decisions and counts while allowing float roundoff."""
+    if isinstance(expected, dict):
+        assert actual.keys() == expected.keys(), path
+        for key, value in expected.items():
+            assert_receipt_matches(actual[key], value, f"{path}.{key}")
+    elif isinstance(expected, list):
+        assert len(actual) == len(expected), path
+        for index, (value, reference) in enumerate(zip(actual, expected, strict=True)):
+            assert_receipt_matches(value, reference, f"{path}[{index}]")
+    elif isinstance(expected, float):
+        # OpenCV's numerical kernels can differ in their last bits across CPUs.
+        assert actual == pytest.approx(expected, rel=1e-12, abs=1e-12), path
+    else:
+        assert actual == expected, path
+
+
 def test_original_seeded_geometry_receipts():
     expected = json.loads((Path(__file__).parent / "fixtures/core-baseline.json").read_text())
     rng = np.random.default_rng(585001)
@@ -19,11 +36,31 @@ def test_original_seeded_geometry_receipts():
         cv2.warpAffine(src, np.float32([[1, 0, 12], [0, 1, 8]]), (480, 360)),
         np.zeros_like(src),
     ]
-    for dst, wanted in zip(targets, expected, strict=False):
+    for dst, wanted in zip(targets, expected, strict=True):
         receipt = routing.standard_registration(src, dst, [211.0, 143.0])
         receipt.pop("runtime_s", None)
-        assert receipt == wanted["standard"]
-        assert action_contract.register_action_contract(src, dst, [211.0, 143.0]) == wanted["dafc"]
+        assert_receipt_matches(receipt, wanted["standard"])
+        assert_receipt_matches(
+            action_contract.register_action_contract(src, dst, [211.0, 143.0]), wanted["dafc"]
+        )
+
+
+def test_receipt_comparison_allows_machine_roundoff():
+    assert_receipt_matches({"matrix": [[1.0 + 2e-16, 3e-17]]}, {"matrix": [[1.0, 0.0]]})
+
+
+@pytest.mark.parametrize(
+    ("actual", "expected"),
+    [
+        ({"mapped_action_xy": [211.001, 143.0]}, {"mapped_action_xy": [211.0, 143.0]}),
+        ({"accepted": False}, {"accepted": True}),
+        ({"inliers": 4500}, {"inliers": 4501}),
+        ({"reason": "rejected"}, {"reason": "accepted"}),
+    ],
+)
+def test_receipt_comparison_rejects_behavior_changes(actual, expected):
+    with pytest.raises(AssertionError):
+        assert_receipt_matches(actual, expected)
 
 
 def test_source_tampering_fails_closed(tmp_path):

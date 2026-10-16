@@ -748,8 +748,8 @@
     },
     {
       "path": "tests/test_routing_regression.py",
-      "sha256": "26266c9a2cb8e0e0ebd2103edabaa3a7225bc25f3869c89f0f3c72f158ca9164",
-      "bytes": 2246
+      "sha256": "9a11ac0a357861a67ae8e322b0f9fce01efacc51098a8550aa187f9bf3c37d3d",
+      "bytes": 3761
     },
     {
       "path": "tests/test_selection_equivalence.py",

@@ -55,19 +55,25 @@ def _command(args, *, cwd, env):
 def check_install(wheel, temporary):
     uv = shutil.which("uv") or str(Path.home() / ".local/bin/uv")
     environment = temporary / "environment"
-    _command([uv, "venv", "--python", sys.executable, environment], cwd=temporary, env=None)
-    constraints = temporary / "constraints.txt"
-    constraints.write_text(
-        _command(
-            [uv, "export", "--locked", "--no-dev", "--no-emit-project", "--no-hashes"], cwd=ROOT, env=None
-        )
+    install_env = {
+        key: value
+        for key, value in os.environ.items()
+        if key not in {"PYTHONPATH", "VIRTUAL_ENV", "UV_PROJECT", "UV_PROJECT_ENVIRONMENT"}
+    }
+    install_env["UV_PROJECT_ENVIRONMENT"] = str(environment)
+    # A locked sync needs cached wheels, not a previously queried package index.
+    _command(
+        [uv, "sync", "--locked", "--offline", "--no-dev", "--no-install-project", "--python", sys.executable],
+        cwd=ROOT,
+        env=install_env,
     )
     python = environment / "bin/python"
     _command(
-        [uv, "pip", "install", "--offline", "--python", python, "--constraint", constraints, wheel],
+        [uv, "pip", "install", "--offline", "--no-deps", "--python", python, wheel],
         cwd=temporary,
         env=None,
     )
+    _command([uv, "pip", "check", "--python", python], cwd=temporary, env=None)
     outside = temporary / "unrelated"
     outside.mkdir()
     env = {

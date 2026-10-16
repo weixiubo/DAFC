@@ -188,8 +188,8 @@
     },
     {
       "path": "scripts/check_release.py",
-      "sha256": "1b054c3940a67dbc57b93cf59b39a76b66cb6a2bfc77e62d9b9dfb90d5d46b12",
-      "bytes": 5151
+      "sha256": "446b49f235866b54c07e45817e478612e845dd1b18cef7c00e70b8f14299cd8c",
+      "bytes": 5403
     },
     {
       "path": "scripts/check_sdist.py",

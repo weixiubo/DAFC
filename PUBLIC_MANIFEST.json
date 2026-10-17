@@ -48,8 +48,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "3ddd18380ba8088c9b609ff22e72bc81be4df7e21ba2f115a6b72c5a77009b16",
-      "bytes": 2750
+      "sha256": "f1196a7326ee6ab853c0206b6a2ecd0b65d786b32c846b663fb4623ecef43790",
+      "bytes": 2753
     },
     {
       "path": "SOURCE_PROVENANCE.json",
@@ -88,8 +88,8 @@
     },
     {
       "path": "docs/ARTIFACTS.md",
-      "sha256": "887f154bbddc9246f0d0d2cd16516fa31d0d8273359f376a4eb524c40d22063e",
-      "bytes": 3471
+      "sha256": "e45ac2185de5356d82bf79521a297ba018f93bce24c7dfcd9bb6c7f39c9aa6b2",
+      "bytes": 3474
     },
     {
       "path": "docs/BASELINES.md",
@@ -128,8 +128,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "b79f450a14ba5d7cd603ff43bbe373e0956ec286c1d8984c38b1099f8a02ab8d",
-      "bytes": 2184
+      "sha256": "6ea35f69e2b6f70003de21a6e8e28fa3deeeb93a6adbf6174bb59953624c27e9",
+      "bytes": 2187
     },
     {
       "path": "examples/make_routing_inputs.py",
@@ -143,18 +143,18 @@
     },
     {
       "path": "handoff/catalog.json",
-      "sha256": "03e5e3073106d73132c3d782a8ec37a3f31d438732128029882604caf5c45d4e",
-      "bytes": 2899
+      "sha256": "880707e79140d7a6b33d856a91e02c7be4915fceebc4d7f30977353012840737",
+      "bytes": 2738
     },
     {
       "path": "handoff/history-index.json",
-      "sha256": "26637b41e997aaeed2d1d0d16bd54331ee95ef8652ee79e6389a881a5f925e1a",
+      "sha256": "364417a9925af88b7429ea21df8b8e02ef5a6ab1f2c3277310ec4969b7bfaa52",
       "bytes": 24008
     },
     {
       "path": "handoff/material-disposition.json",
-      "sha256": "cd019ca17a6a24d215014cbdab78642e117c3f405fa02e45631de77bd1b82a62",
-      "bytes": 519
+      "sha256": "9b0b8aa83804de2f738cc70e771c935c4f768224cefbd3619a1477a9a7010c44",
+      "bytes": 522
     },
     {
       "path": "pyproject.toml",

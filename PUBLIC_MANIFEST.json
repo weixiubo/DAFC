@@ -48,7 +48,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "f1196a7326ee6ab853c0206b6a2ecd0b65d786b32c846b663fb4623ecef43790",
+      "sha256": "3da976df9076feea09a109516e7513bdb4ddc533335337539f354e05b9f1af0c",
       "bytes": 2753
     },
     {
@@ -88,7 +88,7 @@
     },
     {
       "path": "docs/ARTIFACTS.md",
-      "sha256": "e45ac2185de5356d82bf79521a297ba018f93bce24c7dfcd9bb6c7f39c9aa6b2",
+      "sha256": "4b1cc681cd4d613aa1a3445e07b04a2b6da1fa762362258c5bdb5c1310fd01b2",
       "bytes": 3474
     },
     {
@@ -128,7 +128,7 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "6ea35f69e2b6f70003de21a6e8e28fa3deeeb93a6adbf6174bb59953624c27e9",
+      "sha256": "88bdd8642b25c42ea824fd26680135fb11b24442950c4272398e46c26f099c83",
       "bytes": 2187
     },
     {
@@ -143,17 +143,17 @@
     },
     {
       "path": "handoff/catalog.json",
-      "sha256": "880707e79140d7a6b33d856a91e02c7be4915fceebc4d7f30977353012840737",
+      "sha256": "1d382bbe89bc340b5bbd497582431512fd3114923951bde72925e668b497f53c",
       "bytes": 2738
     },
     {
       "path": "handoff/history-index.json",
-      "sha256": "364417a9925af88b7429ea21df8b8e02ef5a6ab1f2c3277310ec4969b7bfaa52",
+      "sha256": "39a01553f45dd73e195f3207d57a894cbb131a16da3d78ac42f0e85cf3973fe3",
       "bytes": 24008
     },
     {
       "path": "handoff/material-disposition.json",
-      "sha256": "9b0b8aa83804de2f738cc70e771c935c4f768224cefbd3619a1477a9a7010c44",
+      "sha256": "11ea160f332aa5a10662002d8165fcc3ca6d34102aed8fd6397162701ba6c53f",
       "bytes": 522
     },
     {
